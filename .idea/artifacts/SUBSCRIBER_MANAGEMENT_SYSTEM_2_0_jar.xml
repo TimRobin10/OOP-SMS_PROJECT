@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SUBSCRIBER MANAGEMENT SYSTEM 2.0:jar">
+    <output-path>$PROJECT_DIR$/../../../Desktop</output-path>
+    <root id="archive" name="SUBSCRIBER MANAGEMENT SYSTEM 2.0.jar">
+      <element id="module-output" name="SUBSCRIBER MANAGEMENT SYSTEM 2.0" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../PROGRAMMING RESOURCES/Java Libraries/JDBC/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../PROGRAMMING RESOURCES/Java Libraries/FontAwesome/fontawesomefx-8.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/fontawesomefx-8.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/flatlaf-3.4.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../PROGRAMMING RESOURCES/Java Libraries/JavaFX/javafx-sdk-22.0.1/lib/javafx-swt.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../PROGRAMMING RESOURCES/Java Libraries/JavaFX/javafx-sdk-22.0.1/lib/javafx.web.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../PROGRAMMING RESOURCES/Java Libraries/JavaFX/javafx-sdk-22.0.1/lib/javafx.base.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../PROGRAMMING RESOURCES/Java Libraries/JavaFX/javafx-sdk-22.0.1/lib/javafx.fxml.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../PROGRAMMING RESOURCES/Java Libraries/JavaFX/javafx-sdk-22.0.1/lib/javafx.media.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../PROGRAMMING RESOURCES/Java Libraries/JavaFX/javafx-sdk-22.0.1/lib/javafx.swing.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../PROGRAMMING RESOURCES/Java Libraries/JavaFX/javafx-sdk-22.0.1/lib/javafx.controls.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../PROGRAMMING RESOURCES/Java Libraries/JavaFX/javafx-sdk-22.0.1/lib/javafx.graphics.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

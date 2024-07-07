@@ -1,0 +1,284 @@
+#AnchorPane{
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-background-color: rgb(241,240,233);
+}
+
+/*Left Pane*/
+#SignInLabel{
+    -fx-font-family: "Croogla 4F";
+    -fx-font-size: 47px;
+    -fx-text-fill: rgb(236,23,20);
+}
+
+#CloseButton1{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 20 0 0 0;
+    -fx-border-radius: 20 0 0 0;
+}
+
+#CloseButton1:hover{
+    -fx-text-fill: white;
+    -fx-background-color: rgb(209,26,42);
+    -fx-background-radius: 20 0 0 0;
+    -fx-border-radius: 20 0 0 0;
+}
+
+#SignInUsernameTextField{
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-background-color: rgb(203,201,187);
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-padding: 0 10 0 50;
+}
+
+#SignInPasswordFieldHidden{
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-background-color: rgb(203,201,187);
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-padding: 0 50,0,7;
+}
+#SignInPasswordFieldView{
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-background-color: rgb(203,201,187);
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-padding: 0 50,0,0;
+}
+
+#ShowPasswordButton_SignIn{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 20 0 0 0;
+    -fx-border-radius: 20 0 0 0;
+}
+
+#ShowPasswordButton_SignIn:hover{
+    -fx-background-color: gray;
+    -fx-border-color: gray;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+#ShowPasswordButton_SignIn:selected{
+    -fx-background-color: gray;
+    -fx-border-color: gray;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+
+#SignInButton{
+    -fx-background-image: url("SignInButtonBG.png");
+    -fx-background-size: cover;
+    -fx-border-radius: 50px;
+    -fx-border-color: transparent;
+    -fx-background-radius: 50px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+}
+
+#SignInButton:hover{
+    -fx-border-width: 3;
+    -fx-effect: dropshadow(gaussian, rgb(255, 134, 61), 10, 0.5, 0, 0);
+}
+
+#SignInInvalidLabels{
+    -fx-font-family: "Arial";
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-text-fill: #ff3030;
+}
+
+
+/*Right Pane*/
+#SignUpLabel{
+    -fx-font-family: "Croogla 4F";
+    -fx-font-size: 47px;
+    -fx-text-fill: rgb(236,23,20);
+}
+
+#CloseButton2{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0 20 0 0;
+    -fx-border-radius: 0 20 0 0;
+}
+
+#CloseButton2:hover{
+    -fx-text-fill: white;
+    -fx-background-color: rgb(209,26,42);
+    -fx-background-radius: 0 20 0 0;
+    -fx-border-radius: 20 0 0 0;
+}
+
+#SignUpUsernameTextField{
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-background-color: rgb(203,201,187);
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-padding: 0 10 0 50;;
+}
+
+#SignUpPasswordFieldHidden{
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-background-color: rgb(203,201,187);
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-padding: 0 50,0,7;
+}
+
+#SignUpPasswordFieldView{
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-background-color: rgb(203,201,187);
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-padding: 0 50,0,0;
+}
+
+#ShowPasswordButton_SignUp{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 20 0 0 0;
+    -fx-border-radius: 20 0 0 0;
+}
+
+#ShowPasswordButton_SignUp:hover{
+    -fx-background-color: gray;
+    -fx-border-color: gray;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+#ShowPasswordButton_SignUp:selected{
+    -fx-background-color: gray;
+    -fx-border-color: gray;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+#SignUpConfirmPasswordHidden{
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-background-color: rgb(203,201,187);
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-padding: 0 50,0,7;
+}
+
+#SignUpConfirmPasswordView
+{
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-background-color: rgb(203,201,187);
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-padding: 0 50,0,0;
+}
+
+#SignUpConfirmPasswordButton{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 20 0 0 0;
+    -fx-border-radius: 20 0 0 0;
+}
+
+#ignUpConfirmPasswordButton:hover{
+    -fx-background-color: gray;
+    -fx-border-color: gray;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+#ignUpConfirmPasswordButton:selected{
+    -fx-background-color: gray;
+    -fx-border-color: gray;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+#SignUpButton{
+    -fx-background-image: url("SignInButtonBG.png");
+    -fx-background-size: cover;
+    -fx-border-radius: 50px;
+    -fx-border-color: transparent;
+    -fx-background-radius: 50px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+}
+
+#SignUpButton:hover{
+    -fx-border-width: 3;
+    -fx-effect: dropshadow(gaussian, rgb(255, 134, 61), 10, 0.5, 0, 0);
+}
+
+#SignUpInvalidLabel{
+    -fx-font-family: "Arial";
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-text-fill: #ff3030;
+}
+
+/*Floating Pane*/
+#FloatingPaneBG{
+    -fx-background-image: url("LoginPageBG.png");
+    -fx-background-size: cover;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: transparent;
+}
+
+#FloatingPaneMainLabel{
+    -fx-font-family: "Croogla 4F";
+    -fx-text-fill: rgba(114,114,88);
+}
+
+#FloatingPaneSecondaryLabel{
+    -fx-text-fill: rgb(114,114,88);
+}
+
+#FloatingPaneButton1{
+    -fx-font-family: "Arial";
+    -fx-text-fill: rgba(114,114,88);
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(114,114,88,0.32);
+    -fx-background-radius: 50;
+    -fx-border-color: rgba(114,114,88,0.5);
+    -fx-border-width: 2;
+    -fx-border-radius: 50;
+}
+
+#FloatingPaneButton1:hover{
+    -fx-font-family: "Arial";
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(114,114,88);
+    -fx-background-radius: 50;
+    -fx-border-color: rgba(114,114,88);
+    -fx-border-width: 2;
+    -fx-border-radius: 50;
+}
