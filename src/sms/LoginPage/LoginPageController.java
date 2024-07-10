@@ -111,15 +111,15 @@ public class LoginPageController {
                     switch (Account_Role) {
                         case "ADMIN" -> {
                             JOptionPane.showMessageDialog(null, "Welcome " + username, "Welcome Admin", JOptionPane.INFORMATION_MESSAGE);
-                            database.closeConnection();
+                            database.closeConnection_Login();
                         }
                         case "USER" -> {
                             JOptionPane.showMessageDialog(null, "Welcome " + username, "Welcome User", JOptionPane.INFORMATION_MESSAGE);
-                            database.closeConnection();
+                            database.closeConnection_Login();
                         }
                         case "DEFAULT" ->{
                             JOptionPane.showMessageDialog(null, "Sorry. You are not allowed to enter the system yet. Please contact your system Administrator to update your account.", "Default Users", JOptionPane.INFORMATION_MESSAGE);
-                            database.closeConnection();
+                            database.closeConnection_Login();
                         }
                     }
                 }

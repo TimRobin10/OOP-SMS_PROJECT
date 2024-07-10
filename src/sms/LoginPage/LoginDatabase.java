@@ -3,7 +3,6 @@ package sms.LoginPage;
 import javax.swing.*;
 import java.io.InputStream;
 import java.sql.*;
-import java.util.Optional;
 import java.util.Properties;
 
 public class LoginDatabase {
@@ -54,7 +53,7 @@ public class LoginDatabase {
         }
     }
 
-    public void closeConnection() {
+    public void closeConnection_Login() {
         if (connection != null) {
             try {
                 connection.close();
@@ -125,7 +124,6 @@ public class LoginDatabase {
         }
         return false;
     }
-
 
     void add_account(String username_input, String password_input){
         String sql = "insert into accounts (username, account_password) values (?, ?)";
