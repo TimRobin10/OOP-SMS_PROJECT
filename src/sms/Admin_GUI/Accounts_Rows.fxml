@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane id="TableRows" fx:id="TableRows" prefHeight="60.0" prefWidth="1137.0" stylesheets="@Accounts.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutX="-3.0" prefHeight="58.0" prefWidth="1165.0">
+         <children>
+            <Label id="Contents" fx:id="UserID_LB" alignment="CENTER" prefHeight="58.0" prefWidth="138.0" stylesheets="@Accounts.css" text="564897" />
+            <Label id="Contents" fx:id="Username_LB" alignment="CENTER" prefHeight="58.0" prefWidth="257.0" text="Username" />
+            <Label id="Contents" fx:id="Password_LB" alignment="CENTER" prefHeight="58.0" prefWidth="230.0" text="Password" />
+            <Label id="Contents" fx:id="AccountName_LB" alignment="CENTER" prefHeight="58.0" prefWidth="303.0" text="Account Name" />
+            <Label id="Contents" fx:id="Role_LB" alignment="CENTER" prefHeight="58.0" prefWidth="160.0" text="Role" />
+            <Button fx:id="Row_Button" mnemonicParsing="false" prefHeight="77.0" prefWidth="75.0">
+               <graphic>
+                  <FontAwesomeIcon glyphName="EDIT" selectionFill="#66fa7d" selectionStart="0" size="30" wrappingWidth="30.0" />
+               </graphic>
+            </Button>
+         </children>
+         <stylesheets>
+            <URL value="@Accounts.css" />
+            <URL value="@Accounts.css" />
+         </stylesheets>
+      </HBox>
+   </children>
+</AnchorPane>

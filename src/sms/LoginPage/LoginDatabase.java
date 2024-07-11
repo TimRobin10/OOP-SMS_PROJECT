@@ -1,5 +1,8 @@
 package sms.LoginPage;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import javax.swing.*;
 import java.io.InputStream;
 import java.sql.*;
@@ -7,7 +10,7 @@ import java.util.Properties;
 
 public class LoginDatabase {
     String db_username, db_password;
-    Connection connection;
+    static Connection connection;
 
     //FOR SINGLETON DESIGN
     private static volatile LoginDatabase instance;
@@ -26,7 +29,7 @@ public class LoginDatabase {
         return result;
     }
 
-    LoginDatabase() {
+    private LoginDatabase() {
 
         Properties prop = new Properties();
 
