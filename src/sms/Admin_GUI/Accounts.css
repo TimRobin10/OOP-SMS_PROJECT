@@ -1,0 +1,140 @@
+
+
+.EditButton6{
+
+    -fx-background-color: #008000;
+    -fx-border-radius: 15px;
+
+}
+
+.EditButton5{
+
+    -fx-background-color: #008000;
+    -fx-border-radius: 15px;
+
+}
+
+.EditButton4{
+
+    -fx-background-color: #008000;
+    -fx-border-radius: 15px;
+
+}
+
+.EditButton3{
+
+    -fx-background-color: #008000;
+    -fx-border-radius: 15px;
+
+}
+
+
+.EditButton2{
+
+    -fx-background-color: #008000;
+    -fx-border-radius: 15px;
+
+}
+
+
+.EditButton1{
+
+    -fx-background-color: #008000;
+    -fx-border-radius: 15px;
+
+}
+
+#TableRows{
+    -fx-background-color: white;
+    -fx-background-radius:15px;
+    -fx-border-radius: 15px;
+}
+
+#Contents{
+    -fx-text-fill: rgb(0, 64, 154);
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+
+#Row_Button{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+}
+
+#Row_Button:hover{
+    -fx-background-color: gray;
+    -fx-border-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+}
+
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: f1f0e9;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.scroll-pane:focused {
+    -fx-background-insets: 0;
+}
+
+.scroll-pane .corner {
+    -fx-background-insets: 0;
+}
+
+.RemoveAccountButton:hover{
+
+    -fx-background-color:  #F88456;
+
+}
+
+
+.RemoveAccountButton{
+
+    -fx-border-color: #F88456;
+    -fx-border-radius: 15px;
+    -fx-background-color: f1f0e9;
+    -fx-background-radius: 15px;
+    -fx-padding: 5px;
+
+}
+
+.searchTextField{
+
+    -fx-background-radius: 20px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+    -fx-border-width: 1px;
+
+}
+
+.AccountsForm{
+
+    -fx-background-color: f1f0e9;
+}
+
+#HeadLabel{
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+
+#UserID_LB{
+    -fx-font-family: "Arial";
+}
+
+#Accounts_Layout{
+    -fx-spacing: 5;
+}
+

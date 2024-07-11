@@ -2,6 +2,7 @@ package sms.LoginPage;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sms.Admin_GUI.Accounts;
 
 import javax.swing.*;
 import java.io.InputStream;
@@ -56,7 +57,7 @@ public class LoginDatabase {
         }
     }
 
-    public void closeConnection_Login() {
+    /*public void closeConnection_Login() {
         if (connection != null) {
             try {
                 connection.close();
@@ -64,7 +65,7 @@ public class LoginDatabase {
                 JOptionPane.showMessageDialog(null, e, "Database Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }
+    }*/
 
     int verifyAccount(String username_input, String password_input){
         int status = 2;
@@ -142,6 +143,27 @@ public class LoginDatabase {
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, e, "Database Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    public ObservableList<Accounts> fetchAccountData(){
+        ObservableList<Accounts> accounts = FXCollections.observableArrayList();
+        String query = "SELECT * FROM ACCOUNTS";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("user_id");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("account_password");
+                String account_name = resultSet.getString("account_name");
+                String account_role = resultSet.getString("account_role");
+                accounts.add(new Accounts(id, username, password, account_name, account_role));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e, "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return accounts;
     }
 
 }
