@@ -28,7 +28,6 @@ public class Transaction_Controller{
     @FXML private TableColumn<?, ?> Trans_Amount;
     @FXML private TableColumn<?, ?> Trans_Date;
     @FXML private TableColumn<?, ?> Trans_Time;
-
     @FXML private ChoiceBox<String> Month_Choice_Box;
     @FXML private ChoiceBox<String> Year_Choice_Box;
     @FXML private TextField SearchBar;
@@ -59,6 +58,8 @@ public class Transaction_Controller{
 
         ObservableList<Transaction_Template> transactions = TDB.retrieveTransactionData();
         Trans_Table.setItems(transactions);
+
+        setupSearchListener();
     }
 
     private void Year_ComboBox_SetUp(){
@@ -126,5 +127,32 @@ public class Transaction_Controller{
         Trans_Table.setItems(filteredData);
     }
 
+    private void setupSearchListener() {
+        SearchBar.setOnKeyReleased(event -> searchTransactions());
+    }
+
+    private void searchTransactions() {
+        String searchText = SearchBar.getText().trim().toLowerCase();
+        ObservableList<Transaction_Template> filteredData = FXCollections.observableArrayList();
+
+        for (Transaction_Template transaction : transactions) {
+            String transactionID = String.valueOf(transaction.getTransaction_ID()) != null ? String.valueOf(transaction.getTransaction_ID()) : "";
+            String customerID = String.valueOf(transaction.getCustomer_ID()) != null ? String.valueOf(transaction.getCustomer_ID()) : "";
+            String customerName = transaction.getCustomer_Name() != null ? transaction.getCustomer_Name().toLowerCase() : "";
+            String transactionDate = transaction.getTransaction_Date() != null ? transaction.getTransaction_Date().toLowerCase() : "";
+            String deadline = transaction.getDeadline() != null ? transaction.getDeadline().toLowerCase() : "";
+
+            if (transactionID.startsWith(searchText) ||
+                    customerID.startsWith(searchText) ||
+                    customerName.startsWith(searchText) ||
+                    transactionDate.startsWith(searchText) ||
+                    deadline.startsWith(searchText)) {
+                filteredData.add(transaction);
+            }
+        }
+
+        Trans_Table.setItems(filteredData);
+    }
 
 }
+

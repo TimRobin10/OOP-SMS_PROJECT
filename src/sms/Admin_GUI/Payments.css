@@ -1,0 +1,148 @@
+#Center_Pane{
+    -fx-background-color: rgb(241,240,233);
+}
+
+#MainLabel{
+    -fx-font-family: "Helvetica Rounded";
+    -fx-font-weight: bold;
+    -fx-font-size: 33;
+    -fx-text-fill: rgb(52,72,100);
+}
+
+#Flow{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 8px;
+}
+
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: f1f0e9;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.scroll-pane:focused {
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane .corner {
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+}
+
+#ScrollPane .scroll-bar {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#ScrollPane .scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+#ScrollPane .scroll-bar .thumb {
+    -fx-background-color: #c0c0c0;
+    -fx-background-insets: 0;
+}
+
+#ScrollPane .scroll-bar .thumb:hover {
+    -fx-background-color: #a0a0a0;
+}
+
+#ScrollPane .scroll-bar .thumb:pressed {
+    -fx-background-color: #808080;
+}
+
+#BasePane{
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+#Customer_ID_LB{
+    -fx-text-fill: rgb(52,72,100);
+    -fx-font-family: "Arial";
+    -fx-font-size: 25;
+    -fx-font-weight:bold;
+}
+
+#Customer_Name_LB{
+    -fx-text-fill: rgb(52,72,100);
+    -fx-font-family: "Arial";
+    -fx-font-size: 20;
+}
+
+#Due_Date_LB{
+    -fx-text-fill: rgb(52,72,100);
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+}
+
+#Due_Date_LB2{
+    -fx-text-fill: rgb(52,72,100);
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+}
+
+#Amount_LB{
+    -fx-text-fill: rgb(52,72,100);
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+}
+
+#Amount_LB2{
+    -fx-text-fill: rgb(52,72,100);
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+}
+
+#Address_LB1{
+    -fx-text-fill: rgb(52,72,100);
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+}
+
+
+
+#PayButton {
+    -fx-background-color: #B1E4B1;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-padding: 8px 15px;
+    -fx-border-width: 1px;
+}
+
+#PayButton:hover {
+    -fx-background-color: #A0D8A0;
+}
+
+#PayButton:pressed {
+    -fx-background-color: #8AC68A;
+}
+
+#SearchBar {
+    -fx-background-color: white;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-padding: 10px;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-prompt-text-fill: #aaa;
+}
+
+#SearchBar:focused {
+    -fx-border-color: dodgerblue;
+}

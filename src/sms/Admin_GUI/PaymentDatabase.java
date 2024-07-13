@@ -1,39 +1,41 @@
 package sms.Admin_GUI;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sms.LoginPage.LoginDatabase;
 
 import javax.swing.*;
 import java.io.InputStream;
 import java.sql.*;
-import java.util.List;
 import java.util.Properties;
 
-public class Transactions_Database {
+public class PaymentDatabase {
     String db_username, db_password;
-    Connection connection;
+    static Connection connection;
 
-    //SINGLETON
-    private static volatile Transactions_Database instance;
-    public static Transactions_Database getInstance() {
-        Transactions_Database result = instance;
-        if (result == null) {
-            synchronized (Transactions_Database.class) {
-                if (instance == null) {
-                    result = new Transactions_Database();
+    //FOR SINGLETON DESIGN
+    private static volatile PaymentDatabase instance;
+
+    public static PaymentDatabase getInstance(){
+        PaymentDatabase result = instance;
+
+        if(result == null){
+            synchronized(LoginDatabase.class){
+                result = instance;
+                if(result == null){
+                    instance = result = new PaymentDatabase();
                 }
             }
         }
         return result;
     }
 
-    //Constructor
-    private Transactions_Database() {
+    private PaymentDatabase() {
+
         Properties prop = new Properties();
 
         try {
-            InputStream input = getClass().getClassLoader().getResourceAsStream("sms/Admin_GUI/database.properties");
+            InputStream input = getClass().getClassLoader().getResourceAsStream("sms/LoginPage/database.properties");
             if (input == null) {
                 JOptionPane.showMessageDialog(null, "Database properties not found", "Database Error", JOptionPane.ERROR_MESSAGE);
             } else {
@@ -55,7 +57,7 @@ public class Transactions_Database {
         }
     }
 
-    public void closeConnection_Transaction() {
+    public void closeConnection_Payments() {
         if (connection != null) {
             try {
                 connection.close();
@@ -65,29 +67,26 @@ public class Transactions_Database {
         }
     }
 
-    public ObservableList<Transaction_Template> retrieveTransactionData(){
-        ObservableList<Transaction_Template> transactions_made = FXCollections.observableArrayList();
+    public ObservableList<Payments_Due_Accounts> due_accounts(){
+        ObservableList<Payments_Due_Accounts> dues = FXCollections.observableArrayList();
 
-        String query = "SELECT * FROM Transactions_list";
+        String query = "SELECT * FROM DEADLINES";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
+
             while(resultSet.next()){
-                int transaction_id = resultSet.getInt("transaction_id");
                 int customer_id = resultSet.getInt("customer_id");
                 String customer_name = resultSet.getString("customer_name");
-                double transaction_amount = resultSet.getDouble("transaction_amount");
+                double amount = resultSet.getDouble("subscription_amount");
                 String deadline = resultSet.getString("deadline");
-                String transaction_date = resultSet.getString("transaction_date");
-                String transaction_time = resultSet.getString("transaction_time");
-                transactions_made.add(new Transaction_Template(transaction_id,customer_id,customer_name,transaction_amount,deadline,transaction_date,transaction_time));
+                String address = resultSet.getString("address");
+                dues.add(new Payments_Due_Accounts(customer_id,customer_name,deadline,amount, address));
             }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Database Error: " + e, "Database Error", JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e, "Database Error", JOptionPane.ERROR_MESSAGE);
         }
-        return transactions_made;
+        return dues;
     }
-
-
-
 }

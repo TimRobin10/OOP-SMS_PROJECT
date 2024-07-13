@@ -84,3 +84,24 @@
 #Trans_Table .row:hover {
     -fx-background-color: #f1f1f1;
 }
+
+.table-view .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar .thumb {
+    -fx-background-color: #c0c0c0;
+    -fx-background-insets: 0;
+}
+
+.table-view .scroll-bar .thumb:hover {
+    -fx-background-color: #a0a0a0;
+}
+
+.table-view .scroll-bar .thumb:pressed {
+    -fx-background-color: #808080;
+}

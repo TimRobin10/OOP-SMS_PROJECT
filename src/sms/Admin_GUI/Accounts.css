@@ -93,12 +93,32 @@
     -fx-background-insets: 0;
 }
 
+#ScrollPane .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+#ScrollPane .scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+#ScrollPane .scroll-bar .thumb {
+    -fx-background-color: #c0c0c0;
+    -fx-background-insets: 0;
+}
+
+#ScrollPane .scroll-bar .thumb:hover {
+    -fx-background-color: #a0a0a0;
+}
+
+#ScrollPane .scroll-bar .thumb:pressed {
+    -fx-background-color: #808080;
+}
+
 .RemoveAccountButton:hover{
 
     -fx-background-color:  #F88456;
 
 }
-
 
 .RemoveAccountButton{
 
@@ -111,12 +131,10 @@
 }
 
 .searchTextField{
-
     -fx-background-radius: 20px;
-    -fx-padding: 8px;
+    -fx-padding: 0px 10px 0px 40px;
     -fx-font-size: 14px;
     -fx-border-width: 1px;
-
 }
 
 .AccountsForm{
@@ -137,4 +155,42 @@
 #Accounts_Layout{
     -fx-spacing: 5;
 }
+
+#Password_LB{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(0, 64, 154);
+    -fx-alignment: CENTER;
+}
+
+#CBox {
+    -fx-background-color: white;
+    -fx-border-color: lightgray;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-padding: 5 10 5 10;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+}
+
+#CBox:hover {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: gray;
+}
+
+#CBox:focused {
+    -fx-border-color: #00aaff;
+}
+
+#CBox .arrow {
+    -fx-background-color: lightgray;
+}
+
+#CBox .arrow:hover {
+    -fx-background-color: gray;
+}
+
 
