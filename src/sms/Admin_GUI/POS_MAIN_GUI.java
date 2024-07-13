@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.util.Objects;
 
 public class POS_MAIN_GUI extends Application {
@@ -25,13 +26,8 @@ public class POS_MAIN_GUI extends Application {
             stage.setResizable(false);
             stage.show();
         } catch (Exception e){
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 
-    private void adaptLayout(Parent root, double width, double height) {
-
-        root.prefWidth(width);
-        root.prefHeight(height);
-    }
 }

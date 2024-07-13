@@ -1,0 +1,136 @@
+.SaveButton:hover{
+
+    -fx-background-color: #f88456;
+
+}
+.CancelButton:hover{
+
+    -fx-background-color: #FF0000;
+
+}
+
+.SaveButton{
+
+    -fx-background-color: white;
+    -fx-text-fill: #344864;
+    -fx-border-radius: 50px;
+
+}
+
+.CancelButton{
+
+-fx-background-color: white;
+    -fx-text-fill: #344864;
+    -fx-border-radius: 50px;
+
+}
+
+#CustomerNameComboBox1{
+    -fx-background-color: #EDEDED;
+    -fx-border-radius: 30px;
+}
+
+#CustomerIDComboBox{
+    -fx-background-color: #EDEDED;
+    -fx-border-radius: 30px;
+}
+
+.combo-box {
+    -fx-background-color: #EDEDED;
+    -fx-border-radius: 15px;
+    -fx-padding: 5px;
+    -fx-font-family: Arial;
+    -fx-font-size: 14px;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-padding: 0 10px;
+}
+
+.combo-box .arrow-button .arrow {
+    -fx-background-color: #616161;
+    -fx-shape: "M 0 0 L 4 4 L 8 0 Z";
+}
+
+.combo-box-popup {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 15px;
+    -fx-padding: 5px;
+    -fx-border-color: #EDEDED;
+    -fx-border-radius: 15px;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #EDEDED;
+    -fx-text-fill: #333333;
+}
+
+
+.list-cell {
+    -fx-background-color: #EDEDED;
+    -fx-border-radius: 30px;
+    -fx-padding: 5px;
+}
+
+.NumberText{
+
+    -fx-text-fill: #344864;
+
+}
+
+
+.MonthlyChargeText{
+
+    -fx-text-fill: #344864;
+
+}
+
+
+.DueDateText{
+
+    -fx-text-fill: #344864;
+
+}
+
+
+.PlanText{
+
+    -fx-text-fill: #344864;
+
+}
+
+
+.AddressText{
+
+    -fx-text-fill: #344864;
+
+}
+
+
+.NameText{
+
+    -fx-text-fill: #344864;
+
+}
+
+.textAddClient{
+
+    -fx-text-fill: #f88456;
+
+}
+
+
+#mainAnchor{
+
+    -fx-background-color: WHITE;
+    -fx-border-radius: 200px;
+}
+
+.text-field{
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+    -fx-background-color: #EDEDED;
+    -fx-border-radius: 30px;
+}

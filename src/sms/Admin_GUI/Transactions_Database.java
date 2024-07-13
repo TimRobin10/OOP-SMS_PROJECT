@@ -88,6 +88,41 @@ public class Transactions_Database {
         return transactions_made;
     }
 
+    public int latest_transaction_ID() {
+        int transaction_id = 0;
 
+        String query = "SELECT MAX(transaction_id) AS max_transaction_id FROM Transactions_list";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                transaction_id = resultSet.getInt("max_transaction_id");  // Use the alias defined in the SQL query
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching latest transaction ID", e);
+        }
+        return transaction_id;
+    }
 
+    public int add_transaction(int Customer_ID, String Customer_Name, double Transaction_amount, String deadline){
+        int status = 0;
+        String query = "INSERT INTO TRANSACTIONS_LIST (CUSTOMER_ID, CUSTOMER_NAME, TRANSACTION_AMOUNT, DEADLINE, TRANSACTION_DATE, TRANSACTION_TIME) VALUES (?,?,?,?,CURRENT_DATE,CURRENT_TIME)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, Customer_ID);
+            preparedStatement.setString(2, Customer_Name);
+            preparedStatement.setDouble(3, Transaction_amount);
+            preparedStatement.setString(4, deadline);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                status = 1;
+            } else {
+                status = 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return status;
+    }
 }

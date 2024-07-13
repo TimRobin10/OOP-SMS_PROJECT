@@ -1,9 +1,15 @@
 package sms.Admin_GUI;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Payment_Item_Controller {
     @FXML private Label Amount_LB;
@@ -22,6 +28,7 @@ public class Payment_Item_Controller {
     double DueAmount;
     String address;
 
+
     public void DueData_SetAccount(Payments_Due_Accounts payments) {
         Customer_Name_LB.setText(payments.getAccount_name());
         CusName = payments.getAccount_name();
@@ -36,6 +43,21 @@ public class Payment_Item_Controller {
     }
 
     public void pay(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("POS_MAIN_GUI.fxml"));
+            Parent root = loader.load();
+            POS_MAIN_MAIN_CONTROLLER posController = loader.getController();
 
+            Stage posStage = new Stage();
+            Scene posScene = new Scene(root);
+
+            posController.setValues(CusName, CusID, DueDate, address, DueAmount);
+
+            posStage.setTitle("Point of Sale");
+            posStage.setScene(posScene);
+            posStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
