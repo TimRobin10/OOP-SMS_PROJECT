@@ -15,10 +15,10 @@ public class Admin_GUI extends Application {
     @Override
     public void start(Stage stage){
         try{
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Payments.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Transactions.fxml")));
             Scene scene_admin = new Scene(root);
 
-            String css = Objects.requireNonNull(this.getClass().getResource("Payments.css")).toExternalForm();
+            String css = Objects.requireNonNull(this.getClass().getResource("Transactions.css")).toExternalForm();
 
             scene_admin.getStylesheets().add(css);
 

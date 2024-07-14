@@ -80,7 +80,8 @@ public class Transactions_Database {
                 String deadline = resultSet.getString("deadline");
                 String transaction_date = resultSet.getString("transaction_date");
                 String transaction_time = resultSet.getString("transaction_time");
-                transactions_made.add(new Transaction_Template(transaction_id,customer_id,customer_name,transaction_amount,deadline,transaction_date,transaction_time));
+                String customer_address = resultSet.getString("customer_address");
+                transactions_made.add(new Transaction_Template(transaction_id,customer_id,customer_name,customer_address, transaction_amount, deadline,transaction_date,transaction_time));
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Database Error: " + e, "Database Error", JOptionPane.ERROR_MESSAGE);
@@ -104,15 +105,16 @@ public class Transactions_Database {
         return transaction_id;
     }
 
-    public int add_transaction(int Customer_ID, String Customer_Name, double Transaction_amount, String deadline){
+    public int add_transaction(int Customer_ID, String Customer_Name, String address, double Transaction_amount, String deadline){
         int status = 0;
-        String query = "INSERT INTO TRANSACTIONS_LIST (CUSTOMER_ID, CUSTOMER_NAME, TRANSACTION_AMOUNT, DEADLINE, TRANSACTION_DATE, TRANSACTION_TIME) VALUES (?,?,?,?,CURRENT_DATE,CURRENT_TIME)";
+        String query = "INSERT INTO TRANSACTIONS_LIST (CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_ADDRESS, TRANSACTION_AMOUNT, DEADLINE, TRANSACTION_DATE, TRANSACTION_TIME) VALUES (?,?,?,?,?,CURRENT_DATE,CURRENT_TIME)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, Customer_ID);
             preparedStatement.setString(2, Customer_Name);
-            preparedStatement.setDouble(3, Transaction_amount);
-            preparedStatement.setString(4, deadline);
+            preparedStatement.setString(3, address);
+            preparedStatement.setDouble(4, Transaction_amount);
+            preparedStatement.setString(5, deadline);
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {

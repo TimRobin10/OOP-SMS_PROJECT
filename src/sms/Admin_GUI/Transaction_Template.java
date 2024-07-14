@@ -12,15 +12,21 @@ public class Transaction_Template {
     private final SimpleStringProperty Deadline;
     private final SimpleStringProperty Transaction_Date;
     private final SimpleStringProperty Transaction_Time;
+    private final SimpleStringProperty Customer_Address;
 
-    public Transaction_Template(int transactionId, int customerId, String customerName, double transactionAmount, String deadline, String transactionDate, String transactionTime) {
-        Transaction_ID = new SimpleIntegerProperty(transactionId);
-        Customer_ID = new SimpleIntegerProperty(customerId);
-        Customer_Name = new SimpleStringProperty(customerName);
-        Transaction_Amount = new SimpleDoubleProperty(transactionAmount);
-        Deadline = new SimpleStringProperty(deadline);
-        Transaction_Date = new SimpleStringProperty(transactionDate);
-        Transaction_Time = new SimpleStringProperty(transactionTime);
+    public Transaction_Template(int transactionId, int customerId, String customerName, String address, double transactionAmount, String deadline, String transactionDate, String transactionTime) {
+        this.Transaction_ID = new SimpleIntegerProperty(transactionId);
+        this.Customer_ID = new SimpleIntegerProperty(customerId);
+        this.Customer_Name = new SimpleStringProperty(customerName);
+        this.Transaction_Amount = new SimpleDoubleProperty(transactionAmount);
+        this.Deadline = new SimpleStringProperty(deadline);
+        this.Transaction_Date = new SimpleStringProperty(transactionDate);
+        this.Transaction_Time = new SimpleStringProperty(transactionTime);
+        this.Customer_Address = new SimpleStringProperty(address);
+    }
+
+    public String getAddress(){
+        return Customer_Address.get();
     }
 
     public int getTransaction_ID() {

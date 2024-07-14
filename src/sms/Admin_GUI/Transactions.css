@@ -29,79 +29,82 @@
     -fx-background-radius: 10;*/
 }
 
-
-/*TABLE*/
-
-#Trans_Table .column-header-background {
-    -fx-background-color: transparent;
-
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
 }
 
-#Trans_Table .column-header {
-    -fx-background-color: transparent;
-    -fx-padding: 5px;
-    -fx-pref-height: 50px;
-
+.scroll-pane .viewport {
+    -fx-background-color: f1f0e9;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
 }
 
-#Trans_Table .column-header .label {
-    -fx-font-family: "Helvetica Rounded";
-    -fx-font-weight: bold;
-    -fx-text-fill: #969696;
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
+.scroll-pane:focused {
+    -fx-background-insets: 0;
 }
 
-#Trans_Table .cell {
-    -fx-font-family: "Helvetica Rounded";
-    -fx-alignment: CENTER;
-    -fx-font-size: 15px;
-    -fx-text-fill: rgb(52, 72, 100);
-    -fx-background-color: white;
-    -fx-font-weight: bold;
-    -fx-padding: 5px;
-    -fx-pref-height: 35px;
+.scroll-pane .corner {
+    -fx-background-insets: 0;
 }
 
-#Trans_Table .cell:selected {
-    -fx-background-color: #dcdcdc;
-    -fx-text-fill: rgb(52, 72, 100);
-}
-
-#Trans_Table .cell:focused {
-    -fx-border-color: #dcdcdc;
-    -fx-border-width: 1px;
-}
-
-#Trans_Table .cell:hover {
-    -fx-background-color: #f1f1f1;
-}
-
-#Trans_Table .row {
+#ScrollPane .scroll-bar {
     -fx-background-color: transparent;
 }
 
-#Trans_Table .row:hover {
-    -fx-background-color: #f1f1f1;
-}
-
-.table-view .scroll-bar {
+#ScrollPane .scroll-bar .track {
     -fx-background-color: transparent;
 }
 
-.table-view .scroll-bar .track {
-    -fx-background-color: transparent;
-}
-
-.table-view .scroll-bar .thumb {
+#ScrollPane .scroll-bar .thumb {
     -fx-background-color: #c0c0c0;
     -fx-background-insets: 0;
 }
 
-.table-view .scroll-bar .thumb:hover {
+#ScrollPane .scroll-bar .thumb:hover {
     -fx-background-color: #a0a0a0;
 }
 
-.table-view .scroll-bar .thumb:pressed {
+#ScrollPane .scroll-bar .thumb:pressed {
     -fx-background-color: #808080;
 }
+
+#HBOX .label{
+    -fx-font-family: "Arial";
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #494949;
+}
+
+/*ITEMS*/
+#TableRows{
+    -fx-background-color: white;
+    -fx-background-radius:15px;
+    -fx-border-radius: 15px;
+}
+
+#Contents{
+    -fx-text-fill: rgb(52, 72, 100);
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+
+#Row_Button{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+}
+
+#Row_Button:hover{
+    -fx-background-color: gray;
+    -fx-border-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+}
+
+

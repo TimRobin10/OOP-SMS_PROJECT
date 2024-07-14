@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane id="TableRows" fx:id="TableRows" prefHeight="60.0" prefWidth="1137.0" stylesheets="@Transactions.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sms.Admin_GUI.Transactions_Item_Controller">
+   <children>
+      <HBox layoutX="-3.0" prefHeight="58.0" prefWidth="1165.0" stylesheets="@Transactions.css">
+         <children>
+            <Label id="Contents" fx:id="Transaction_ID" alignment="CENTER" prefHeight="58.0" prefWidth="119.0" stylesheets="@Transactions.css" text="0000001" />
+            <Label id="Contents" fx:id="Customer_ID" alignment="CENTER" prefHeight="58.0" prefWidth="119.0" stylesheets="@Transactions.css" text="111222" />
+            <Label id="Contents" fx:id="Customer_Name" alignment="CENTER" prefHeight="58.0" prefWidth="293.0" stylesheets="@Transactions.css" text="John Doe" />
+            <Label id="Contents" fx:id="Transaction_Amount" alignment="CENTER" prefHeight="58.0" prefWidth="140.0" stylesheets="@Transactions.css" text="Php 1,978.00" />
+            <Label id="Contents" fx:id="Deadline" alignment="CENTER" prefHeight="58.0" prefWidth="140.0" stylesheets="@Transactions.css" text="2024-32-14" />
+            <Label id="Contents" fx:id="Date" alignment="CENTER" prefHeight="58.0" prefWidth="140.0" stylesheets="@Transactions.css" text="4545-25-36" />
+            <Label id="Contents" fx:id="Time" alignment="CENTER" prefHeight="58.0" prefWidth="140.0" stylesheets="@Transactions.css" text="10:00:44" />
+            <Button fx:id="Row_Button" mnemonicParsing="false" onAction="#print" prefHeight="77.0" prefWidth="75.0" stylesheets="@Transactions.css">
+               <graphic>
+                  <FontAwesomeIcon glyphName="PRINT" size="30" />
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

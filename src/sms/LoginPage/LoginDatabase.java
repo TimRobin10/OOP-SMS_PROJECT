@@ -12,6 +12,7 @@ import java.util.Properties;
 public class LoginDatabase {
     String db_username, db_password;
     static Connection connection;
+    String Account_Name = "John Doe";
 
     //FOR SINGLETON DESIGN
     private static volatile LoginDatabase instance;
@@ -101,6 +102,7 @@ public class LoginDatabase {
 
             if (resultSet.next()) {
                 role = resultSet.getString("account_role");
+                Account_Name = resultSet.getString("account_name");
             } else {
                 JOptionPane.showMessageDialog(null, "No user found with the given username", "User Not Found", JOptionPane.ERROR_MESSAGE);
             }
@@ -164,6 +166,10 @@ public class LoginDatabase {
             JOptionPane.showMessageDialog(null, e, "Database Error", JOptionPane.ERROR_MESSAGE);
         }
         return accounts;
+    }
+
+    public String getAccount_Name(){
+        return Account_Name;
     }
 
 }

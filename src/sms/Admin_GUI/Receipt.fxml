@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="257.0" prefWidth="546.0" stylesheets="@Receipt.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sms.Admin_GUI.Receipt_Controller">
+   <children>
+      <Label fx:id="TITLE_LABEL" layoutX="179.0" layoutY="16.0" prefHeight="22.0" prefWidth="254.0" stylesheets="@Receipt.css" text="P &amp; C OPTIMAL IT SOLUTIONS">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="51.0" fitWidth="51.0" layoutX="127.0" layoutY="9.0">
+         <image>
+            <Image url="@../../resources/Image_Resources/4.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="TITLE_LABEL" layoutX="179.0" layoutY="32.0" prefHeight="18.0" prefWidth="193.0" stylesheets="@Receipt.css" text="P-2 North Poblacion, Maramag, Bukidnon">
+         <font>
+            <Font name="Arial" size="9.0" />
+         </font>
+      </Label>
+      <Label layoutX="1.0" layoutY="61.0" prefHeight="18.0" prefWidth="77.0" text="RECEIPT">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="transactionID_label" alignment="CENTER_RIGHT" layoutX="367.0" layoutY="55.0" prefHeight="18.0" prefWidth="175.0" text="No.:">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="date_label" alignment="CENTER_RIGHT" layoutX="380.0" layoutY="71.0" prefHeight="18.0" prefWidth="162.0" text="Date:">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="1.0" layoutY="91.0" text="Recieved from">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="recieve_label" layoutX="76.0" layoutY="90.0" prefHeight="18.0" prefWidth="468.0" text="Jane Doep">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="1.0" layoutY="111.0" text="Address at">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="address_label" layoutX="56.0" layoutY="110.0" prefHeight="18.0" prefWidth="320.0" text="P-2 maramagsdhajdksadjk">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="379.0" layoutY="110.0" text="with TIN:">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="TIN_label" layoutX="429.0" layoutY="109.0" prefHeight="18.0" prefWidth="116.0">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Line endX="369.0" endY="1.4000015258789062" layoutX="175.0" layoutY="106.0" startX="-100.0" strokeWidth="0.5" />
+      <Line endX="221.0" layoutX="155.0" layoutY="127.0" startX="-100.0" strokeWidth="0.5" />
+      <Line endX="194.0" layoutX="350.0" layoutY="126.0" startX="76.5333251953125" strokeWidth="0.5" />
+      <Label layoutX="1.0" layoutY="130.0" text="Enggaged in the Business style of">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="BusinessStyle_Label" layoutX="167.0" layoutY="130.0" prefHeight="18.0" prefWidth="320.0" text="P&amp;C Optimal IT Solutions">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Line endX="278.0" layoutX="266.0" layoutY="146.0" startX="-100.0" strokeWidth="0.5" />
+      <Label layoutX="1.0" layoutY="149.0" text="Amount (In words):">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="AmountInWords_Label" layoutX="99.0" layoutY="148.0" prefHeight="18.0" prefWidth="444.0" text="One million- three hundred thoused- five hundred eighty six">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Line endX="347.0" layoutX="196.0" layoutY="165.0" startX="-100.0" strokeWidth="0.5" />
+      <Label layoutX="1.0" layoutY="167.0" text="Amount:  Php">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="AmountInNumbers_Label" layoutX="71.0" layoutY="166.0" prefHeight="18.0" prefWidth="77.0" text="345,368.00">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Line layoutX="146.0" layoutY="183.0" startX="-100.0" strokeWidth="0.5" />
+      <Label layoutX="153.0" layoutY="167.0" text="In partial/full payment for">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="Service_Label" layoutX="282.0" layoutY="166.0" prefHeight="18.0" prefWidth="263.0" text="Internet Services Subscription">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Line endX="165.20001220703125" endY="0.399993896484375" layoutX="380.0" layoutY="184.0" startX="-100.0" strokeWidth="0.5" />
+      <Label alignment="CENTER_RIGHT" layoutX="429.0" layoutY="191.0" text="Payment Received by:">
+         <font>
+            <Font name="System Bold Italic" size="11.0" />
+         </font>
+      </Label>
+      <Line endX="69.99993896484375" layoutX="474.0" layoutY="231.0" startX="-100.0" strokeWidth="0.5" />
+      <Label alignment="CENTER" layoutX="373.0" layoutY="228.0" prefHeight="18.0" prefWidth="169.0" text="Name &amp; Authorized Signature">
+         <font>
+            <Font name="System Italic" size="8.0" />
+         </font>
+      </Label>
+      <Label fx:id="RecieverName_Label" alignment="CENTER" layoutX="374.0" layoutY="214.0" prefHeight="18.0" prefWidth="169.0" text="Cassandra Eryka Blanch O. Aralquez">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -3,156 +3,127 @@ package sms.Admin_GUI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javax.swing.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-public class Transaction_Controller{
-    private ObservableList<Transaction_Template> transactions;
-    Transactions_Database TDB = Transactions_Database.getInstance();
-
-
-    @FXML private TableView<Transaction_Template> Trans_Table;
-
-    @FXML private TableColumn<?, ?> Trans_ID;
-    @FXML private TableColumn<?, ?> Cust_ID;
-    @FXML private TableColumn<?, ?> Cust_Name;
-    @FXML private TableColumn<?, ?> Deadline;
-    @FXML private TableColumn<?, ?> Trans_Amount;
-    @FXML private TableColumn<?, ?> Trans_Date;
-    @FXML private TableColumn<?, ?> Trans_Time;
+public class Transaction_Controller {
+    @FXML private AnchorPane Center_Pane;
+    @FXML private HBox HBOX;
+    @FXML private AnchorPane Left;
+    @FXML private Label Main_Label;
     @FXML private ChoiceBox<String> Month_Choice_Box;
-    @FXML private ChoiceBox<String> Year_Choice_Box;
+    @FXML private ScrollPane ScrollPane;
     @FXML private TextField SearchBar;
+    @FXML private ChoiceBox<String> Year_Choice_Box;
+    @FXML private VBox vBox;
 
+    private Transactions_Database trans = Transactions_Database.getInstance();
+    private ObservableList<Transaction_Template> allTransactions;
+    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @FXML
     public void initialize() {
-        Trans_ID.setCellValueFactory(new PropertyValueFactory<>("transaction_ID"));
-        Cust_ID.setCellValueFactory(new PropertyValueFactory<>("customer_ID"));
-        Cust_Name.setCellValueFactory(new PropertyValueFactory<>("customer_Name"));
-        Trans_Amount.setCellValueFactory(new PropertyValueFactory<>("transaction_Amount"));
-        Deadline.setCellValueFactory(new PropertyValueFactory<>("deadline"));
-        Trans_Date.setCellValueFactory(new PropertyValueFactory<>("transaction_Date"));
-        Trans_Time.setCellValueFactory(new PropertyValueFactory<>("transaction_Time"));
+        init_transactions();
+        setupSearchBar();
+        setupChoiceBoxes();
+    }
 
+    void init_transactions() {
+        allTransactions = trans.retrieveTransactionData();
+        loadTransactions(allTransactions);
+    }
+
+    void setupSearchBar() {
+        SearchBar.setOnKeyReleased(event -> filterTransactions());
+    }
+
+    void setupChoiceBoxes() {
         ObservableList<String> months = FXCollections.observableArrayList(
-                "All", "January", "February", "March", "April", "May", "June", "July",
-                "August", "September", "October", "November", "December"
+                "All", "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
         );
         Month_Choice_Box.setItems(months);
-        Month_Choice_Box.getSelectionModel().selectFirst();
+        Month_Choice_Box.setValue("All");
 
-        transactions = TDB.retrieveTransactionData();
-        Year_ComboBox_SetUp();
+        Set<Integer> years = allTransactions.stream()
+                .map(transaction -> {
+                    LocalDate date = LocalDate.parse(transaction.getTransaction_Date(), dateFormatter);
+                    return date.getYear();
+                })
+                .collect(Collectors.toCollection(TreeSet::new));
 
-        Month_Choice_Box.setOnAction(event -> Filter_Transactions_Date());
-        Year_Choice_Box.setOnAction(event -> Filter_Transactions_Date());
+        if (!years.isEmpty()) {
+            int minYear = years.iterator().next();
+            int maxYear = ((TreeSet<Integer>) years).last();
 
-        ObservableList<Transaction_Template> transactions = TDB.retrieveTransactionData();
-        Trans_Table.setItems(transactions);
+            ObservableList<String> yearList = FXCollections.observableArrayList("All");
+            yearList.addAll(IntStream.rangeClosed(minYear, maxYear)
+                    .map(i -> maxYear - (i - minYear))
+                    .mapToObj(String::valueOf)
+                    .collect(Collectors.toList()));
+            Year_Choice_Box.setItems(yearList);
+            Year_Choice_Box.setValue("All");
+        } else {
+            Year_Choice_Box.setItems(FXCollections.observableArrayList("All"));
+            Year_Choice_Box.setValue("All");
+        }
 
-        setupSearchListener();
+        Month_Choice_Box.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> filterTransactions());
+        Year_Choice_Box.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> filterTransactions());
     }
 
-    private void Year_ComboBox_SetUp(){
-        List<String> years = new ArrayList<>();
-        years.add("All");
+    void loadTransactions(ObservableList<Transaction_Template> transactions) {
+        vBox.getChildren().clear();
+        try {
+            for (Transaction_Template transaction : transactions) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Transactions_Items.fxml"));
+                AnchorPane node = fxmlLoader.load();
 
-        int earliest_year = Integer.MAX_VALUE;
-        int latest_year = Integer.MIN_VALUE;
+                Transactions_Item_Controller controller = fxmlLoader.getController();
+                controller.set_transaction_data(transaction);
 
-        for(Transaction_Template transaction : transactions){
-            String transactionYear = transaction.getTransaction_Date().substring(0, 4); // Assuming format "yyyy-MM-dd"
-            int year = Integer.parseInt(transactionYear);
-            if (year > latest_year) {
-                latest_year = year;
+                vBox.getChildren().add(node);
             }
-            if (year < earliest_year) {
-                earliest_year = year;
-            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Something went wrong", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        for (int year = latest_year; year >= earliest_year; year--) {
-            years.add(String.valueOf(year));
-        }
-
-        Year_Choice_Box.setItems(FXCollections.observableArrayList(years));
-        Year_Choice_Box.getSelectionModel().selectFirst();
     }
 
-    private void Filter_Transactions_Date() {
-        String selectedMonth = Month_Choice_Box.getSelectionModel().getSelectedItem();
-        String selectedYear = Year_Choice_Box.getSelectionModel().getSelectedItem();
+    void filterTransactions() {
+        String searchText = SearchBar.getText().toLowerCase();
+        String selectedMonth = Month_Choice_Box.getValue();
+        String selectedYear = Year_Choice_Box.getValue();
 
-        switch(selectedMonth){
-            case "All" -> selectedMonth = "All";
-            case "January" -> selectedMonth = "01";
-            case "February" -> selectedMonth = "02";
-            case "March" -> selectedMonth = "03";
-            case "April" -> selectedMonth = "04";
-            case "May" -> selectedMonth = "05";
-            case "June" -> selectedMonth = "06";
-            case "July" -> selectedMonth = "07";
-            case "August" -> selectedMonth = "08";
-            case "September" -> selectedMonth = "09";
-            case "October" -> selectedMonth = "10";
-            case "November" -> selectedMonth = "11";
-            case "December" -> selectedMonth = "12";
-        }
+        ObservableList<Transaction_Template> filteredTransactions = FXCollections.observableArrayList();
 
-        ObservableList<Transaction_Template> filteredData = FXCollections.observableArrayList();
+        for (Transaction_Template transaction : allTransactions) {
+            LocalDate date = LocalDate.parse(transaction.getTransaction_Date(), dateFormatter);
+            boolean matchesMonth = selectedMonth.equals("All") || date.getMonth().toString().equalsIgnoreCase(selectedMonth);
+            boolean matchesYear = selectedYear.equals("All") || String.valueOf(date.getYear()).equals(selectedYear);
 
-        // Filter transactions based on selected month and year
-        for (Transaction_Template transaction : transactions) {
-            String transactionMonth = transaction.getTransaction_Date().substring(5, 7); // Assuming format "yyyy-MM-dd"
-            String transactionYear = transaction.getTransaction_Date().substring(0, 4); // Assuming format "yyyy-MM-dd"
-
-            boolean matchMonth = selectedMonth.equals("All") || selectedMonth.equals(transactionMonth);
-            boolean matchYear = selectedYear.equals("All") || selectedYear.equals(transactionYear);
-
-            if (matchMonth && matchYear) {
-                filteredData.add(transaction);
+            if (matchesMonth && matchesYear &&
+                    (String.valueOf(transaction.getTransaction_Amount()).toLowerCase().contains(searchText) ||
+                            transaction.getCustomer_Name().toLowerCase().contains(searchText) ||
+                            String.valueOf(transaction.getTransaction_ID()).toLowerCase().contains(searchText) ||
+                            String.valueOf(transaction.getCustomer_ID()).toLowerCase().contains(searchText) ||
+                            transaction.getTransaction_Date().toLowerCase().contains(searchText))) {
+                filteredTransactions.add(transaction);
             }
         }
 
-        // Update table with filtered data
-        Trans_Table.setItems(filteredData);
+        loadTransactions(filteredTransactions);
     }
-
-    private void setupSearchListener() {
-        SearchBar.setOnKeyReleased(event -> searchTransactions());
-    }
-
-    private void searchTransactions() {
-        String searchText = SearchBar.getText().trim().toLowerCase();
-        ObservableList<Transaction_Template> filteredData = FXCollections.observableArrayList();
-
-        for (Transaction_Template transaction : transactions) {
-            String transactionID = String.valueOf(transaction.getTransaction_ID()) != null ? String.valueOf(transaction.getTransaction_ID()) : "";
-            String customerID = String.valueOf(transaction.getCustomer_ID()) != null ? String.valueOf(transaction.getCustomer_ID()) : "";
-            String customerName = transaction.getCustomer_Name() != null ? transaction.getCustomer_Name().toLowerCase() : "";
-            String transactionDate = transaction.getTransaction_Date() != null ? transaction.getTransaction_Date().toLowerCase() : "";
-            String deadline = transaction.getDeadline() != null ? transaction.getDeadline().toLowerCase() : "";
-
-            if (transactionID.startsWith(searchText) ||
-                    customerID.startsWith(searchText) ||
-                    customerName.startsWith(searchText) ||
-                    transactionDate.startsWith(searchText) ||
-                    deadline.startsWith(searchText)) {
-                filteredData.add(transaction);
-            }
-        }
-
-        Trans_Table.setItems(filteredData);
-    }
-
 }
-

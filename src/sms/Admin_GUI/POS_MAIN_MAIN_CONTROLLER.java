@@ -1,11 +1,16 @@
 package sms.Admin_GUI;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.print.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.awt.print.PrinterException;
+import java.io.IOException;
 
 public class POS_MAIN_MAIN_CONTROLLER {
     @FXML private TextField AddressTF;
@@ -57,7 +62,7 @@ public class POS_MAIN_MAIN_CONTROLLER {
 
     public void confirm(){
         int print_option = 0;
-        int status = transactions_database.add_transaction(CustomerID,CustomerName,amount,DueDate);
+        int status = transactions_database.add_transaction(CustomerID,CustomerName,address,amount,DueDate);
         switch(status){
             case 1 ->{
                 print_option = JOptionPane.showOptionDialog(null,"Transaction added successfully\n\nDo you want a printed reciept?", "Payment Successful", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
@@ -69,13 +74,58 @@ public class POS_MAIN_MAIN_CONTROLLER {
 
         switch (print_option){
             case JOptionPane.YES_OPTION -> {
-
+                print();
             }
             case JOptionPane.NO_OPTION -> {
-
             }
         }
         close();
+    }
+
+
+    public void print() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Receipt.fxml"));
+            Pane root = loader.load();
+
+            Receipt_Controller controller = loader.getController();
+            controller.initializeData(next_transaction_id, CustomerName, address, amount);
+
+            Printer printer = Printer.getDefaultPrinter();
+            if (printer == null) {
+                JOptionPane.showMessageDialog(null, "No available printer found", "Printing Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                PrinterJob job = PrinterJob.createPrinterJob(printer);
+
+                if (job != null) {
+                    PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT,
+                            Printer.MarginType.HARDWARE_MINIMUM);
+
+                    // Optional: Customize margins (in points, 1 inch = 72 points)
+                    double leftMargin = 25;
+                    double rightMargin = 20;
+                    double topMargin = 0;
+                    double bottomMargin = 20;
+
+                    pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT,
+                            leftMargin, rightMargin, topMargin, bottomMargin);
+
+                    boolean success = job.printPage(pageLayout, root);
+                    if (success) {
+                        job.endJob();
+                        JOptionPane.showMessageDialog(null, "Receipt printed successfully", "Printing Successful", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Printing failed", "Printing Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Could not create printer job", "Printing Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "An error occurred while printing", "Printing Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 }
