@@ -1,5 +1,6 @@
 package sms.Admin_GUI;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sms.LoginPage.LoginDatabase;
@@ -7,11 +8,15 @@ import sms.LoginPage.LoginDatabase;
 import javax.swing.*;
 import java.io.InputStream;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class PaymentDatabase {
     String db_username, db_password;
     static Connection connection;
+
+    private List<DatabaseObserver> observers = new ArrayList<>();
 
     //FOR SINGLETON DESIGN
     private static volatile PaymentDatabase instance;
@@ -20,7 +25,7 @@ public class PaymentDatabase {
         PaymentDatabase result = instance;
 
         if(result == null){
-            synchronized(LoginDatabase.class){
+            synchronized(PaymentDatabase.class){
                 result = instance;
                 if(result == null){
                     instance = result = new PaymentDatabase();
@@ -88,6 +93,36 @@ public class PaymentDatabase {
             JOptionPane.showMessageDialog(null, e, "Database Error", JOptionPane.ERROR_MESSAGE);
         }
         return dues;
+    }
+
+    public void payment_done_delete(int customer_id){
+        String query = "DELETE FROM deadlines WHERE customer_id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, customer_id);
+            preparedStatement.executeUpdate();
+            notifyObservers();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e, "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public interface DatabaseObserver {
+        void onUpdate();
+    }
+
+    public void addObserver(DatabaseObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(DatabaseObserver observer) {
+        observers.remove(observer);
+    }
+
+    private void notifyObservers() {
+        for (DatabaseObserver observer : observers) {
+            observer.onUpdate();
+        }
     }
 
 }

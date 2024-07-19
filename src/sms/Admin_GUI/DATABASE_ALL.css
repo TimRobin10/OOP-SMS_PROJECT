@@ -1,0 +1,256 @@
+#Center_Pane{
+    -fx-background-color: rgb(241,240,233);
+}
+
+/*LOCATION FILTER*/
+#Location_Filter_Base{
+    -fx-background-color: white;
+    -fx-border-color: rgb(200, 200, 200);
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
+
+#Location_Filter_Hbox{
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+
+#Location_Filter_Button1, #Location_Filter_Button2, #Location_Filter_Button3,
+#Location_Filter_Button4, #Location_Filter_Button5, #Location_Filter_Button6,
+#Location_Filter_Button7, #Location_Filter_Button8, #Location_Filter_Button9,
+#Location_Filter_Button10, #Location_Filter_Button11 {
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(166, 166, 166);
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+#Location_Filter_Button1{
+    -fx-background-radius: 15 0 0 15;
+    -fx-border-radius: 15 0 0 15;
+}
+
+#Location_Filter_Button11{
+    -fx-background-radius:  0 15 15 0;
+    -fx-border-radius: 0 15 15 0 ;
+}
+
+#Location_Filter_Button1:hover, #Location_Filter_Button2:hover, #Location_Filter_Button3:hover,
+#Location_Filter_Button4:hover, #Location_Filter_Button5:hover, #Location_Filter_Button6:hover,
+#Location_Filter_Button7:hover, #Location_Filter_Button8:hover, #Location_Filter_Button9:hover,
+#Location_Filter_Button10:hover, #Location_Filter_Button11:hover {
+    -fx-background-color: rgba(166, 166, 166, 0.2);
+}
+
+#Location_Filter_Button1:selected, #Location_Filter_Button2:selected, #Location_Filter_Button3:selected,
+#Location_Filter_Button4:selected, #Location_Filter_Button5:selected, #Location_Filter_Button6:selected,
+#Location_Filter_Button7:selected, #Location_Filter_Button8:selected, #Location_Filter_Button9:selected,
+#Location_Filter_Button10:selected, #Location_Filter_Button11:selected {
+    -fx-border-color: rgb(248, 132, 86);
+    -fx-border-width: 0 0 2px 0;
+}
+
+#Location_Filter_Button1:pressed, #Location_Filter_Button2:pressed, #Location_Filter_Button3:pressed,
+#Location_Filter_Button4:pressed, #Location_Filter_Button5:pressed, #Location_Filter_Button6:pressed,
+#Location_Filter_Button7:pressed, #Location_Filter_Button8:pressed, #Location_Filter_Button9:pressed,
+#Location_Filter_Button10:pressed, #Location_Filter_Button11:pressed {
+    -fx-border-color: transparent transparent rgb(248, 132, 86) transparent;
+    -fx-border-width: 0 0 2px 0;
+}
+
+
+/*Main Label*/
+#Main_Label{
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-font-size: 24;
+    -fx-text-fill: rgb(52,72,100);
+}
+
+/*Add New Button*/
+#Add_New_Button {
+    -fx-font-family: Arial;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: rgb(248, 132, 86);
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5 10;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+}
+
+#Add_New_Button:hover {
+    -fx-background-color: derive(rgb(248, 132, 86), -10%);
+}
+
+#Add_New_Button:pressed {
+    -fx-background-color: derive(rgb(248, 132, 86), -20%);
+}
+
+/*SEARCH BAR*/
+#Search_Bar {
+    -fx-font-family: Arial;
+    -fx-font-size: 14px;
+    -fx-padding: 0 10 0 45;
+    -fx-background-color: rgb(248, 248, 248);
+    -fx-text-fill: rgb(50, 50, 50);
+    -fx-border-color: rgb(200, 200, 200);
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-width: 1px;
+    -fx-prompt-text-fill: rgb(150, 150, 150);
+}
+
+#Search_Bar:focused {
+    -fx-border-color: rgb(248, 132, 86);
+    -fx-background-color: rgb(255, 255, 255);
+}
+
+/*TAB PANE*/
+.tab-pane .tab {
+    -fx-background-color: transparent;
+    -fx-font-size: 12px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 2px 0;
+}
+
+.tab-label {
+    -fx-text-fill: rgb(87, 87, 87);
+}
+
+.tab:hover .tab-header-area{
+    -fx-background-color: rgb(245, 245, 245);
+}
+
+.tab-pane .tab:selected {
+    -fx-text-fill: rgb(248, 132, 86);
+    -fx-border-color: rgb(248, 132, 86);
+    -fx-border-width: 0 0 2px 0;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: rgb(248, 132, 86);
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 100px;
+    -fx-tab-max-width: 200;
+    -fx-tab-max-height: 20;
+    -fx-background-color: white;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-width: 1px;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+
+.tab-pane .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab-header-area {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/*TABLE LABEL*/
+#TableLabel{
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(150, 150, 150);
+}
+
+
+/*ScrollPane*/
+
+#scrollPane {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#scrollPane .viewport {
+    -fx-background-color: white;
+    -fx-border-color: white;
+}
+
+#scrollPane1 {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#scrollPane1 .viewport {
+    -fx-background-color: white;
+    -fx-border-color: white;
+}
+
+#scrollPane2 {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#scrollPane2 .viewport {
+    -fx-background-color: white;
+    -fx-border-color: white;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(166, 166, 166, 0.5);
+    -fx-background-insets: 0;
+}
+
+.scroll-bar .track {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/*ITEMS FOR ALL*/
+#Item_Base{
+    -fx-background-color: white;
+}
+
+.label{
+    -fx-text-fill: rgb(52,72,100);
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-font-weight: bold;
+}
+
+#Item_Edit_Button, #Item_Delete_Button {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(94, 167, 178);
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+#Item_Delete_Button {
+    -fx-text-fill: rgb(248, 132, 86);
+}
+
+#Item_Edit_Button:hover, #Item_Delete_Button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.1);
+}
+
+#Item_Edit_Button:pressed, #Item_Delete_Button:pressed {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+}
+
+

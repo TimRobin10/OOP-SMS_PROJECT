@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="459.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sms.Admin_GUI.DATABASE_EDIT_CONTROLLER">
+   <children>
+      <AnchorPane id="mainAnchor" fx:id="mainAnchor" prefHeight="455.0" prefWidth="556.0" styleClass="mainAnchor" stylesheets="@DATABASE_ADD.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label id="textAddClient" fx:id="textAddClient" layoutX="24.0" layoutY="26.0" prefHeight="40.0" prefWidth="140.0" styleClass="textAddClient" stylesheets="@DATABASE_ADD.css" text="Edit Client">
+               <font>
+                  <Font name="Arial Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label id="NameText" fx:id="NameText" layoutX="26.0" layoutY="82.0" prefHeight="26.0" prefWidth="102.0" styleClass="NameText" stylesheets="@DATABASE_ADD.css" text="Name">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField id="TextField" fx:id="NameTF" layoutX="18.0" layoutY="111.0" prefHeight="35.0" prefWidth="511.0" style="-fx-background-radius: 5;" styleClass="TextField" stylesheets="@DATABASE_ADD.css" />
+            <Label id="AddressText" fx:id="AddressText" layoutX="23.0" layoutY="159.0" prefHeight="26.0" prefWidth="75.0" styleClass="AddressText" stylesheets="@DATABASE_ADD.css" text="Address">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField id="AddressField" fx:id="AddressField" layoutX="19.0" layoutY="190.0" prefHeight="35.0" prefWidth="511.0" promptText="              " style="-fx-background-radius: 5;" styleClass="AddressField" stylesheets="@DATABASE_ADD.css" text="             " />
+            <Label id="PlanText" fx:id="PlanText" layoutX="25.0" layoutY="238.0" prefHeight="26.0" prefWidth="41.0" styleClass="PlanText" stylesheets="@DATABASE_ADD.css" text="Plan">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField id="PlanField" fx:id="PlanField" editable="false" layoutX="100.0" layoutY="266.0" prefHeight="35.0" prefWidth="169.0" style="-fx-background-radius: 5;" styleClass="PlanField" stylesheets="@DATABASE_ADD.css" />
+            <Label id="DueDateText" fx:id="DueDateText" layoutX="291.0" layoutY="242.0" styleClass="DueDateText" stylesheets="@DATABASE_ADD.css" text="Due Date">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField id="DueDateField" fx:id="DueDateField" alignment="CENTER" editable="false" layoutX="359.0" layoutY="266.0" prefHeight="35.0" prefWidth="169.0" style="-fx-background-rradius: 5;" styleClass="DueDateField" stylesheets="@DATABASE_ADD.css" />
+            <Label id="MonthlyChargeText" fx:id="MonthlyChargeText" layoutX="23.0" layoutY="317.0" styleClass="MonthlyChargeText" stylesheets="@DATABASE_ADD.css" text="Monthly Charge">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <ComboBox id="PlanComboBox" fx:id="PlanComboBox" layoutX="22.0" layoutY="266.0" prefHeight="27.0" prefWidth="75.0" promptText="Plan" style="-fx-border-radius: 5; -fx-border-color: #D9D9D9; -fx-min-height: 35; -fx-border-style: solid;" styleClass="PlanComboBox" stylesheets="@DATABASE_ADD.css" />
+            <ComboBox id="DayComboBox" fx:id="DueDate" layoutX="290.0" layoutY="266.0" prefHeight="26.0" prefWidth="66.0" promptText="Day" style="-fx-border-radius: 5; -fx-border-color: #D9D9D9; -fx-min-height: 35; -fx-border-style: solid;" styleClass="DayComboBox" stylesheets="@DATABASE_ADD.css" />
+            <TextField id="MonthlyChargeField" fx:id="MonthlyChargeField" layoutX="19.0" layoutY="344.0" prefHeight="35.0" prefWidth="251.0" style="-fx-background-radius: 5;" styleClass="MonthlyChargeField" stylesheets="@DATABASE_ADD.css" />
+            <TextField id="NumberField" fx:id="NumberField" layoutX="290.0" layoutY="344.0" prefHeight="35.0" prefWidth="240.0" promptText="09XXXXXXXXX" style="-fx-background-radius: 5;" styleClass="NumberField" stylesheets="@DATABASE_ADD.css" />
+            <Label id="NumberText" fx:id="NumberText" layoutX="293.0" layoutY="317.0" styleClass="NumberText" stylesheets="@DATABASE_ADD.css" text="Number">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button id="CancelButton" fx:id="CancelButton" layoutX="392.0" layoutY="400.0" mnemonicParsing="false" onAction="#cancel" prefHeight="34.0" prefWidth="65.0" styleClass="CancelButton" stylesheets="@DATABASE_ADD.css" text="Cancel">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="SaveButton" fx:id="SaveButton" layoutX="469.0" layoutY="400.0" mnemonicParsing="false" onAction="#save" prefHeight="34.0" prefWidth="65.0" styleClass="SaveButton" stylesheets="@DATABASE_ADD.css" text="Save">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

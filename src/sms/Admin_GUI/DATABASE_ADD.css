@@ -1,0 +1,155 @@
+.SaveButton:hover{
+
+    -fx-background-color: #f88456;
+
+}
+.CancelButton:hover{
+
+    -fx-background-color: #FF0000;
+
+}
+
+.SaveButton{
+
+    -fx-background-color: white;
+    -fx-text-fill: #344864;
+    -fx-border-radius: 50px;
+
+}
+
+.CancelButton{
+
+-fx-background-color: white;
+    -fx-text-fill: #344864;
+    -fx-border-radius: 50px;
+
+}
+
+
+.DayComboBox{
+
+
+    -fx-background-color: WHITE;
+}
+
+.PlanComboBox{
+
+
+    -fx-background-color: WHITE;
+}
+
+.DistrictComboBox{
+
+    -fx-background-color: WHITE;
+}
+
+
+.BarangayComboBox{
+
+
+    -fx-background-color: WHITE;
+}
+
+.MonthlyChargeField{
+
+    -fx-background-color: #EDEDED;
+    -fx-border-radius: 30px;
+
+}
+
+.DueDateField{
+
+    -fx-background-color: #EDEDED;
+    -fx-border-radius: 30px;
+
+}
+
+.PlanField{
+
+    -fx-background-color: #EDEDED;
+    -fx-border-radius: 30px;
+
+}
+
+.DistrictField{
+
+    -fx-background-color: #EDEDED;
+    -fx-border-radius: 30px;
+
+}
+
+.AddressField{
+
+    -fx-background-color: #EDEDED;
+    -fx-border-radius: 30px;
+
+}
+
+.NumberField{
+
+    -fx-background-color: #EDEDED;
+    -fx-border-radius: 30px;
+
+}
+
+.TextField{
+
+    -fx-background-color: #EDEDED;
+    -fx-border-radius: 30px;
+
+}
+
+.NumberText{
+
+    -fx-text-fill: #344864;
+
+}
+
+
+.MonthlyChargeText{
+
+    -fx-text-fill: #344864;
+
+}
+
+
+.DueDateText{
+
+    -fx-text-fill: #344864;
+
+}
+
+
+.PlanText{
+
+    -fx-text-fill: #344864;
+
+}
+
+
+.AddressText{
+
+    -fx-text-fill: #344864;
+
+}
+
+
+.NameText{
+
+    -fx-text-fill: #344864;
+
+}
+
+.textAddClient{
+
+    -fx-text-fill: #f88456;
+
+}
+
+
+.mainAnchor{
+
+    -fx-background-color: WHITE;
+    -fx-border-radius: 200px;
+
+}

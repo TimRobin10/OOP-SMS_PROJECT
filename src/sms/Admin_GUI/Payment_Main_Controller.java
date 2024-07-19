@@ -1,5 +1,7 @@
+
 package sms.Admin_GUI;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,14 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
-import sms.Admin_GUI.PaymentDatabase;
-import sms.Admin_GUI.Payment_Item_Controller;
-import sms.Admin_GUI.Payments_Due_Accounts;
 
 import javax.swing.*;
-import java.util.stream.Collectors;
 
-public class Payment_Main_Controller {
+public class Payment_Main_Controller implements PaymentDatabase.DatabaseObserver {
     @FXML private AnchorPane Center_Pane;
     @FXML private GridPane Grid;
     @FXML private Label MainLabel;
@@ -25,15 +23,30 @@ public class Payment_Main_Controller {
     private final PaymentDatabase PDB = PaymentDatabase.getInstance();
     private ObservableList<Payments_Due_Accounts> dueAccounts;
 
+    private static volatile Payment_Main_Controller instance;
+
     @FXML
     private void initialize() {
         initDueAccounts();
         setSearchBar();
+        PDB.addObserver(this);
     }
 
-    private void initDueAccounts() {
-        dueAccounts = PDB.due_accounts(); // Assigning to instance variable
-        updateUI(dueAccounts); // Initially show all accounts
+    public static Payment_Main_Controller getInstance() {
+        Payment_Main_Controller result = instance;
+        if (instance == null) {
+            synchronized (Payment_Main_Controller.class) {
+                if (instance == null) {
+                    result = instance = new Payment_Main_Controller();
+                }
+            }
+        }
+        return result;
+    }
+
+    public void initDueAccounts() {
+        dueAccounts = PDB.due_accounts();
+        updateUI(dueAccounts);
     }
 
     public void setSearchBar() {
@@ -54,7 +67,7 @@ public class Payment_Main_Controller {
         updateUI(filteredList);
     }
 
-    private void updateUI(ObservableList<Payments_Due_Accounts> filteredList) {
+    public void updateUI(ObservableList<Payments_Due_Accounts> filteredList) {
         Flow.getChildren().clear();
         try {
             for (Payments_Due_Accounts account : filteredList) {
@@ -69,5 +82,12 @@ public class Payment_Main_Controller {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    @Override
+    public void onUpdate() {
+        Platform.runLater(() -> {
+            initDueAccounts();
+        });
     }
 }

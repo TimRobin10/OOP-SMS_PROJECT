@@ -9,8 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import java.awt.print.PrinterException;
-import java.io.IOException;
+
 
 public class POS_MAIN_MAIN_CONTROLLER {
     @FXML private TextField AddressTF;
@@ -65,7 +64,8 @@ public class POS_MAIN_MAIN_CONTROLLER {
         int status = transactions_database.add_transaction(CustomerID,CustomerName,address,amount,DueDate);
         switch(status){
             case 1 ->{
-                print_option = JOptionPane.showOptionDialog(null,"Transaction added successfully\n\nDo you want a printed reciept?", "Payment Successful", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+                print_option = JOptionPane.showOptionDialog(null,"Transaction added successfully\n\nDo you want a printed receipt?", "Payment Successful", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+                payment_database.payment_done_delete(CustomerID);
             }
             case 2 ->{
                 JOptionPane.showMessageDialog(null, "Error: Transaction unsuccessful", "Error", JOptionPane.ERROR_MESSAGE);
