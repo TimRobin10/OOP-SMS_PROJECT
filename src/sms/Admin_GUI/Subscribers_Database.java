@@ -9,11 +9,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class Subscribers_Database{
-    private List<PaymentDatabase.DatabaseObserver> observers = new ArrayList<>();
-
+public class Subscribers_Database {
     private static Subscribers_Database instance;
-    private Connection con;
+    private final Connection con;
+    private List<Runnable> listeners = new ArrayList<>();
+
+    public static int NumberOfSubscribers = 0;
+    public static int NumberOfInstallation = 0;
+    public static int TotalCutoff = 0;
+    public static int TotalPastDue = 0;
+
+    public static int population_Dologon;
+    public static int population_Colambugon;
+    public static int population_Danggawan;
+    public static int population_SanMiguel;
+    public static int population_BaseCamp;
+    public static int population_Panadtalan;
+    public static int population_Anahawon;
+    public static int population_NorthPoblacion;
+    public static int population_SouthPoblacion;
+    public static int population_Camp1;
 
     private Subscribers_Database() {
         try {
@@ -67,27 +82,91 @@ public class Subscribers_Database{
                 double Monthly_Charges = res.getDouble("Monthly_Charges");
                 String Installation_Date = res.getString("Installation_Date");
                 subscribers.add(new DATABASE_SUBSCRIBERS(subscriber_id, Name, Contact_Number, Address, Plan, Acc_Status, Due_Date, Monthly_Charges, Installation_Date));
+                NumberOfSubscribers++;
+                notifyListeners();
             }
-            notifyObservers();
         } catch (SQLException e) {
             throw new RuntimeException("Error fetching subscribers", e);
         }
         return subscribers;
     }
 
-    public int latestSubscriberId() {
-        int maxId = 0;
-        String query = "SELECT MAX(subscriber_id) as max_id FROM subscribers";
-        try (PreparedStatement pstm = con.prepareStatement(query);
-             ResultSet res = pstm.executeQuery()) {
-            if (res.next()) {
-                maxId = res.getInt("max_id");
+    public void CountNumberOfInstallation() {
+        String query = "SELECT COUNT(*) AS Installed FROM subscribers WHERE YEAR(Installation_Date) = YEAR(CURDATE()) AND MONTH(Installation_Date) = MONTH(CURDATE())";
+
+        try {
+            PreparedStatement pstm = con.prepareStatement(query);
+            ResultSet resultSet = pstm.executeQuery();
+
+            if (resultSet.next()) {
+                NumberOfInstallation = resultSet.getInt("Installed");
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error fetching latest subscriber ID", e);
+            e.printStackTrace();
         }
-        return maxId;
     }
+
+    void getPopulation(){
+        String query = "SELECT ADDRESS FROM subscribers";
+        try (PreparedStatement pstm = con.prepareStatement(query);
+             ResultSet res = pstm.executeQuery()) {
+
+            while (res.next()) {
+                String address = res.getString("ADDRESS").toLowerCase(); // Use the correct column name
+                if (address.contains("dologon")) {
+                    population_Dologon++;
+                } else if (address.contains("colambugon")) {
+                    population_Colambugon++;
+                } else if (address.contains("danggawan")) {
+                    population_Danggawan++;
+                } else if (address.contains("san miguel")) {
+                    population_SanMiguel++;
+                } else if (address.contains("base camp")) {
+                    population_BaseCamp++;
+                } else if (address.contains("panadtalan")) {
+                    population_Panadtalan++;
+                } else if (address.contains("anahawon")) {
+                    population_Anahawon++;
+                } else if (address.contains("north poblacion")) {
+                    population_NorthPoblacion++;
+                } else if (address.contains("south poblacion")) {
+                    population_SouthPoblacion++;
+                } else if (address.contains("camp 1")) {
+                    population_Camp1++;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    void CountPastDueData(){
+        String query = "SELECT COUNT(*) AS TotalPastDue FROM subscribers WHERE ACC_STATUS = 'PAST DUE'";
+        try{
+            PreparedStatement pstm = con.prepareStatement(query);
+            ResultSet resultSet = pstm.executeQuery();
+            if (resultSet.next()) {
+                TotalPastDue = resultSet.getInt("TotalPastDue");
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    void CountCutoffData(){
+        String query = "SELECT COUNT(*) AS TotalCutoff FROM subscribers WHERE ACC_STATUS = 'OVERDUE'";
+        try{
+            PreparedStatement pstm = con.prepareStatement(query);
+            ResultSet resultSet = pstm.executeQuery();
+            if (resultSet.next()) {
+                TotalCutoff = resultSet.getInt("TotalCutoff");
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void addSubscriber(String Name, String Contact, String Address, String Plan, String Acc_Status, String Due_Date, double Monthly_Charges, String Installation_Date, String curr_due_date) {
         String query = "INSERT INTO subscribers (CUSTOMER_NAME, CONTACT_NUMBER, ADDRESS, PLAN, ACC_STATUS, DUE_DATE, MONTHLY_CHARGES, INSTALLATION_DATE, current_due_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -105,13 +184,13 @@ public class Subscribers_Database{
 
             int rowsAffected = pstm.executeUpdate();
             if (rowsAffected == 1) {
+                notifyListeners();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Successful");
                 alert.setHeaderText(null);
                 alert.setContentText("Subscriber added successfully!");
                 alert.showAndWait();
             }
-            notifyObservers();
         } catch (SQLException e) {
             throw new RuntimeException("Error adding subscriber", e);
         }
@@ -133,8 +212,8 @@ public class Subscribers_Database{
             int rowsAffected = pstm.executeUpdate();
             if (rowsAffected == 1) {
                 status = 1; // Success
+                notifyListeners();
             }
-            notifyObservers();
         } catch (SQLException e) {
             throw new RuntimeException("Error editing subscriber", e);
         }
@@ -151,29 +230,21 @@ public class Subscribers_Database{
             int rowsAffected = pstm.executeUpdate();
             if (rowsAffected == 1) {
                 status = 1; // Success
+                notifyListeners();
             }
-            notifyObservers();
         } catch (SQLException e) {
             throw new RuntimeException("Error deleting subscriber", e);
         }
         return status;
     }
 
-    public interface DatabaseObserver {
-        void onUpdate();
+    public void addListener(Runnable listener) {
+        listeners.add(listener);
     }
 
-    public void addObserver(PaymentDatabase.DatabaseObserver observer) {
-        observers.add(observer);
-    }
-
-    public void removeObserver(PaymentDatabase.DatabaseObserver observer) {
-        observers.remove(observer);
-    }
-
-    private void notifyObservers() {
-        for (PaymentDatabase.DatabaseObserver observer : observers) {
-            observer.onUpdate();
+    private void notifyListeners() {
+        for (Runnable listener : listeners) {
+            listener.run();
         }
     }
 }

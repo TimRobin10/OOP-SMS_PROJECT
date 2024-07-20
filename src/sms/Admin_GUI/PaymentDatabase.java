@@ -1,9 +1,7 @@
 package sms.Admin_GUI;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import sms.LoginPage.LoginDatabase;
 
 import javax.swing.*;
 import java.io.InputStream;
@@ -16,7 +14,7 @@ public class PaymentDatabase {
     String db_username, db_password;
     static Connection connection;
 
-    private List<DatabaseObserver> observers = new ArrayList<>();
+    private List<PDBDatabaseObserver> observers = new ArrayList<>();
 
     //FOR SINGLETON DESIGN
     private static volatile PaymentDatabase instance;
@@ -101,26 +99,26 @@ public class PaymentDatabase {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, customer_id);
             preparedStatement.executeUpdate();
-            notifyObservers();
+            notifyObserversPDB();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e, "Database Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public interface DatabaseObserver {
+    public interface PDBDatabaseObserver {
         void onUpdate();
     }
 
-    public void addObserver(DatabaseObserver observer) {
+    public void addObserverPDB(PDBDatabaseObserver observer) {
         observers.add(observer);
     }
 
-    public void removeObserver(DatabaseObserver observer) {
+    public void removeObserverPDB(PDBDatabaseObserver observer) {
         observers.remove(observer);
     }
 
-    private void notifyObservers() {
-        for (DatabaseObserver observer : observers) {
+    private void notifyObserversPDB() {
+        for (PDBDatabaseObserver observer : observers) {
             observer.onUpdate();
         }
     }

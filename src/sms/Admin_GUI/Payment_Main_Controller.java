@@ -12,7 +12,7 @@ import javafx.scene.layout.*;
 
 import javax.swing.*;
 
-public class Payment_Main_Controller implements PaymentDatabase.DatabaseObserver {
+public class Payment_Main_Controller implements PaymentDatabase.PDBDatabaseObserver {
     @FXML private AnchorPane Center_Pane;
     @FXML private GridPane Grid;
     @FXML private Label MainLabel;
@@ -29,7 +29,7 @@ public class Payment_Main_Controller implements PaymentDatabase.DatabaseObserver
     private void initialize() {
         initDueAccounts();
         setSearchBar();
-        PDB.addObserver(this);
+        PDB.addObserverPDB(this);
     }
 
     public static Payment_Main_Controller getInstance() {

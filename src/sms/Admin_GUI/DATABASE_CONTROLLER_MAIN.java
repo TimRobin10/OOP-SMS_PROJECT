@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class DATABASE_CONTROLLER_MAIN implements Subscribers_Database.DatabaseObserver {
+public class DATABASE_CONTROLLER_MAIN{
 
     @FXML private Button Add_New_Button;
     @FXML private Tab Current_Tab;
@@ -47,6 +47,7 @@ public class DATABASE_CONTROLLER_MAIN implements Subscribers_Database.DatabaseOb
 
     @FXML
     void initialize() {
+        subscribers_database.addListener(this::refreshUI);
         subs = subscribers_database.getSubscribers();
         init_components();
         setupSearchBar();
@@ -206,6 +207,13 @@ public class DATABASE_CONTROLLER_MAIN implements Subscribers_Database.DatabaseOb
         return null;
     }
 
+    private void refreshUI() {
+        Platform.runLater(() -> {
+            subs = subscribers_database.getSubscribers();
+            filterSubscribers();
+        });
+    }
+
     public void Add() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DATABASE_ADD.fxml"));
@@ -220,12 +228,5 @@ public class DATABASE_CONTROLLER_MAIN implements Subscribers_Database.DatabaseOb
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void onUpdate() {
-        Platform.runLater(() ->{
-            init_components();
-        });
     }
 }
