@@ -12,152 +12,147 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sms.Admin_GUI.DATABASE_CONTROLLER_MAIN">
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER" />
-   </left>
-   <center>
-      <AnchorPane fx:id="Center_Pane" prefHeight="794.0" prefWidth="1286.0" BorderPane.alignment="CENTER">
+
+<AnchorPane fx:id="Center_Pane" prefHeight="794.0" prefWidth="1286.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sms.Admin_GUI.DATABASE_CONTROLLER_MAIN">
+   <children>
+      <AnchorPane prefHeight="794.0" prefWidth="1286.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="794.0" prefWidth="1286.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="Location_Filter_Base" layoutX="45.0" layoutY="45.0" prefHeight="60.0" prefWidth="1184.0">
                <children>
-                  <AnchorPane fx:id="Location_Filter_Base" layoutX="45.0" layoutY="45.0" prefHeight="60.0" prefWidth="1184.0">
+                  <HBox fx:id="Location_Filter_Hbox" prefHeight="60.0" prefWidth="1184.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <HBox fx:id="Location_Filter_Hbox" prefHeight="60.0" prefWidth="1184.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <ToggleButton fx:id="Location_Filter_Button1" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="All" />
-                              <ToggleButton fx:id="Location_Filter_Button2" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Anahawon" />
-                              <ToggleButton fx:id="Location_Filter_Button3" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Base Camp" />
-                              <ToggleButton fx:id="Location_Filter_Button4" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Camp 1" />
-                              <ToggleButton fx:id="Location_Filter_Button5" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Colambugon" />
-                              <ToggleButton fx:id="Location_Filter_Button6" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Danggawan" />
-                              <ToggleButton fx:id="Location_Filter_Button7" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Dologon" />
-                              <ToggleButton fx:id="Location_Filter_Button8" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="North Poblacion" />
-                              <ToggleButton fx:id="Location_Filter_Button9" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Panadtalan" />
-                              <ToggleButton fx:id="Location_Filter_Button10" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="San Miguel" />
-                              <ToggleButton fx:id="Location_Filter_Button11" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="South Poblacion" />
-                           </children>
-                        </HBox>
+                        <ToggleButton fx:id="Location_Filter_Button1" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="All" />
+                        <ToggleButton fx:id="Location_Filter_Button2" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Anahawon" />
+                        <ToggleButton fx:id="Location_Filter_Button3" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Base Camp" />
+                        <ToggleButton fx:id="Location_Filter_Button4" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Camp 1" />
+                        <ToggleButton fx:id="Location_Filter_Button5" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Colambugon" />
+                        <ToggleButton fx:id="Location_Filter_Button6" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Danggawan" />
+                        <ToggleButton fx:id="Location_Filter_Button7" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Dologon" />
+                        <ToggleButton fx:id="Location_Filter_Button8" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="North Poblacion" />
+                        <ToggleButton fx:id="Location_Filter_Button9" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="Panadtalan" />
+                        <ToggleButton fx:id="Location_Filter_Button10" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="San Miguel" />
+                        <ToggleButton fx:id="Location_Filter_Button11" mnemonicParsing="false" prefHeight="70.0" prefWidth="107.64" text="South Poblacion" />
                      </children>
-                  </AnchorPane>
-                  <Label fx:id="Main_Label" layoutX="56.0" layoutY="122.0" prefHeight="40.0" prefWidth="309.0" text="ALL" />
-                  <Button fx:id="Add_New_Button" layoutX="823.0" layoutY="122.0" mnemonicParsing="false" onAction="#Add" prefHeight="40.0" prefWidth="94.0" text="Add New" />
-                  <TextField fx:id="Search_Bar" layoutX="932.0" layoutY="122.0" prefHeight="40.0" prefWidth="298.0" promptText="Search">
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                  </TextField>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="942.0" layoutY="127.0">
-                     <image>
-                        <Image url="@../../resources/Image_Resources/search.png" />
-                     </image>
-                  </ImageView>
-                  <TabPane fx:id="tabPane" layoutX="54.0" layoutY="189.0" prefHeight="553.0" prefWidth="1178.0" side="BOTTOM" stylesheets="@DATABASE_ALL.css" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                      <Tab fx:id="Current_Tab" text="Current">
-                        <content>
-                          <AnchorPane fx:id="Anchor" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@DATABASE_ALL.css">
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <Label fx:id="Main_Label" layoutX="56.0" layoutY="122.0" prefHeight="40.0" prefWidth="309.0" text="ALL" />
+            <Button fx:id="Add_New_Button" layoutX="823.0" layoutY="122.0" mnemonicParsing="false" onAction="#Add" prefHeight="40.0" prefWidth="94.0" text="Add New" />
+            <TextField fx:id="Search_Bar" layoutX="932.0" layoutY="122.0" prefHeight="40.0" prefWidth="298.0" promptText="Search">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </TextField>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="942.0" layoutY="127.0">
+               <image>
+                  <Image url="@../../resources/Image_Resources/search.png" />
+               </image>
+            </ImageView>
+            <TabPane fx:id="tabPane" layoutX="54.0" layoutY="189.0" prefHeight="553.0" prefWidth="1178.0" side="BOTTOM" stylesheets="@DATABASE_ALL.css" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="Current_Tab" text="Current">
+                  <content>
+                    <AnchorPane fx:id="Anchor" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@DATABASE_ALL.css">
+                           <children>
+                              <AnchorPane prefHeight="30.0" prefWidth="1176.0" AnchorPane.bottomAnchor="466.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <AnchorPane prefHeight="30.0" prefWidth="1176.0" AnchorPane.bottomAnchor="466.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <HBox fx:id="hBox" prefHeight="30.0" prefWidth="1177.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <HBox fx:id="hBox" prefHeight="30.0" prefWidth="1177.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="70.0" text="ID" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="220.0" text="Customer Name" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="180.0" text="Address" textAlignment="CENTER" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Contact No." />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Plan" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Due Date" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="120.0" text="Monthly" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Status" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Installation Date" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="50.0" />
-                                             </children>
-                                          </HBox>
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="70.0" text="ID" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="220.0" text="Customer Name" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="180.0" text="Address" textAlignment="CENTER" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Contact No." />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Plan" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Due Date" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="120.0" text="Monthly" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Status" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Installation Date" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="50.0" />
                                        </children>
-                                    </AnchorPane>
-                                    <ScrollPane fx:id="scrollPane" focusTraversable="false" layoutY="39.20000076293945" prefHeight="479.0" prefWidth="1176.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
-                                       <content>
-                                          <VBox fx:id="Subs_Layout" prefHeight="419.0" prefWidth="1171.0" spacing="5.0" />
-                                       </content>
-                                    </ScrollPane>
-                                 </children></AnchorPane>
-                        </content>
-                      </Tab>
-                        <Tab fx:id="Past_Due_Tab" text="Past Due">
-                           <content>
-                              <AnchorPane fx:id="Anchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@DATABASE_ALL.css">
-                                 <children>
-                                    <AnchorPane prefHeight="30.0" prefWidth="1176.0" AnchorPane.bottomAnchor="466.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <HBox fx:id="hBox1" prefHeight="30.0" prefWidth="1177.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="70.0" text="ID" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="220.0" text="Customer Name" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="180.0" text="Address" textAlignment="CENTER" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Contact No." />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Plan" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Due Date" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="120.0" text="Monthly" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Status" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Installation Date" />
-                                                <Label fx:id="TableLabel1" alignment="CENTER" prefHeight="30.0" prefWidth="50.0" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </AnchorPane>
-                                    <ScrollPane fx:id="scrollPane1" focusTraversable="false" layoutY="39.20000076293945" prefHeight="479.0" prefWidth="1176.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
-                                       <content>
-                                          <VBox fx:id="Subs_Layout1" prefHeight="419.0" prefWidth="1171.0" spacing="5.0" />
-                                       </content>
-                                    </ScrollPane>
+                                    </HBox>
                                  </children>
                               </AnchorPane>
-                           </content>
-                        </Tab>
-                        <Tab fx:id="OverDue_Tab" text="Overdue">
-                           <content>
-                              <AnchorPane fx:id="Anchor2" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@DATABASE_ALL.css">
+                              <ScrollPane fx:id="scrollPane" focusTraversable="false" layoutY="39.20000076293945" prefHeight="479.0" prefWidth="1176.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+                                 <content>
+                                    <VBox fx:id="Subs_Layout" prefHeight="419.0" prefWidth="1171.0" spacing="5.0" />
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab fx:id="Past_Due_Tab" text="Past Due">
+                     <content>
+                        <AnchorPane fx:id="Anchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@DATABASE_ALL.css">
+                           <children>
+                              <AnchorPane prefHeight="30.0" prefWidth="1176.0" AnchorPane.bottomAnchor="466.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <AnchorPane prefHeight="30.0" prefWidth="1176.0" AnchorPane.bottomAnchor="466.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <HBox fx:id="hBox1" prefHeight="30.0" prefWidth="1177.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <HBox fx:id="hBox2" prefHeight="30.0" prefWidth="1177.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="70.0" text="ID" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="220.0" text="Customer Name" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="180.0" text="Address" textAlignment="CENTER" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Contact No." />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Plan" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Due Date" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="120.0" text="Monthly" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Status" />
-                                                <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Installation Date" />
-                                                <Label fx:id="TableLabel2" alignment="CENTER" prefHeight="30.0" prefWidth="50.0" />
-                                             </children>
-                                          </HBox>
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="70.0" text="ID" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="220.0" text="Customer Name" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="180.0" text="Address" textAlignment="CENTER" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Contact No." />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Plan" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Due Date" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="120.0" text="Monthly" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Status" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Installation Date" />
+                                          <Label fx:id="TableLabel1" alignment="CENTER" prefHeight="30.0" prefWidth="50.0" />
                                        </children>
-                                    </AnchorPane>
-                                    <ScrollPane fx:id="scrollPane2" focusTraversable="false" layoutY="39.20000076293945" prefHeight="479.0" prefWidth="1176.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
-                                       <content>
-                                          <VBox fx:id="Subs_Layout2" prefHeight="419.0" prefWidth="1171.0" spacing="5.0" />
-                                       </content>
-                                    </ScrollPane>
+                                    </HBox>
                                  </children>
                               </AnchorPane>
-                           </content>
-                        </Tab>
-                    </tabs>
-                  </TabPane>
-               </children></AnchorPane>
+                              <ScrollPane fx:id="scrollPane1" focusTraversable="false" layoutY="39.20000076293945" prefHeight="479.0" prefWidth="1176.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+                                 <content>
+                                    <VBox fx:id="Subs_Layout1" prefHeight="419.0" prefWidth="1171.0" spacing="5.0" />
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="OverDue_Tab" text="Overdue">
+                     <content>
+                        <AnchorPane fx:id="Anchor2" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@DATABASE_ALL.css">
+                           <children>
+                              <AnchorPane prefHeight="30.0" prefWidth="1176.0" AnchorPane.bottomAnchor="466.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox fx:id="hBox2" prefHeight="30.0" prefWidth="1177.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="70.0" text="ID" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="220.0" text="Customer Name" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="180.0" text="Address" textAlignment="CENTER" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Contact No." />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Plan" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Due Date" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="120.0" text="Monthly" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="Status" />
+                                          <Label fx:id="TableLabel" alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Installation Date" />
+                                          <Label fx:id="TableLabel2" alignment="CENTER" prefHeight="30.0" prefWidth="50.0" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                              <ScrollPane fx:id="scrollPane2" focusTraversable="false" layoutY="39.20000076293945" prefHeight="479.0" prefWidth="1176.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+                                 <content>
+                                    <VBox fx:id="Subs_Layout2" prefHeight="419.0" prefWidth="1171.0" spacing="5.0" />
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
          </children>
-         <stylesheets>
-            <URL value="@Template.css" />
-            <URL value="@DATABASE_ALL.css" />
-         </stylesheets>
       </AnchorPane>
-   </center>
-</BorderPane>
+   </children>
+   <stylesheets>
+      <URL value="@Template.css" />
+      <URL value="@DATABASE_ALL.css" />
+   </stylesheets>
+</AnchorPane>

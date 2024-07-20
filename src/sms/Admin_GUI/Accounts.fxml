@@ -13,36 +13,32 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="1286.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sms.Admin_GUI.Accounts_Controller_Main">
     <children>
-        <AnchorPane id="AccountsForm" fx:id="AccountsForm" layoutY="-22.0" prefHeight="736.0" prefWidth="1286.0" styleClass="AccountsForm" stylesheets="@Accounts.css" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-22.0">
-            <children>
-                <Label layoutX="33.0" layoutY="32.0" text="Accounts" textFill="#344864">
-                    <font>
-                        <Font name="Arial" size="30.0" />
-                    </font>
-                </Label>
-                <Line endX="1096.2000732421875" endY="7.62939453125E-6" layoutX="133.0" layoutY="82.0" startX="-100.0" />
-                <TextField id="searchTextField" fx:id="searchTextField" layoutX="33.0" layoutY="101.0" prefHeight="36.0" prefWidth="191.0" promptText="       Search" style="-fx-border-radius: 300px;" styleClass="searchTextField" stylesheets="@Accounts.css" />
-                <FontAwesomeIcon id="searchIcon" fx:id="searchIcon" caretBias="false" focusTraversable="true" glyphName="SEARCH" layoutX="48.0" layoutY="124.0" opacity="0.26" size="15" styleClass="searchIcon" />
-                <AnchorPane layoutX="33.0" layoutY="158.0" prefHeight="570.0" prefWidth="1194.0">
-                    <children>
-                  <HBox layoutX="18.0" prefHeight="27.0" prefWidth="1178.0">
-                     <children>
-                        <Label fx:id="HeadLabel" alignment="CENTER" prefHeight="27.0" prefWidth="125.0" stylesheets="@Accounts.css" text="User ID" />
-                        <Label fx:id="HeadLabel" alignment="CENTER" prefHeight="27.0" prefWidth="270.0" stylesheets="@Accounts.css" text="Username" />
-                        <Label fx:id="HeadLabel" alignment="CENTER" prefHeight="27.0" prefWidth="215.0" text="Account Password" />
-                        <Label fx:id="HeadLabel" alignment="CENTER" prefHeight="27.0" prefWidth="326.0" text="Account Name" />
-                        <Label fx:id="HeadLabel" alignment="CENTER" prefHeight="27.0" prefWidth="150.0" text="Account Role" />
-                     </children>
-                  </HBox>
-                  <ScrollPane fx:id="ScrollPane" layoutX="17.0" layoutY="37.0" prefHeight="507.0" prefWidth="1182.0" stylesheets="@Accounts.css">
-                     <content>
-                        <VBox fx:id="Accounts_Layout" prefHeight="526.0" prefWidth="1156.0" />
-                     </content>
-                  </ScrollPane>
-                    </children>
-                </AnchorPane>
-            <ChoiceBox fx:id="CBox" layoutX="241.0" layoutY="101.0" prefHeight="36.0" prefWidth="150.0" />
-            </children>
-        </AnchorPane>
+          <Label layoutX="33.0" layoutY="10.399999618530273" text="Accounts" textFill="#344864">
+              <font>
+                  <Font name="Arial" size="30.0" />
+              </font>
+          </Label>
+          <Line endX="1096.2000732421875" endY="7.62939453125E-6" layoutX="133.0" layoutY="60.400001525878906" startX="-100.0" />
+          <TextField id="searchTextField" fx:id="searchTextField" layoutX="33.0" layoutY="79.4000015258789" prefHeight="36.0" prefWidth="191.0" promptText="       Search" style="-fx-border-radius: 300px;" styleClass="searchTextField" stylesheets="@Accounts.css" />
+          <FontAwesomeIcon id="searchIcon" fx:id="searchIcon" caretBias="false" focusTraversable="true" glyphName="SEARCH" layoutX="48.0" layoutY="102.4000015258789" opacity="0.26" size="15" styleClass="searchIcon" />
+          <AnchorPane layoutX="33.0" layoutY="136.39999389648438" prefHeight="570.0" prefWidth="1194.0">
+              <children>
+            <HBox layoutX="18.0" prefHeight="27.0" prefWidth="1178.0">
+               <children>
+                  <Label fx:id="HeadLabel" alignment="CENTER" prefHeight="27.0" prefWidth="125.0" stylesheets="@Accounts.css" text="User ID" />
+                  <Label fx:id="HeadLabel" alignment="CENTER" prefHeight="27.0" prefWidth="270.0" stylesheets="@Accounts.css" text="Username" />
+                  <Label fx:id="HeadLabel" alignment="CENTER" prefHeight="27.0" prefWidth="215.0" text="Account Password" />
+                  <Label fx:id="HeadLabel" alignment="CENTER" prefHeight="27.0" prefWidth="326.0" text="Account Name" />
+                  <Label fx:id="HeadLabel" alignment="CENTER" prefHeight="27.0" prefWidth="150.0" text="Account Role" />
+               </children>
+            </HBox>
+            <ScrollPane fx:id="ScrollPane" layoutX="17.0" layoutY="37.0" prefHeight="507.0" prefWidth="1182.0" stylesheets="@Accounts.css">
+               <content>
+                  <VBox fx:id="Accounts_Layout" prefHeight="526.0" prefWidth="1156.0" />
+               </content>
+            </ScrollPane>
+              </children>
+          </AnchorPane>
+      <ChoiceBox fx:id="CBox" layoutX="241.0" layoutY="79.4000015258789" prefHeight="36.0" prefWidth="150.0" />
     </children>
 </AnchorPane>
