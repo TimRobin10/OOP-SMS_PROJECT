@@ -1,0 +1,54 @@
+#MenuPanel {
+    -fx-background-color: #FFFEFA;
+}
+
+.toggle-button {
+    -fx-background-color: #FFFEFA;
+    -fx-text-fill: #344864;
+    -fx-font-family: Arial;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.font-awesome-icon {
+    -fx-fill: #344864;
+}
+
+.toggle-button:hover {
+    -fx-background-color: #5EA7B2;
+    -fx-text-fill: white;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #5EA7B2;
+    -fx-text-fill: white;
+}
+
+.toggle-button:hover .font-awesome-icon {
+    -fx-fill: white;
+}
+
+.toggle-button:selected .font-awesome-icon {
+    -fx-fill: white;
+}
+
+.button{
+    -fx-background-color: #FFFEFA;
+    -fx-text-fill: #344864;
+    -fx-font-family: Arial;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.User_icon {
+    -fx-fill: #344864;
+}
+
+.button:hover {
+    -fx-background-color: #5EA7B2;
+    -fx-text-fill: white;
+}
+
+.button:hover .User_icon {
+    -fx-fill: white;
+}

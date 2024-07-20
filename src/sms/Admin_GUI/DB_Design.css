@@ -1,0 +1,64 @@
+.chart-area-symbol {
+    -fx-background-color: transparent;
+}
+
+.chart-series-area-line {
+    -fx-stroke-width: 2px;
+}
+.default-color0.chart-series-area-fill {
+    -fx-fill: rgba(196, 159, 86, 0.36);
+}
+
+.default-color0.chart-series-area-line {
+    -fx-stroke: #C49F56;
+}
+
+.default-color1.chart-series-area-fill {
+    -fx-fill: rgba(114, 114, 86, 0.36);
+}
+
+.default-color1.chart-series-area-line {
+    -fx-stroke: #727256;
+}
+
+.default-color2.chart-series-area-fill {
+    -fx-fill: rgba(217, 217, 217, 0.36);
+}
+
+.default-color2.chart-series-area-line {
+    -fx-stroke: #D9D9D9;
+}
+
+.default-color0.chart-area-symbol {
+    -fx-tick-label-fill: #344864;
+    -fx-background-color: #C49F56;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5px;
+    -fx-padding: 3px;
+}
+
+.default-color1.chart-area-symbol {
+    -fx-tick-label-fill: #344864;
+    -fx-background-color: #727256;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5px;
+    -fx-padding: 3px;
+}
+
+.default-color2.chart-area-symbol {
+    -fx-tick-label-fill: #344864;
+    -fx-background-color: #BAB8B8;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5px;
+    -fx-padding: 3px;
+}
+
+.axis {
+    -fx-tick-label-fill: #344864;
+    -fx-tick-mark-stroke: #344864;
+}
+
+.text-field
+{
+    -fx-text-fill: #344864;
+}

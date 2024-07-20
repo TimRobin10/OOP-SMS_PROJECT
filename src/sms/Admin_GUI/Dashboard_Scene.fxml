@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="1286.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sms.Admin_GUI.Dashboard_Controller">
+   <children>
+      <AnchorPane minHeight="794.0" minWidth="1286.0" prefHeight="794.0" prefWidth="1286.0" style="-fx-background-color: #f1f0e9;">
+         <children>
+            <BorderPane prefHeight="794.0" prefWidth="1286.0">
+               <top>
+                  <AnchorPane prefHeight="125.0" prefWidth="1286.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="120.0" fitWidth="1245.0" layoutX="21.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/resources/Image_Resources/header.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <center>
+                  <AnchorPane prefHeight="623.0" prefWidth="1286.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Pane fx:id="MapBox" layoutX="35.0" layoutY="17.0" prefHeight="605.0" prefWidth="499.0" style="-fx-border-color: #CBC9BB; -fx-border-width: 3px; -fx-border-radius: 15px;">
+                           <children>
+                              <Text fill="#f88456" layoutX="30.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ACTIVE SUBSCRIBERS">
+                                 <font>
+                                    <Font name="Arial Bold" size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#344864" layoutX="30.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Geolocation of the active clients ">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Text>
+                              <Text fill="#344864" layoutX="30.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maramag, Bukidnon">
+                                 <font>
+                                    <Font name="Arial Bold" size="16.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fx:id="MAP" fitHeight="361.0" fitWidth="447.0" layoutX="26.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/resources/Image_Resources/BASE.png" />
+                                 </image>
+                              </ImageView>
+                              <Pane fx:id="areaBox1" layoutX="41.0" layoutY="403.0">
+                                 <children>
+                                    <ImageView fx:id="infoBox" fitHeight="151.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@/resources/Image_Resources/infoBox.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fx:id="Areatxt" fill="#344864" layoutX="19.0" layoutY="69.515625" strokeType="OUTSIDE" strokeWidth="0.0" text="Area">
+                                       <font>
+                                          <Font name="Arial Bold" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="COL" fill="#344864" layoutX="19.0" layoutY="87.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="Colambugon" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                    <ImageView fx:id="loc" fitHeight="39.0" fitWidth="39.0" layoutX="11.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@/resources/Image_Resources/location.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fx:id="SubsTxt" fill="#344864" layoutX="17.0" layoutY="108.515625" strokeType="OUTSIDE" strokeWidth="0.0" text="Subscribers">
+                                       <font>
+                                          <Font name="Arial Bold" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="HHtxt" fill="#344864" layoutX="37.0" layoutY="125.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="Households">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="COLHHnum1" fill="#344864" layoutX="18.0" layoutY="125.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="50" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="areaBox11" layoutX="41.0" layoutY="403.0">
+                                 <children>
+                                    <Text fx:id="DANG" fill="#344864" layoutX="19.0" layoutY="87.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="Danggawan" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="DANGHHnum" fill="#344864" layoutX="18.0" layoutY="125.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="62" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                    <Pane fx:id="areaBox">
+                                       <children>
+                                          <Text fx:id="SAN" fill="#344864" layoutX="19.0" layoutY="87.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="San Miguel" visible="false">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="SANHHnum" fill="#344864" layoutX="18.0" layoutY="125.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="120" visible="false">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </Pane>
+                              <Polygon fx:id="colambugon" fill="LIGHTGRAY" layoutX="171.0" layoutY="241.0" points="-7.0, 55.0, 21.0, -53.5, -20.25, -59.5, -39.25, -6.75, -39.25, 29.25" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fx:id="danggawan" fill="LIGHTGRAY" layoutX="140.0" layoutY="351.0" points="31.0, -23.5, 24.0, -56.5, -7.0, -81.0, -49.25, -19.0, -41.0, 0.5, -15.0, 33.5" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fx:id="sanmiguel" fill="LIGHTGRAY" layoutX="228.0" layoutY="326.0" points="6.5, -93.25, -10.25, -146.0, -36.25, -138.5, -64.5, -30.0, -59.0, 0.25, -103.5, 58.5, -27.25, 71.5, 1.0, -21.25" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fx:id="basecamp" fill="LIGHTGRAY" layoutX="255.0" layoutY="341.0" points="36.5, -44.0, 36.5, -77.5, -21.0, -108.5, -27.0, -34.5, -55.0, 56.5, -27.0, 62.5, -13.5, 68.5, 13.5, 68.5, 17.0, 32.0, 17.0, 14.0, 28.0, -18.5" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fx:id="camp1" fill="LIGHTGRAY" layoutX="394.0" layoutY="457.0" points="-67.5, -60.25, -91.0, -60.25, -124.75, -68.75, -126.75, -47.75, -114.5, -30.0, -106.0, -27.0, -87.0, -24.5, -79.25, -10.0, -57.75, 18.0, -41.5, 8.75, -24.5, 7.25, -34.75, -60.25" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fx:id="south" fill="LIGHTGRAY" layoutX="413.0" layoutY="399.0" points="-93.5, -45.0, -139.25, -49.75, -142.0, -45.0, -143.5, -10.0, -109.75, -0.5, -68.0, -2.0, -72.75, -8.5, -71.25, -12.5, -74.75, -17.0, -79.25, -35.25, -83.75, -40.75, -89.75, -40.75" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fx:id="north" fill="LIGHTGRAY" layoutX="432.0" layoutY="348.0" points="-125.5, -15.25, -139.0, -13.25, -149.25, -26.5, -158.25, 1.75, -112.0, 7.25, -109.75, 10.75, -103.0, 10.75, -92.75, 42.5, -79.25, 35.75, -62.0, 10.75, -79.25, -26.5, -118.25, -28.75" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fx:id="anahwon" fill="LIGHTGRAY" layoutX="467.0" layoutY="305.0" points="-152.75, -15.25, -176.0, -32.5, -176.0, -8.75, -185.0, 17.75, -174.5, 31.0, -159.75, 28.75, -152.75, 15.0, -114.0, 17.75, -123.25, 8.75, -120.5, 3.5, -132.5, 1.75, -139.75, -4.25" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fx:id="panadtalan" fill="LIGHTGRAY" layoutX="504.0" layoutY="248.0" points="-195.75, -15.25, -205.75, -10.75, -213.25, 15.25, -213.25, 26.0, -170.0, 59.5, -155.75, 62.25, -146.75, 55.75, -154.25, 38.25, -148.5, 31.75, -139.25, 22.5, -139.25, 15.25, -148.5, 3.5, -157.75, 1.5, -182.75, -13.25" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fx:id="dologon" fill="LIGHTGRAY" layoutX="595.0" layoutY="171.0" points="-220.0, -51.0, -217.0, -39.25, -224.0, -8.0, -224.0, 65.5, -169.75, 90.0, -156.5, 90.0, -135.5, 65.5, -145.25, 65.5, -135.5, 54.25, -122.0, 52.0, -119.75, 44.25, -140.25, 44.25, -122.0, 17.75, -119.75, -11.75, -140.25, -51.0, -161.25, -59.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Pane fx:id="areaBox111" layoutX="41.0" layoutY="403.0">
+                                 <children>
+                                    <Text fx:id="BASE" fill="#344864" layoutX="19.0" layoutY="87.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="Base Camp" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="BASEHHnum" fill="#344864" layoutX="18.0" layoutY="125.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="59" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="areaBox1111" layoutX="41.0" layoutY="403.0">
+                                 <children>
+                                    <Text fx:id="CAMP" fill="#344864" layoutX="19.0" layoutY="87.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="Camp 1" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="CAMPHHnum" fill="#344864" layoutX="18.0" layoutY="125.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="85" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="areaBox11111" layoutX="41.0" layoutY="403.0">
+                                 <children>
+                                    <Text fx:id="SOUTH" fill="#344864" layoutX="19.0" layoutY="87.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="South Poblacion" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="SOUTHHHnum" fill="#344864" layoutX="18.0" layoutY="125.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="289" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="areaBox111111" layoutX="41.0" layoutY="403.0">
+                                 <children>
+                                    <Text fx:id="NORTH" fill="#344864" layoutX="19.0" layoutY="87.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="North Poblacion" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="NORTHHHnum" fill="#344864" layoutX="18.0" layoutY="125.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="360" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="areaBox1111111" layoutX="41.0" layoutY="403.0">
+                                 <children>
+                                    <Text fx:id="ANAHAWON" fill="#344864" layoutX="19.0" layoutY="87.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="Anahawon" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="ANAHAWONHHnum" fill="#344864" layoutX="18.0" layoutY="125.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="52" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="areaBox11111111" layoutX="41.0" layoutY="403.0">
+                                 <children>
+                                    <Text fx:id="PANADTALAN" fill="#344864" layoutX="19.0" layoutY="87.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="Panadtalan" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="PANADTALANHHnum" fill="#344864" layoutX="18.0" layoutY="125.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="35" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="areaBox111111111" layoutX="41.0" layoutY="403.0">
+                                 <children>
+                                    <Text fx:id="DOLOGON" fill="#344864" layoutX="19.0" layoutY="87.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="Dologon">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="DOLOGONHHnum" fill="#344864" layoutX="18.0" layoutY="125.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="89">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="568.0" layoutY="17.0" prefHeight="167.0" prefWidth="335.0" style="-fx-background-color: #D8D7CF; -fx-background-radius: 15px;">
+                           <children>
+                              <Text fx:id="Totalsubscribers" fill="#f88456" layoutX="22.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="957">
+                                 <font>
+                                    <Font size="55.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#344864" layoutX="18.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Subscribers">
+                                 <font>
+                                    <Font name="Arial Bold" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#727258" layoutX="22.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="As of">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="subsMonth" fill="#727258" layoutX="56.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="July 13 2024">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="76.0" fitWidth="76.0" layoutX="245.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/resources/Image_Resources/subscribers.png" />
+                                 </image>
+                              </ImageView>
+                           </children></Pane>
+                        <Pane layoutX="926.0" layoutY="17.0" prefHeight="167.0" prefWidth="335.0" style="-fx-background-color: #D8D7CF; -fx-background-radius: 15px;">
+                           <children>
+                              <Text fx:id="TotalInstallation" fill="#f88456" layoutX="21.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="35">
+                                 <font>
+                                    <Font size="55.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#344864" layoutX="21.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Installation">
+                                 <font>
+                                    <Font name="Arial Bold" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#727258" layoutX="22.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For the month of">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="InstallMonth" fill="#727258" layoutX="122.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="July">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="76.0" fitWidth="76.0" layoutX="245.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/resources/Image_Resources/installation.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="568.0" layoutY="199.0" prefHeight="167.0" prefWidth="335.0" style="-fx-background-color: #D8D7CF; -fx-background-radius: 15px;">
+                           <children>
+                              <Text fx:id="TotalCutoff" fill="#f88456" layoutX="21.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="23">
+                                 <font>
+                                    <Font size="55.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#344864" layoutX="22.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Cut-off">
+                                 <font>
+                                    <Font name="Arial Bold" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#727258" layoutX="22.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For the month of">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="CutMonth" fill="#727258" layoutX="122.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="July">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="76.0" fitWidth="76.0" layoutX="245.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/resources/Image_Resources/cut-off.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="926.0" layoutY="199.0" prefHeight="167.0" prefWidth="335.0" style="-fx-background-color: #D8D7CF; -fx-background-radius: 15px;">
+                           <children>
+                              <Text fx:id="TotalPastDue" fill="#f88456" layoutX="21.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="150">
+                                 <font>
+                                    <Font size="55.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#344864" layoutX="22.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Past Due">
+                                 <font>
+                                    <Font name="Arial Bold" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#727258" layoutX="22.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For the month of">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="dueMonth" fill="#727258" layoutX="122.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="July">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="76.0" fitWidth="76.0" layoutX="245.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/resources/Image_Resources/passdue.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <AreaChart fx:id="areaChart" layoutX="554.0" layoutY="379.0" prefHeight="234.0" prefWidth="696.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </AreaChart>
+                        <TextField alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" layoutX="1161.0" layoutY="478.0" pickOnBounds="false" prefHeight="9.0" prefWidth="186.0" rotate="90.0" style="-fx-background-color: transparent;" text="JULY 2023">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
