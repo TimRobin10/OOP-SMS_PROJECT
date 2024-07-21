@@ -212,7 +212,7 @@ public class DATABASE_ADD_CONTROLLER implements Initializable {
             String name = Last_NameTF.getText() + ", " + Given_NameTF.getText() + " " + Middle_InitialTF.getText() +".";
             String contact = NumberText.getText();
             String plan = PlanText.getText();
-            String acc_Status = "ACTIVE";
+            String acc_Status = "CONNECTED";
             String due_Date = DueDateField.getText();
             String address = AddressField.getText();
             String district = DistrictField.getText();

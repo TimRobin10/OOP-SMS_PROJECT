@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -51,6 +52,7 @@ public class Accounts_Rows_Controller {
 
             Stage editStage = new Stage();
             editStage.setTitle("Edit Accounts");
+            editStage.getIcons().add(new Image("/resources/Image_Resources/4.png"));
             editStage.setScene(new Scene(root));
             editStage.show();
         } catch (IOException e) {

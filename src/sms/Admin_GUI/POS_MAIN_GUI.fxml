@@ -17,7 +17,7 @@
                   <Font name="Arial Bold" size="25.0" />
                </font>
             </Label>
-            <Label id="NameText" fx:id="NameText" layoutX="26.0" layoutY="82.0" prefHeight="26.0" prefWidth="250.0" styleClass="NameText" stylesheets="@POS_MAIN_GUI.css" text="Customer Name">
+            <Label id="NameText" fx:id="NameText" layoutX="22.0" layoutY="82.0" prefHeight="26.0" prefWidth="250.0" styleClass="NameText" stylesheets="@POS_MAIN_GUI.css" text="Customer Name">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>
@@ -43,12 +43,12 @@
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></TextField>
-            <Label id="DueDateText" fx:id="DueDateText" layoutX="288.0" layoutY="164.0" styleClass="DueDateText" stylesheets="@POS_MAIN_GUI.css" text="Due Date">
+            <Label id="DueDateText" fx:id="DueDateText" layoutX="290.0" layoutY="164.0" styleClass="DueDateText" stylesheets="@POS_MAIN_GUI.css" text="Due Date">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <Label id="MonthlyChargeText" fx:id="AmountLB" layoutX="25.0" layoutY="340.0" styleClass="MonthlyChargeText" stylesheets="@POS_MAIN_GUI.css" text="Total Amount">
+            <Label id="MonthlyChargeText" fx:id="AmountLB" layoutX="22.0" layoutY="340.0" styleClass="MonthlyChargeText" stylesheets="@POS_MAIN_GUI.css" text="Total Amount">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>
@@ -61,12 +61,12 @@
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></TextField>
-            <Label id="NumberText" fx:id="NumberText" layoutX="290.0" layoutY="340.0" styleClass="NumberText" stylesheets="@POS_MAIN_GUI.css" text="Transaction ID">
+            <Label id="NumberText" fx:id="NumberText" layoutX="287.0" layoutY="340.0" styleClass="NumberText" stylesheets="@POS_MAIN_GUI.css" text="Transaction ID">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <Button id="CancelButton" fx:id="CancelButton" layoutX="387.0" layoutY="446.0" mnemonicParsing="false" onAction="#close" prefHeight="34.0" prefWidth="65.0" styleClass="CancelButton" stylesheets="@POS_MAIN_GUI.css" text="Cancel">
+            <Button id="CancelButton" fx:id="CancelButton" layoutX="375.0" layoutY="440.0" mnemonicParsing="false" onAction="#close" prefHeight="40.0" prefWidth="78.0" styleClass="CancelButton" stylesheets="@POS_MAIN_GUI.css" text="Cancel">
                <font>
                   <Font size="15.0" />
                </font>
@@ -74,7 +74,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="SaveButton" fx:id="ConfirmButton" layoutX="456.0" layoutY="446.0" mnemonicParsing="false" onAction="#confirm" prefHeight="34.0" prefWidth="78.0" styleClass="SaveButton" stylesheets="@POS_MAIN_GUI.css" text="Confirm">
+            <Button id="SaveButton" fx:id="ConfirmButton" layoutX="456.0" layoutY="440.0" mnemonicParsing="false" onAction="#confirm" prefHeight="40.0" prefWidth="78.0" styleClass="SaveButton" stylesheets="@POS_MAIN_GUI.css" text="Confirm">
                <font>
                   <Font name="Arial" size="15.0" />
                </font>

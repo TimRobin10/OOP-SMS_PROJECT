@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -18,6 +19,7 @@ import java.io.IOException;
 public class DATABASE_CONTROLLER_MAIN {
 
     @FXML private ComboBox<String> Filter_Combobox;
+    @FXML private Label Main_Label;
     @FXML private ToggleButton Location_Filter_Button1; // All
     @FXML private ToggleButton Location_Filter_Button2; // Anahawon
     @FXML private ToggleButton Location_Filter_Button3; // Base Camp
@@ -141,6 +143,7 @@ public class DATABASE_CONTROLLER_MAIN {
     private String getSelectedPlace() {
         Toggle selectedToggle = location_Filter_ToggleGroup.getSelectedToggle();
         if (selectedToggle != null) {
+            Main_Label.setText(((ToggleButton) selectedToggle).getText());
             return ((ToggleButton) selectedToggle).getText();
         }
         return "All";
@@ -155,6 +158,7 @@ public class DATABASE_CONTROLLER_MAIN {
             Scene posScene = new Scene(root);
 
             posStage.setTitle("Add Subscriber");
+            posStage.getIcons().add(new Image("/resources/Image_Resources/4.png"));
             posStage.setScene(posScene);
             posStage.show();
         } catch (IOException e) {

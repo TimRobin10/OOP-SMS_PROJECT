@@ -146,6 +146,7 @@
     -fx-font-family: "Arial";
     -fx-font-size: 15;
     -fx-font-weight: bold;
+    -fx-text-fill: #80808e;
 }
 
 #UserID_LB{
@@ -167,22 +168,22 @@
 }
 
 #CBox {
-    -fx-background-color: white;
-    -fx-border-color: lightgray;
-    -fx-border-radius: 50;
-    -fx-background-radius: 50;
-    -fx-padding: 5 10 5 10;
+    -fx-font-family: Arial;
     -fx-font-size: 14px;
-    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-border-color: rgb(94, 167, 178);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
 
 #CBox:hover {
-    -fx-background-color: #f0f0f0;
-    -fx-border-color: gray;
+    -fx-background-color: derive(rgb(94, 167, 178), -10%);
+    -fx-text-fill:rgb(241,240,233);
 }
 
 #CBox:focused {
-    -fx-border-color: #00aaff;
+    -fx-border-color: rgb(94, 167, 178);
 }
 
 #CBox .arrow {

@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -167,6 +168,7 @@ public class MenuController {
 
             Stage profile_stage = new Stage();
             profile_stage.setTitle("Account Information");
+            profile_stage.getIcons().add(new Image("/resources/Image_Resources/4.png"));
             profile_stage.setScene(new Scene(root));
             profile_stage.show();
         } catch (IOException e) {

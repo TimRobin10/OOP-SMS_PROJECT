@@ -183,9 +183,11 @@ public class LoginPageController {
                 SignUpInvalidLabel.setText("Error: Password does not match");
             } else {
                 database.add_account(username_input, password_input);
+                SignUpUsernameTextField.setText("");
+                SignUpPasswordFieldHidden.setText("");
+                SignUpConfirmPasswordHidden.setText("");
             }
         }
-
     }
 
     public void SignIn_SignOut(){

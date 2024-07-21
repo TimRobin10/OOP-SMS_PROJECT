@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -76,6 +77,7 @@ public class DATABASE_ITEMS_CONTROLLER {
             controller.setData(CustomerID, CustomerName, Customer_Contact_Number, Customer_Due_Date, Customer_Monthly_Charges, Customer_Address, Customer_Plan);
 
             posStage.setTitle("Edit Subscriber Information");
+            posStage.getIcons().add(new Image("/resources/Image_Resources/4.png"));
             posStage.setScene(posScene);
             posStage.show();
         } catch (IOException e) {

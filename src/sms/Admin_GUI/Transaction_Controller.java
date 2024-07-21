@@ -72,10 +72,9 @@ public class Transaction_Controller {
             int maxYear = ((TreeSet<Integer>) years).last();
 
             ObservableList<String> yearList = FXCollections.observableArrayList("All");
-            yearList.addAll(IntStream.rangeClosed(minYear, maxYear)
-                    .map(i -> maxYear - (i - minYear))
-                    .mapToObj(String::valueOf)
-                    .collect(Collectors.toList()));
+            for (int year = maxYear; year >= minYear; year--) {
+                yearList.add(String.valueOf(year));
+            }
             Year_Choice_Box.setItems(yearList);
             Year_Choice_Box.setValue("All");
         } else {

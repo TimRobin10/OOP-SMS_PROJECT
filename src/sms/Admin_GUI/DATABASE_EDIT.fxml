@@ -55,7 +55,7 @@
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <Button id="CancelButton" fx:id="CancelButton" layoutX="392.0" layoutY="400.0" mnemonicParsing="false" onAction="#cancel" prefHeight="34.0" prefWidth="65.0" styleClass="CancelButton" stylesheets="@DATABASE_ADD.css" text="Cancel">
+            <Button id="CancelButton" fx:id="CancelButton" layoutX="379.0" layoutY="400.0" mnemonicParsing="false" onAction="#cancel" prefHeight="34.0" prefWidth="70.0" styleClass="CancelButton" stylesheets="@DATABASE_ADD.css" text="Cancel">
                <font>
                   <Font size="15.0" />
                </font>
@@ -63,7 +63,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="SaveButton" fx:id="SaveButton" layoutX="469.0" layoutY="400.0" mnemonicParsing="false" onAction="#save" prefHeight="34.0" prefWidth="65.0" styleClass="SaveButton" stylesheets="@DATABASE_ADD.css" text="Save">
+            <Button id="SaveButton" fx:id="SaveButton" layoutX="459.0" layoutY="400.0" mnemonicParsing="false" onAction="#save" prefHeight="34.0" prefWidth="70.0" styleClass="SaveButton" stylesheets="@DATABASE_ADD.css" text="Save">
                <font>
                   <Font name="Arial" size="15.0" />
                </font>

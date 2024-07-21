@@ -7,19 +7,32 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="TableRows" fx:id="TableRows" prefHeight="60.0" prefWidth="1137.0" stylesheets="@Accounts.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sms.Admin_GUI.Accounts_Rows_Controller">
    <children>
       <HBox layoutX="-3.0" prefHeight="58.0" prefWidth="1165.0">
          <children>
-            <Label id="Contents" fx:id="UserID_LB" alignment="CENTER" prefHeight="58.0" prefWidth="138.0" stylesheets="@Accounts.css" text="564897" />
-            <Label id="Contents" fx:id="Username_LB" alignment="CENTER" prefHeight="58.0" prefWidth="257.0" text="Username" />
+            <Label id="Contents" fx:id="UserID_LB" alignment="CENTER" prefHeight="58.0" prefWidth="138.0" stylesheets="@Accounts.css" text="564897">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font></Label>
+            <Label id="Contents" fx:id="Username_LB" alignment="CENTER" prefHeight="58.0" prefWidth="257.0" text="Username">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font></Label>
             <PasswordField fx:id="Password_LB" prefHeight="58.0" prefWidth="238.0" />
-            <Label id="Contents" fx:id="AccountName_LB" alignment="CENTER" prefHeight="58.0" prefWidth="303.0" text="Account Name" />
-            <Label id="Contents" fx:id="Role_LB" alignment="CENTER" prefHeight="58.0" prefWidth="160.0" text="Role" />
+            <Label id="Contents" fx:id="AccountName_LB" alignment="CENTER" prefHeight="58.0" prefWidth="303.0" text="Account Name">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font></Label>
+            <Label id="Contents" fx:id="Role_LB" alignment="CENTER" prefHeight="58.0" prefWidth="160.0" text="Role">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font></Label>
             <Button fx:id="Row_Button" mnemonicParsing="false" onAction="#edit" prefHeight="77.0" prefWidth="75.0">
                <graphic>
-                  <FontAwesomeIcon glyphName="EDIT" selectionFill="#66fa7d" selectionStart="0" size="30" wrappingWidth="30.0" />
+                  <FontAwesomeIcon fill="#40868e" glyphName="EDIT" selectionFill="#66fa7d" selectionStart="0" size="25" wrappingWidth="30.0" />
                </graphic>
             </Button>
          </children>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -7,11 +8,10 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="Center_Pane" prefHeight="794.0" prefWidth="1286.0" stylesheets="@DATABASE_ALL.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sms.Admin_GUI.DATABASE_CONTROLLER_MAIN">
    <children>
@@ -64,18 +64,17 @@
             </HBox>
          </children>
       </AnchorPane>
-      <Label fx:id="Main_Label" layoutX="64.0" layoutY="122.0" prefHeight="40.0" prefWidth="309.0" text="ALL" />
+      <Label fx:id="Main_Label" layoutX="64.0" layoutY="131.0" prefHeight="40.0" prefWidth="309.0" text="ALL CLIENTS">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
       <Button fx:id="Add_New_Button" layoutX="820.0" layoutY="122.0" mnemonicParsing="false" onAction="#Add" prefHeight="40.0" prefWidth="100.0" text="Add New" />
-      <TextField fx:id="Search_Bar" layoutX="932.0" layoutY="122.0" prefHeight="40.0" prefWidth="298.0" promptText="Search">
+      <TextField fx:id="Search_Bar" layoutX="966.0" layoutY="122.0" prefHeight="40.0" prefWidth="264.0" promptText="Search">
          <padding>
             <Insets left="50.0" />
          </padding>
       </TextField>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="942.0" layoutY="127.0">
-         <image>
-            <Image url="@../../resources/Image_Resources/search.png" />
-         </image>
-      </ImageView>
       <ComboBox fx:id="Filter_Combobox" layoutX="660.0" layoutY="123.0" prefHeight="40.0" prefWidth="150.0" />
+      <FontAwesomeIcon fill="#a6a6a6" glyphName="SEARCH" layoutX="982.0" layoutY="148.0" size="18" />
    </children>
 </AnchorPane>

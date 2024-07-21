@@ -3,7 +3,7 @@
 }
 
 #MainLabel{
-    -fx-font-family: "Helvetica Rounded";
+    -fx-font-family: "Arial";
     -fx-font-weight: bold;
     -fx-font-size: 33;
     -fx-text-fill: rgb(52,72,100);
@@ -69,7 +69,7 @@
 }
 
 #Customer_ID_LB{
-    -fx-text-fill: rgb(52,72,100);
+    -fx-text-fill: #c49f60;
     -fx-font-family: "Arial";
     -fx-font-size: 25;
     -fx-font-weight:bold;
@@ -82,7 +82,7 @@
 }
 
 #Due_Date_LB{
-    -fx-text-fill: rgb(52,72,100);
+    -fx-text-fill:  #c6b182;
     -fx-font-family: "Arial";
     -fx-font-size: 15;
 }
@@ -94,7 +94,7 @@
 }
 
 #Amount_LB{
-    -fx-text-fill: rgb(52,72,100);
+    -fx-text-fill:  #c6b182;
     -fx-font-family: "Arial";
     -fx-font-size: 15;
 }
@@ -106,7 +106,7 @@
 }
 
 #Address_LB1{
-    -fx-text-fill: rgb(52,72,100);
+    -fx-text-fill:  #c6b182;
     -fx-font-family: "Arial";
     -fx-font-size: 15;
 }
@@ -114,21 +114,23 @@
 
 
 #PayButton {
-    -fx-background-color: #B1E4B1;
+    -fx-background-color: #5EA7B2;
     -fx-border-radius: 50px;
     -fx-background-radius: 50px;
     -fx-font-size: 14px;
-    -fx-text-fill: #333333;
+    -fx-text-fill: white;
     -fx-padding: 8px 15px;
     -fx-border-width: 1px;
+    -fx-font-weight: bold;
 }
 
 #PayButton:hover {
-    -fx-background-color: #A0D8A0;
+    -fx-background-color: #43696f;
+
 }
 
 #PayButton:pressed {
-    -fx-background-color: #8AC68A;
+    -fx-background-color: #43696f;
 }
 
 #SearchBar {
@@ -144,5 +146,5 @@
 }
 
 #SearchBar:focused {
-    -fx-border-color: dodgerblue;
+    -fx-border-color: #5EA7B2;
 }

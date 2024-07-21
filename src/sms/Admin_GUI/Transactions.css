@@ -76,9 +76,17 @@
     -fx-font-family: "Arial";
     -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-text-fill: #494949;
+    -fx-text-fill: #80808e;
 }
 
+#refresh
+{
+    -fx-background-color: #5EA7B2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+    -fx-background-radius: 10;
+}
 /*ITEMS*/
 #TableRows{
     -fx-background-color: white;
@@ -107,4 +115,53 @@
     -fx-border-radius: 15px;
 }
 
+#Year_Choice_Box
+{
+    -fx-font-family: Arial;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-border-color: rgb(94, 167, 178);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
 
+.combo-box .list-cell {
+    -fx-text-fill: rgb(52,72,100);
+}
+
+#Year_Choice_Box:hover
+{
+    -fx-background-color: derive(rgb(94, 167, 178), -10%);
+    -fx-text-fill:rgb(241,240,233);
+}
+#Month_Choice_Box
+{
+    -fx-font-family: Arial;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-border-color: #f88456;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+#Month_Choice_Box:hover
+{
+    -fx-background-color: derive(#f88456, -10%);
+    -fx-text-fill:rgb(241,240,233);
+}
+
+#Search_Bar
+{
+    -fx-font-family: Arial;
+    -fx-font-size: 15px;
+    -fx-padding: 0 8 0 40;
+    -fx-background-color: rgb(248, 248, 248);
+    -fx-text-fill: rgb(50, 50, 50);
+    -fx-border-color: rgb(200, 200, 200);
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-width: 1px;
+    -fx-prompt-text-fill: rgb(150, 150, 150);
+}

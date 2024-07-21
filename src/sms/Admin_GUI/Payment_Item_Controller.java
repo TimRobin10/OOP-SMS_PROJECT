@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -55,6 +56,7 @@ public class Payment_Item_Controller {
             posController.setValues(CusName, CusID, DueDate, address, DueAmount);
 
             posStage.setTitle("Point of Sale");
+            posStage.getIcons().add(new Image("/resources/Image_Resources/4.png"));
             posStage.setScene(posScene);
             posStage.show();
         } catch (IOException e) {

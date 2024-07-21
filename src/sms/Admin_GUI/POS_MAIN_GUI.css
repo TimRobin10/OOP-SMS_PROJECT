@@ -1,11 +1,17 @@
 .SaveButton:hover{
 
-    -fx-background-color: #f88456;
+    -fx-background-color: #5EA7B2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
 
 }
 .CancelButton:hover{
 
-    -fx-background-color: #FF0000;
+    -fx-background-color: rgb(290,100,123);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
 
 }
 
@@ -14,6 +20,8 @@
     -fx-background-color: white;
     -fx-text-fill: #344864;
     -fx-border-radius: 50px;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
 
 }
 
@@ -22,6 +30,8 @@
 -fx-background-color: white;
     -fx-text-fill: #344864;
     -fx-border-radius: 50px;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
 
 }
 

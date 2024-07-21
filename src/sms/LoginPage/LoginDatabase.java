@@ -145,8 +145,12 @@ public class LoginDatabase {
             statement.setString(2, password_input);
 
             int rowsAffected = statement.executeUpdate();
-            if(rowsAffected == 0){
-                JOptionPane.showMessageDialog(null,"Account Added Successfully", "Account Added", JOptionPane.INFORMATION_MESSAGE);
+            if(rowsAffected > 0){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Account Added");
+                alert.setHeaderText(null); // No header text
+                alert.setContentText("Account Added Successfully");
+                alert.showAndWait();
             }
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, e, "Database Error", JOptionPane.ERROR_MESSAGE);

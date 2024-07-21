@@ -1,14 +1,20 @@
 /* Button Hover Effects */
 .CancelButton:hover {
     -fx-background-radius: 6px;
-    -fx-background-color: red;
-    -fx-border-color: red;
+    -fx-background-color: rgb(290,100,123);
+    -fx-border-color: rgb(290,100,123);
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+    -fx-text-fill: #F2F2F2;
 }
 
 .SaveButton:hover {
     -fx-background-color: #5EA7B2;
     -fx-background-radius: 6px;
     -fx-border-color: #5EA7B2;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+    -fx-text-fill: #F2F2F2;
 }
 
 /* Buttons */
@@ -17,6 +23,8 @@
     -fx-border-radius: 5px;
     -fx-background-color: #F2F2F2;
     -fx-text-fill: #344864;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
 }
 
 .SaveButton {
@@ -24,6 +32,8 @@
     -fx-border-radius: 5px;
     -fx-background-color: #F2F2F2;
     -fx-text-fill: #344864;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
 }
 
 /* Fields and Labels */
@@ -36,7 +46,7 @@
     -fx-border-color: #CBC9BB;
     -fx-border-radius: 5px;
     -fx-text-fill: #344864;
-    -fx-background-color: #f1f0e9; /* Corrected color code */
+    -fx-background-color: WHITE; /* Corrected color code */
 }
 
 .PasswordLabel,
