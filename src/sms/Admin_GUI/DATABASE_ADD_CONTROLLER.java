@@ -214,7 +214,7 @@ public class DATABASE_ADD_CONTROLLER implements Initializable {
             String plan = PlanText.getText();
             String acc_Status = "ACTIVE";
             String due_Date = DueDateField.getText();
-            String address = AddressText.getText();
+            String address = AddressField.getText();
             String district = DistrictField.getText();
             double charge = Double.parseDouble(MonthlyChargeField.getText());
             String installation = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -228,6 +228,12 @@ public class DATABASE_ADD_CONTROLLER implements Initializable {
             }
 
             subs.addSubscriber(name,contact,address_final,plan,acc_Status,due_Date,charge,installation,current_due_date);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success!");
+            alert.setHeaderText(null);
+            alert.setContentText(name + " added successfully.");
+
             close();
         }
     }
@@ -258,5 +264,3 @@ public class DATABASE_ADD_CONTROLLER implements Initializable {
         stage.close();
     }
 }
-
-

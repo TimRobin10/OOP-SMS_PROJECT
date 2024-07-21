@@ -3,30 +3,21 @@ package sms.Admin_GUI;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
 
-import java.awt.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.util.HexFormat;
-import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Dashboard_Controller {
 
@@ -79,11 +70,13 @@ public class Dashboard_Controller {
 
     private EventHandler<? super javafx.scene.input.MouseEvent> MouseEvent;
     private Color color;
-    Subscribers_Database subscribers_database = Subscribers_Database.getInstance();
+
+    private ScheduledExecutorService scheduler;
 
     @FXML
     public void initialize()
     {
+        Subscribers_Database subscribers_database = Subscribers_Database.getInstance();
         subscribers_database.getPopulation();
         subscribers_database.getSubscribers();
         subscribers_database.CountNumberOfInstallation();
@@ -92,8 +85,6 @@ public class Dashboard_Controller {
 
         initialize_data();
         init_table();
-
-        subscribers_database.addListener(this::refreshUI);
 
         infoBox.setImage(new Image(getClass().getResourceAsStream("/resources/Image_Resources/infoBox.png")));
         loc.setImage(new Image(getClass().getResourceAsStream("/resources/Image_Resources/location.png")));
@@ -156,6 +147,8 @@ public class Dashboard_Controller {
         ANAHAWONLocationHover();
         PANADTALANLocationHover();
         DOLOGONLocationHover();
+
+        startPolling();
     }
 
     private void init_table(){
@@ -504,16 +497,17 @@ public class Dashboard_Controller {
     }
 
     void initialize_data(){
-        Totalsubscribers.setText(String.valueOf(Subscribers_Database.NumberOfSubscribers));
+        Subscribers_Database subscribers_database = Subscribers_Database.getInstance();
+        Totalsubscribers.setText(String.valueOf(subscribers_database.CountSubscribers()));
         subsMonth.setText(current_date());
 
-        TotalInstallation.setText(String.valueOf(Subscribers_Database.NumberOfInstallation));
+        TotalInstallation.setText(String.valueOf(subscribers_database.CountNumberOfInstallation()));
         InstallMonth.setText(current_month());
 
-        TotalCutoff.setText(String.valueOf(Subscribers_Database.TotalCutoff));
+        TotalCutoff.setText(String.valueOf(subscribers_database.CountCutoffData()));
         CutMonth.setText(current_month());
 
-        TotalPastDue.setText(String.valueOf(Subscribers_Database.TotalPastDue));
+        TotalPastDue.setText(String.valueOf(subscribers_database.CountPastDueData()));
         dueMonth.setText(current_month());
     }
 
@@ -530,10 +524,37 @@ public class Dashboard_Controller {
         return now.format(formatter);
     }
 
-    private void refreshUI() {
-        Platform.runLater(() -> {
+    private void startPolling() {
+        scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(() -> Platform.runLater(this::refreshUI), 0, 1, TimeUnit.SECONDS);
+    }
 
-        });
+    private void refreshUI() {
+        Subscribers_Database subscribers_database = Subscribers_Database.getInstance();
+        Totalsubscribers.setText(String.valueOf(subscribers_database.CountSubscribers()));
+        subsMonth.setText(current_date());
+
+        TotalInstallation.setText(String.valueOf(subscribers_database.CountNumberOfInstallation()));
+        InstallMonth.setText(current_month());
+
+        TotalCutoff.setText(String.valueOf(subscribers_database.CountCutoffData()));
+        CutMonth.setText(current_month());
+
+        TotalPastDue.setText(String.valueOf(subscribers_database.CountPastDueData()));
+        dueMonth.setText(current_month());
+
+        DOLOGONHHnum.setText(String.valueOf(Subscribers_Database.population_Dologon));
+        PANADTALANHHnum.setText(String.valueOf(Subscribers_Database.population_Panadtalan));
+        ANAHAWONHHnum.setText(String.valueOf(Subscribers_Database.population_Anahawon));
+        COLHHnum1.setText(String.valueOf(Subscribers_Database.population_Colambugon));
+        DANGHHnum.setText(String.valueOf(Subscribers_Database.population_Danggawan));
+        SANHHnum.setText(String.valueOf(Subscribers_Database.population_SanMiguel));
+        BASEHHnum.setText(String.valueOf(Subscribers_Database.population_BaseCamp));
+        CAMPHHnum.setText(String.valueOf(Subscribers_Database.population_Camp1));
+        SOUTHHHnum.setText(String.valueOf(Subscribers_Database.population_SouthPoblacion));
+        NORTHHHnum.setText(String.valueOf(Subscribers_Database.population_NorthPoblacion));
+
+
     }
 
 }

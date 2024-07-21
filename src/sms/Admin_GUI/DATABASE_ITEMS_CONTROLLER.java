@@ -4,15 +4,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
-
 
 public class DATABASE_ITEMS_CONTROLLER {
     @FXML private Label Address;
@@ -73,7 +73,7 @@ public class DATABASE_ITEMS_CONTROLLER {
             Stage posStage = new Stage();
             Scene posScene = new Scene(root);
 
-            controller.setData(CustomerID,CustomerName,Customer_Contact_Number,Customer_Due_Date,Customer_Monthly_Charges,Customer_Address,Customer_Plan);
+            controller.setData(CustomerID, CustomerName, Customer_Contact_Number, Customer_Due_Date, Customer_Monthly_Charges, Customer_Address, Customer_Plan);
 
             posStage.setTitle("Edit Subscriber Information");
             posStage.setScene(posScene);
@@ -84,19 +84,21 @@ public class DATABASE_ITEMS_CONTROLLER {
     }
 
     public void delete(){
-        int option = JOptionPane.showOptionDialog(null, "Are you sure you want to delete this subscriber?", "Confirmation", JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_CANCEL_OPTION, null, new String[]{"Yes", "No"}, 0);
-        switch(option){
-            case 0 -> {
-                int status = subs.deleteSubscriber(CustomerID);
-                switch (status){
-                    case 1 -> JOptionPane.showMessageDialog(null, "Subscriber deleted successfully", "Operation Successful", JOptionPane.INFORMATION_MESSAGE);
-                    case 2 -> JOptionPane.showMessageDialog(null, "Subscriber deletion unsuccessful", "Operation Unsuccessful", JOptionPane.INFORMATION_MESSAGE);
-                }
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle(null);
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to delete this subscriber?");
+        alert.getButtonTypes().setAll(javafx.scene.control.ButtonType.YES, javafx.scene.control.ButtonType.NO);
+        if (alert.showAndWait().get() == javafx.scene.control.ButtonType.YES) {
+            int status = subs.deleteSubscriber(CustomerID);
+            Alert resultAlert = new Alert(AlertType.INFORMATION);
+            resultAlert.setTitle(null);
+            resultAlert.setHeaderText(null);
+            switch (status) {
+                case 1 -> resultAlert.setContentText("Subscriber deleted successfully");
+                case 2 -> resultAlert.setContentText("Subscriber deletion unsuccessful");
             }
-            case 1 -> {
-                break;
-            }
+            resultAlert.showAndWait();
         }
     }
-
 }

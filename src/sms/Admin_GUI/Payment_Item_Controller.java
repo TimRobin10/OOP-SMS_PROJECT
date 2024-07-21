@@ -1,5 +1,6 @@
 package sms.Admin_GUI;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,17 +30,17 @@ public class Payment_Item_Controller {
     String address;
 
 
-    public void DueData_SetAccount(Payments_Due_Accounts payments) {
-        Customer_Name_LB.setText(payments.getAccount_name());
-        CusName = payments.getAccount_name();
-        Due_Date_LB2.setText(payments.getDue_date());
-        DueDate = payments.getDue_date();
-        Amount_LB2.setText("Php\t" + String.valueOf(payments.getAmount()));
-        DueAmount = payments.getAmount();
-        Customer_ID_LB.setText("#" + String.valueOf(payments.getAccount_id()));
-        CusID = payments.getAccount_id();
-        Address_LB1.setText(payments.getAddress());
-        address = payments.getAddress();
+    public void DueData_SetAccount(DATABASE_SUBSCRIBERS payments) {
+        Customer_Name_LB.setText(payments.getSubscriberName());
+        CusName = payments.getSubscriberName();
+        Due_Date_LB2.setText(payments.getSubscriberCurrentDueDate());
+        DueDate = payments.getSubscriberCurrentDueDate();
+        Amount_LB2.setText("Php\t" + String.valueOf(payments.getSubscriberMonthlyCharges()));
+        DueAmount = payments.getSubscriberMonthlyCharges();
+        Customer_ID_LB.setText("#" + String.format("%06d",payments.getSubscriberID()));
+        CusID = payments.getSubscriberID();
+        Address_LB1.setText(payments.getSubscriberAddress());
+        address = payments.getSubscriberAddress();
     }
 
     public void pay(){

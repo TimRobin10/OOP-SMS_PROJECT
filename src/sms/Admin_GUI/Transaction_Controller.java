@@ -1,5 +1,6 @@
 package sms.Admin_GUI;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -36,6 +37,7 @@ public class Transaction_Controller {
 
     @FXML
     public void initialize() {
+        trans.addListener(this::UIupdate);
         init_transactions();
         setupSearchBar();
         setupChoiceBoxes();
@@ -125,5 +127,15 @@ public class Transaction_Controller {
         }
 
         loadTransactions(filteredTransactions);
+    }
+
+    void UIupdate(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                allTransactions = trans.retrieveTransactionData();
+                loadTransactions(allTransactions);
+            }
+        });
     }
 }

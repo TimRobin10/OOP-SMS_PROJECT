@@ -13,6 +13,7 @@ import java.util.Properties;
 public class Transactions_Database {
     String db_username, db_password;
     Connection connection;
+    ObservableList<Runnable> listeners = FXCollections.observableArrayList();
 
     //SINGLETON
     private static volatile Transactions_Database instance;
@@ -68,7 +69,7 @@ public class Transactions_Database {
     public ObservableList<Transaction_Template> retrieveTransactionData(){
         ObservableList<Transaction_Template> transactions_made = FXCollections.observableArrayList();
 
-        String query = "SELECT * FROM Transactions_list";
+        String query = "SELECT * FROM Transactions_list ORDER BY transaction_id DESC";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -86,6 +87,7 @@ public class Transactions_Database {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Database Error: " + e, "Database Error", JOptionPane.ERROR_MESSAGE);
         }
+        notifyListeners();
         return transactions_made;
     }
 
@@ -125,6 +127,19 @@ public class Transactions_Database {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        notifyListeners();
         return status;
     }
+
+    public void addListener(Runnable listener) {
+        listeners.add(listener);
+    }
+
+    private void notifyListeners() {
+        for (Runnable listener : listeners) {
+            listener.run();
+        }
+    }
+
+
 }

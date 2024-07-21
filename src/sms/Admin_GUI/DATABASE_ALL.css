@@ -91,6 +91,43 @@
     -fx-background-color: derive(rgb(248, 132, 86), -20%);
 }
 
+#RefreshButton{
+    -fx-font-family: Arial;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: rgb(255, 184, 58);
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5 10;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+}
+
+#RefreshButton:hover{
+    -fx-background-color: derive(rgb(255, 184, 58), -10%);
+}
+
+#RefreshButton:pressed{
+    -fx-background-color: derive(rgb(255, 184, 58), -20%);
+}
+
+/*FILTER CB*/
+#Filter_Combobox {
+    -fx-font-family: Arial;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: rgb(255, 184, 58);
+    -fx-border-color: transparent;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+#Filter_Combobox:hover {
+    -fx-background-color: derive(rgb(255, 184, 58), -10%);
+}
+
+
 /*SEARCH BAR*/
 #Search_Bar {
     -fx-font-family: Arial;
@@ -110,64 +147,18 @@
     -fx-background-color: rgb(255, 255, 255);
 }
 
-/*TAB PANE*/
-.tab-pane .tab {
-    -fx-background-color: transparent;
-    -fx-font-size: 12px;
-    -fx-font-family: "Arial";
-    -fx-font-weight: bold;
-    -fx-background-insets: 0;
-    -fx-border-color: transparent;
-    -fx-border-width: 0 0 2px 0;
-}
-
-.tab-label {
-    -fx-text-fill: rgb(87, 87, 87);
-}
-
-.tab:hover .tab-header-area{
-    -fx-background-color: rgb(245, 245, 245);
-}
-
-.tab-pane .tab:selected {
-    -fx-text-fill: rgb(248, 132, 86);
-    -fx-border-color: rgb(248, 132, 86);
-    -fx-border-width: 0 0 2px 0;
-}
-
-.tab:selected .tab-label {
-    -fx-text-fill: rgb(248, 132, 86);
-}
-
-.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
-    -fx-border-color: transparent;
-}
-
-.tab-pane {
-    -fx-tab-min-width: 100px;
-    -fx-tab-max-width: 200;
-    -fx-tab-max-height: 20;
+#Table_Pane{
     -fx-background-color: white;
-    -fx-border-color: rgb(255, 255, 255);
-    -fx-border-width: 1px;
-    -fx-background-radius: 15;
-    -fx-border-radius: 15;
-}
-
-.tab-pane .tab-header-background {
-    -fx-background-color: transparent;
-}
-
-.tab-pane .tab-header-area {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
 /*TABLE LABEL*/
 #TableLabel{
     -fx-font-family: "Arial";
     -fx-font-weight: bold;
-    -fx-text-fill: rgb(150, 150, 150);
+    -fx-font-size: 12;
+    -fx-text-fill: rgb(52,72,100);
 }
 
 
@@ -177,33 +168,15 @@
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
     -fx-border-color: transparent;
+    -fx-border-radius: 0 0 10 10;
+    -fx-background-radius: 0 0 10 10;
 }
 
 #scrollPane .viewport {
     -fx-background-color: white;
     -fx-border-color: white;
-}
-
-#scrollPane1 {
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-    -fx-border-color: transparent;
-}
-
-#scrollPane1 .viewport {
-    -fx-background-color: white;
-    -fx-border-color: white;
-}
-
-#scrollPane2 {
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-    -fx-border-color: transparent;
-}
-
-#scrollPane2 .viewport {
-    -fx-background-color: white;
-    -fx-border-color: white;
+    -fx-border-radius: 0 0 10 10;
+    -fx-background-radius: 0 0 10 10;
 }
 
 .scroll-bar {

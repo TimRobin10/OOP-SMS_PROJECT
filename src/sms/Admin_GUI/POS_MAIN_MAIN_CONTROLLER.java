@@ -3,13 +3,16 @@ package sms.Admin_GUI;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.print.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 public class POS_MAIN_MAIN_CONTROLLER {
     @FXML private TextField AddressTF;
@@ -22,7 +25,7 @@ public class POS_MAIN_MAIN_CONTROLLER {
     @FXML private TextField TransactionIDTF;
 
     Transactions_Database transactions_database = Transactions_Database.getInstance();
-    PaymentDatabase payment_database = PaymentDatabase.getInstance();
+    Subscribers_Database subscribers_database = Subscribers_Database.getInstance();
     int next_transaction_id;
 
     String CustomerName = "";
@@ -31,9 +34,8 @@ public class POS_MAIN_MAIN_CONTROLLER {
     String address = "";
     double amount = 0;
 
-
     public void setValues(String Customer_Name, int Customer_ID, String Due_date, String Address, double Amount) {
-        next_transaction_id = transactions_database.latest_transaction_ID()+1;
+        next_transaction_id = transactions_database.latest_transaction_ID() + 1;
 
         CustomerIDTF.setText(Integer.toString(Customer_ID));
         this.CustomerID = Customer_ID;
@@ -51,37 +53,33 @@ public class POS_MAIN_MAIN_CONTROLLER {
         this.amount = Amount;
 
         TransactionIDTF.setText(String.format("%06d", next_transaction_id));
-
     }
 
-    public void close(){
+    public void close() {
         Stage stage = (Stage) CancelButton.getScene().getWindow();
         stage.close();
     }
 
-    public void confirm(){
-        int print_option = 0;
-        int status = transactions_database.add_transaction(CustomerID,CustomerName,address,amount,DueDate);
-        switch(status){
-            case 1 ->{
-                print_option = JOptionPane.showOptionDialog(null,"Transaction added successfully\n\nDo you want a printed receipt?", "Payment Successful", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
-                payment_database.payment_done_delete(CustomerID);
+    public void confirm() {
+        int status = transactions_database.add_transaction(CustomerID, CustomerName, address, amount, DueDate);
+        switch (status) {
+            case 1 -> {
+                Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION, "Transaction added successfully\n\nDo you want a printed receipt?", ButtonType.YES, ButtonType.NO);
+                successAlert.setTitle(null);
+                Optional<ButtonType> result = successAlert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.YES) {
+                    print();
+                }
+                subscribers_database.pay(CustomerID, addOneMonth(DueDate));
             }
-            case 2 ->{
-                JOptionPane.showMessageDialog(null, "Error: Transaction unsuccessful", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-
-        switch (print_option){
-            case JOptionPane.YES_OPTION -> {
-                print();
-            }
-            case JOptionPane.NO_OPTION -> {
+            case 2 -> {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Error: Transaction unsuccessful");
+                errorAlert.setTitle(null);
+                errorAlert.showAndWait();
             }
         }
         close();
     }
-
 
     public void print() {
         try {
@@ -93,7 +91,9 @@ public class POS_MAIN_MAIN_CONTROLLER {
 
             Printer printer = Printer.getDefaultPrinter();
             if (printer == null) {
-                JOptionPane.showMessageDialog(null, "No available printer found", "Printing Error", JOptionPane.ERROR_MESSAGE);
+                Alert printerAlert = new Alert(Alert.AlertType.ERROR, "No available printer found");
+                printerAlert.setTitle(null);
+                printerAlert.showAndWait();
             } else {
                 PrinterJob job = PrinterJob.createPrinterJob(printer);
 
@@ -113,19 +113,33 @@ public class POS_MAIN_MAIN_CONTROLLER {
                     boolean success = job.printPage(pageLayout, root);
                     if (success) {
                         job.endJob();
-                        JOptionPane.showMessageDialog(null, "Receipt printed successfully", "Printing Successful", JOptionPane.INFORMATION_MESSAGE);
+                        Alert successAlert = new Alert(Alert.AlertType.INFORMATION, "Receipt printed successfully");
+                        successAlert.setTitle(null);
+                        successAlert.showAndWait();
                     } else {
-                        JOptionPane.showMessageDialog(null, "Printing failed", "Printing Error", JOptionPane.ERROR_MESSAGE);
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Printing failed");
+                        errorAlert.setTitle(null);
+                        errorAlert.showAndWait();
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Could not create printer job", "Printing Error", JOptionPane.ERROR_MESSAGE);
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Could not create printer job");
+                    errorAlert.setTitle(null);
+                    errorAlert.showAndWait();
                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "An error occurred while printing", "Printing Error", JOptionPane.ERROR_MESSAGE);
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, "An error occurred while printing");
+            errorAlert.setTitle(null);
+            errorAlert.showAndWait();
         }
     }
 
+    public static String addOneMonth(String dueDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(dueDate, formatter);
+        LocalDate nextDueDate = date.plusMonths(1);
+        return nextDueDate.format(formatter);
+    }
 }

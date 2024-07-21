@@ -11,8 +11,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 
 import javax.swing.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
-public class Payment_Main_Controller implements PaymentDatabase.PDBDatabaseObserver {
+public class Payment_Main_Controller{
     @FXML private AnchorPane Center_Pane;
     @FXML private GridPane Grid;
     @FXML private Label MainLabel;
@@ -20,8 +23,8 @@ public class Payment_Main_Controller implements PaymentDatabase.PDBDatabaseObser
     @FXML private TextField SearchBar;
     @FXML private FlowPane Flow;
 
-    private final PaymentDatabase PDB = PaymentDatabase.getInstance();
-    private ObservableList<Payments_Due_Accounts> dueAccounts;
+    private final Subscribers_Database subscribers_database = Subscribers_Database.getInstance();
+    private ObservableList<DATABASE_SUBSCRIBERS> dueAccounts;
 
     private static volatile Payment_Main_Controller instance;
 
@@ -29,9 +32,10 @@ public class Payment_Main_Controller implements PaymentDatabase.PDBDatabaseObser
     private void initialize() {
         initDueAccounts();
         setSearchBar();
-        PDB.addObserverPDB(this);
+        subscribers_database.addListener(this::RefreshUI);
     }
 
+    //Singleton
     public static Payment_Main_Controller getInstance() {
         Payment_Main_Controller result = instance;
         if (instance == null) {
@@ -45,8 +49,9 @@ public class Payment_Main_Controller implements PaymentDatabase.PDBDatabaseObser
     }
 
     public void initDueAccounts() {
-        dueAccounts = PDB.due_accounts();
+        dueAccounts = subscribers_database.getSubscribers();
         updateUI(dueAccounts);
+        sortDueAccounts(dueAccounts);
     }
 
     public void setSearchBar() {
@@ -56,21 +61,22 @@ public class Payment_Main_Controller implements PaymentDatabase.PDBDatabaseObser
     }
 
     private void filterAccounts(String searchText) {
-        ObservableList<Payments_Due_Accounts> filteredList = dueAccounts.filtered(account ->
-                String.valueOf(account.getAccount_id()).toLowerCase().contains(searchText.toLowerCase()) ||
-                        account.getAccount_name().toLowerCase().contains(searchText.toLowerCase()) ||
-                        account.getDue_date().toLowerCase().contains(searchText.toLowerCase()) ||
-                        String.valueOf(account.getAmount()).toLowerCase().contains(searchText.toLowerCase()) ||
-                        account.getDue_date().toLowerCase().contains(searchText.toLowerCase())
+        ObservableList<DATABASE_SUBSCRIBERS> filteredList = dueAccounts.filtered(account ->
+                String.valueOf(account.getSubscriberID()).toLowerCase().contains(searchText.toLowerCase()) ||
+                        account.getSubscriberName().toLowerCase().contains(searchText.toLowerCase()) ||
+                        account.getSubscriberCurrentDueDate().toLowerCase().contains(searchText.toLowerCase()) ||
+                        String.valueOf(account.getSubscriberMonthlyCharges()).toLowerCase().contains(searchText.toLowerCase()) ||
+                        account.getSubscriberContactNumber().toLowerCase().contains(searchText.toLowerCase())
         );
 
+        sortDueAccounts(filteredList);
         updateUI(filteredList);
     }
 
-    public void updateUI(ObservableList<Payments_Due_Accounts> filteredList) {
+    public void updateUI(ObservableList<DATABASE_SUBSCRIBERS> filteredList) {
         Flow.getChildren().clear();
         try {
-            for (Payments_Due_Accounts account : filteredList) {
+            for (DATABASE_SUBSCRIBERS account : filteredList) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Payment_Items.fxml"));
                 AnchorPane newPaymentItem = loader.load();
 
@@ -84,10 +90,23 @@ public class Payment_Main_Controller implements PaymentDatabase.PDBDatabaseObser
         }
     }
 
-    @Override
-    public void onUpdate() {
-        Platform.runLater(() -> {
-            initDueAccounts();
+    private LocalDate parseDueDate(String dueDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(dueDate, formatter);
+    }
+
+    private void sortDueAccounts(ObservableList<DATABASE_SUBSCRIBERS> accounts) {
+        accounts.sort(Comparator.comparing(account -> parseDueDate(account.getSubscriberCurrentDueDate())));
+    }
+
+    private void RefreshUI(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                dueAccounts = subscribers_database.getSubscribers();
+                updateUI(dueAccounts);
+            }
         });
     }
+
 }

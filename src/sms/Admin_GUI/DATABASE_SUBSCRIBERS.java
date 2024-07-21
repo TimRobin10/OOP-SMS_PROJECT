@@ -14,8 +14,9 @@ public class DATABASE_SUBSCRIBERS {
     private final SimpleStringProperty SubscriberDueDate;
     private final SimpleDoubleProperty SubscriberMonthlyCharges;
     private final SimpleStringProperty SubscriberInstallationDate;
+    private final SimpleStringProperty SubscriberCurrentDueDate;
 
-    public DATABASE_SUBSCRIBERS(int ID, String Name, String Contact, String Address, String Plan, String Status, String DueDate, double MonthlyCharges, String InstallationDate) {
+    public DATABASE_SUBSCRIBERS(int ID, String Name, String Contact, String Address, String Plan, String Status, String DueDate, double MonthlyCharges, String InstallationDate, String CurrentDueDate) {
         this.SubscriberID = new SimpleIntegerProperty(ID);
         this.SubscriberName = new SimpleStringProperty(Name);
         this.SubscriberContactNumber = new SimpleStringProperty(Contact);
@@ -25,6 +26,11 @@ public class DATABASE_SUBSCRIBERS {
         this.SubscriberDueDate = new SimpleStringProperty(DueDate);
         this.SubscriberMonthlyCharges = new SimpleDoubleProperty(MonthlyCharges);
         this.SubscriberInstallationDate = new SimpleStringProperty(InstallationDate);
+        this.SubscriberCurrentDueDate = new SimpleStringProperty(CurrentDueDate);
+    }
+
+    public String getSubscriberCurrentDueDate(){
+        return SubscriberCurrentDueDate.get();
     }
 
     public int getSubscriberID() {

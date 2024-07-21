@@ -97,7 +97,7 @@ public class DATABASE_EDIT_CONTROLLER {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == yesButton) {
-           subs.editSubscriber(customer_id, NameTF.getText(),NumberField.getText(),AddressField.getText(),PlanField.getText(),DueDateField.getText(),Double.parseDouble(MonthlyChargeField.getText()));
+            subs.editSubscriber(customer_id, NameTF.getText(),NumberField.getText(),AddressField.getText(),PlanField.getText(),DueDateField.getText(),Double.parseDouble(MonthlyChargeField.getText()));
             alert.setTitle("Change Saved");
             alert.setHeaderText(null);
             alert.setContentText("Subscriber infromation successfully edited.");

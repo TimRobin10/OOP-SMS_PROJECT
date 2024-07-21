@@ -5,19 +5,12 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import java.io.InputStream;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 public class Subscribers_Database {
     private static Subscribers_Database instance;
     private final Connection con;
-    private List<Runnable> listeners = new ArrayList<>();
-
-    public static int NumberOfSubscribers = 0;
-    public static int NumberOfInstallation = 0;
-    public static int TotalCutoff = 0;
-    public static int TotalPastDue = 0;
+    private ObservableList<Runnable> listeners = FXCollections.observableArrayList();
 
     public static int population_Dologon;
     public static int population_Colambugon;
@@ -67,7 +60,7 @@ public class Subscribers_Database {
 
     public ObservableList<DATABASE_SUBSCRIBERS> getSubscribers() {
         ObservableList<DATABASE_SUBSCRIBERS> subscribers = FXCollections.observableArrayList();
-        String query = "SELECT * FROM subscribers";
+        String query = "SELECT * FROM subscribers ORDER BY current_due_date ASC";
         try {
             PreparedStatement pstm = con.prepareStatement(query);
             ResultSet res = pstm.executeQuery();
@@ -81,9 +74,8 @@ public class Subscribers_Database {
                 String Due_Date = res.getString("Due_Date");
                 double Monthly_Charges = res.getDouble("Monthly_Charges");
                 String Installation_Date = res.getString("Installation_Date");
-                subscribers.add(new DATABASE_SUBSCRIBERS(subscriber_id, Name, Contact_Number, Address, Plan, Acc_Status, Due_Date, Monthly_Charges, Installation_Date));
-                NumberOfSubscribers++;
-                notifyListeners();
+                String current_due_date = res.getString("current_due_date");
+                subscribers.add(new DATABASE_SUBSCRIBERS(subscriber_id, Name, Contact_Number, Address, Plan, Acc_Status, Due_Date, Monthly_Charges, Installation_Date, current_due_date));
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error fetching subscribers", e);
@@ -91,9 +83,24 @@ public class Subscribers_Database {
         return subscribers;
     }
 
-    public void CountNumberOfInstallation() {
-        String query = "SELECT COUNT(*) AS Installed FROM subscribers WHERE YEAR(Installation_Date) = YEAR(CURDATE()) AND MONTH(Installation_Date) = MONTH(CURDATE())";
+    public int CountSubscribers(){
+        int NumberOfSubscribers = 0;
+        String query = "SELECT COUNT(*) AS TotalSubscribers FROM subscribers";
+        try{
+            PreparedStatement pstm = con.prepareStatement(query);
+            ResultSet res = pstm.executeQuery();
+            if (res.next()) {
+                NumberOfSubscribers = res.getInt("TotalSubscribers");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return NumberOfSubscribers;
+    }
 
+    public int CountNumberOfInstallation() {
+        String query = "SELECT COUNT(*) AS Installed FROM subscribers WHERE YEAR(Installation_Date) = YEAR(CURDATE()) AND MONTH(Installation_Date) = MONTH(CURDATE())";
+        int NumberOfInstallation = 0;
         try {
             PreparedStatement pstm = con.prepareStatement(query);
             ResultSet resultSet = pstm.executeQuery();
@@ -104,6 +111,7 @@ public class Subscribers_Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return NumberOfInstallation;
     }
 
     void getPopulation(){
@@ -141,8 +149,9 @@ public class Subscribers_Database {
     }
 
 
-    void CountPastDueData(){
+    int CountPastDueData(){
         String query = "SELECT COUNT(*) AS TotalPastDue FROM subscribers WHERE ACC_STATUS = 'PAST DUE'";
+        int TotalPastDue = 0;
         try{
             PreparedStatement pstm = con.prepareStatement(query);
             ResultSet resultSet = pstm.executeQuery();
@@ -152,10 +161,12 @@ public class Subscribers_Database {
         } catch (SQLException e){
             e.printStackTrace();
         }
+        return TotalPastDue;
     }
 
-    void CountCutoffData(){
+    int CountCutoffData(){
         String query = "SELECT COUNT(*) AS TotalCutoff FROM subscribers WHERE ACC_STATUS = 'OVERDUE'";
+        int TotalCutoff = 0;
         try{
             PreparedStatement pstm = con.prepareStatement(query);
             ResultSet resultSet = pstm.executeQuery();
@@ -165,6 +176,7 @@ public class Subscribers_Database {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+        return TotalCutoff;
     }
 
 
@@ -184,7 +196,6 @@ public class Subscribers_Database {
 
             int rowsAffected = pstm.executeUpdate();
             if (rowsAffected == 1) {
-                notifyListeners();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Successful");
                 alert.setHeaderText(null);
@@ -194,6 +205,7 @@ public class Subscribers_Database {
         } catch (SQLException e) {
             throw new RuntimeException("Error adding subscriber", e);
         }
+        notifyListeners();
     }
 
     public int editSubscriber(int subscriber_id, String Name, String Contact, String Address, String Plan, String Due_Date, double Monthly_Charges) {
@@ -212,11 +224,11 @@ public class Subscribers_Database {
             int rowsAffected = pstm.executeUpdate();
             if (rowsAffected == 1) {
                 status = 1; // Success
-                notifyListeners();
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error editing subscriber", e);
         }
+        notifyListeners();
         return status;
     }
 
@@ -230,12 +242,25 @@ public class Subscribers_Database {
             int rowsAffected = pstm.executeUpdate();
             if (rowsAffected == 1) {
                 status = 1; // Success
-                notifyListeners();
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error deleting subscriber", e);
         }
+        notifyListeners();
         return status;
+    }
+
+    public void pay(int ID, String new_due_date) {
+        String query = "UPDATE subscribers SET current_due_date = ? WHERE Subscriber_id = ?";
+        try {
+            PreparedStatement pstm = con.prepareStatement(query);
+            pstm.setString(1, new_due_date);
+            pstm.setInt(2, ID);
+            pstm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        notifyListeners();
     }
 
     public void addListener(Runnable listener) {
@@ -247,4 +272,5 @@ public class Subscribers_Database {
             listener.run();
         }
     }
+
 }

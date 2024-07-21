@@ -49,7 +49,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </ToggleButton>
-                  <ToggleButton fx:id="TransactionButton" alignment="BASELINE_LEFT" graphicTextGap="29.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="215.0" text="Transactions">
+                  <ToggleButton fx:id="TransactionButton" alignment="BASELINE_LEFT" graphicTextGap="27.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="215.0" text="Transactions">
                      <graphic>
                         <FontAwesomeIcon glyphName="MONEY" selectionStart="0" size="20" styleClass="font-awesome-icon" />
                      </graphic>
@@ -60,9 +60,9 @@
                         <Insets left="30.0" />
                      </padding>
                   </ToggleButton>
-                  <ToggleButton fx:id="AccountsButton" alignment="BASELINE_LEFT" graphicTextGap="35.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="215.0" text="Accounts">
+                  <ToggleButton fx:id="AccountsButton" alignment="BASELINE_LEFT" graphicTextGap="30.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="215.0" text="Accounts">
                      <graphic>
-                        <FontAwesomeIcon glyphName="USER" size="20" styleClass="font-awesome-icon" />
+                        <FontAwesomeIcon glyphName="USERS" size="20" styleClass="font-awesome-icon" />
                      </graphic>
                      <VBox.margin>
                         <Insets />
@@ -80,7 +80,7 @@
             </ImageView>
             <Button fx:id="User_icon" alignment="BASELINE_LEFT" graphicTextGap="25.0" layoutX="18.0" layoutY="729.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" text="Tim Robin Remeticado" wrapText="true">
                <graphic>
-                  <FontAwesomeIcon fx:id="User_Icon" glyphName="USERS" size="20" styleClass="User_icon" />
+                  <FontAwesomeIcon fx:id="User_Icon" glyphName="USER" size="20" styleClass="User_icon" />
                </graphic>
                <padding>
                   <Insets left="20.0" right="20.0" />

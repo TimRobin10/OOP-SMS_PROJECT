@@ -2,10 +2,8 @@ package sms.Admin_GUI;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.util.Objects;
@@ -15,6 +13,7 @@ public class Admin_GUI extends Application {
     @Override
     public void start(Stage stage){
         try{
+
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Menu.fxml")));
             Scene scene_admin = new Scene(root);
 
@@ -31,9 +30,4 @@ public class Admin_GUI extends Application {
         }
     }
 
-    private void adaptLayout(Parent root, double width, double height) {
-
-        root.prefWidth(width);
-        root.prefHeight(height);
-    }
 }

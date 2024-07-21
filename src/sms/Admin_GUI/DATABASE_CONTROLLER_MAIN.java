@@ -3,6 +3,7 @@ package sms.Admin_GUI;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,205 +14,136 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
-public class DATABASE_CONTROLLER_MAIN{
+public class DATABASE_CONTROLLER_MAIN {
 
-    @FXML private Button Add_New_Button;
-    @FXML private Tab Current_Tab;
+    @FXML private ComboBox<String> Filter_Combobox;
     @FXML private ToggleButton Location_Filter_Button1; // All
-    @FXML private ToggleButton Location_Filter_Button10; // San Miguel
-    @FXML private ToggleButton Location_Filter_Button11; // South Pob.
     @FXML private ToggleButton Location_Filter_Button2; // Anahawon
     @FXML private ToggleButton Location_Filter_Button3; // Base Camp
     @FXML private ToggleButton Location_Filter_Button4; // Camp 1
     @FXML private ToggleButton Location_Filter_Button5; // Colambugon
     @FXML private ToggleButton Location_Filter_Button6; // Danggawan
     @FXML private ToggleButton Location_Filter_Button7; // Dologon
-    @FXML private ToggleButton Location_Filter_Button8; // North Pob.
+    @FXML private ToggleButton Location_Filter_Button8; // North Poblacion
     @FXML private ToggleButton Location_Filter_Button9; // Panadtalan
-    @FXML private Tab OverDue_Tab;
-    @FXML private Tab Past_Due_Tab;
-    @FXML private TabPane tabPane;
-    @FXML private VBox Subs_Layout;
-    @FXML private VBox Subs_Layout1;
-    @FXML private VBox Subs_Layout2;
+    @FXML private ToggleButton Location_Filter_Button10; // San Miguel
+    @FXML private ToggleButton Location_Filter_Button11; // South Poblacion
     @FXML private TextField Search_Bar;
-    @FXML private Label Main_Label;
+    @FXML private VBox Subs_Layout;
 
-    private Subscribers_Database subscribers_database = Subscribers_Database.getInstance();
+    private final ToggleGroup location_Filter_ToggleGroup = new ToggleGroup();
+    private final Subscribers_Database subscribers_database = Subscribers_Database.getInstance();
     private ObservableList<DATABASE_SUBSCRIBERS> subs;
-    private ObservableList<AnchorPane> allNodes = FXCollections.observableArrayList();
-    ToggleButton[] locationButtons;
+    private static volatile DATABASE_CONTROLLER_MAIN instance;
+
+    public DATABASE_CONTROLLER_MAIN() {}
 
     @FXML
     void initialize() {
-        subscribers_database.addListener(this::refreshUI);
-        subs = subscribers_database.getSubscribers();
-        init_components();
-        setupSearchBar();
-        setupToggleButtons();
+        loadSubscribers();
+        initialize_combobox();
+        initialize_togglebutton();
+        init_searchbar();
+        init_table();
 
+        subscribers_database.addListener(this::UIUpdater);
+    }
+
+    public static DATABASE_CONTROLLER_MAIN getinstance() {
+        DATABASE_CONTROLLER_MAIN result = instance;
+        if (instance == null) {
+            synchronized (DATABASE_SUBSCRIBERS.class) {
+                result = instance;
+                if (result == null) {
+                    instance = result = new DATABASE_CONTROLLER_MAIN();
+                }
+            }
+        }
+        return result;
+    }
+
+    private void loadSubscribers() {
+       subs = subscribers_database.getSubscribers();
+    }
+
+
+    public void initialize_combobox() {
+        ObservableList<String> combobox_items = FXCollections.observableArrayList("All", "Connected", "Past Due", "Overdue");
+        Filter_Combobox.setItems(combobox_items);
+        Filter_Combobox.getSelectionModel().selectFirst();
+
+        Filter_Combobox.valueProperty().addListener((observable, oldValue, newValue) -> update_table());
+    }
+
+    public void init_searchbar() {
+        Search_Bar.textProperty().addListener((observable, oldValue, newValue) -> update_table());
+    }
+
+    public void initialize_togglebutton() {
+        Location_Filter_Button1.setToggleGroup(location_Filter_ToggleGroup);
+        Location_Filter_Button2.setToggleGroup(location_Filter_ToggleGroup);
+        Location_Filter_Button3.setToggleGroup(location_Filter_ToggleGroup);
+        Location_Filter_Button4.setToggleGroup(location_Filter_ToggleGroup);
+        Location_Filter_Button5.setToggleGroup(location_Filter_ToggleGroup);
+        Location_Filter_Button6.setToggleGroup(location_Filter_ToggleGroup);
+        Location_Filter_Button7.setToggleGroup(location_Filter_ToggleGroup);
+        Location_Filter_Button8.setToggleGroup(location_Filter_ToggleGroup);
+        Location_Filter_Button9.setToggleGroup(location_Filter_ToggleGroup);
+        Location_Filter_Button10.setToggleGroup(location_Filter_ToggleGroup);
+        Location_Filter_Button11.setToggleGroup(location_Filter_ToggleGroup);
         Location_Filter_Button1.setSelected(true);
-        filterSubscribers();
 
-        tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldTab, newTab) -> {
-            if (newTab == Past_Due_Tab || newTab == OverDue_Tab) {
-                Add_New_Button.setDisable(true);
+        location_Filter_ToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                oldValue.setSelected(true);
             } else {
-                Add_New_Button.setDisable(false);
+                update_table();
             }
         });
     }
 
-    void init_components() {
-        try {
-            for (DATABASE_SUBSCRIBERS sub : subs) {
-                FXMLLoader loaderAll = new FXMLLoader(getClass().getResource("DATABASE_ITEMS_ALL.fxml"));
-                AnchorPane nodeAll = loaderAll.load();
-
-                DATABASE_ITEMS_CONTROLLER controllerAll = loaderAll.getController();
-                controllerAll.set_subscriber_data(sub);
-
-                allNodes.add(nodeAll);
-                Subs_Layout.getChildren().add(nodeAll); // Add all subscribers to the main layout
-
-                if (sub.getSubscriberStatus().equals("PAST DUE")) {
-                    FXMLLoader loaderPastDue = new FXMLLoader(getClass().getResource("DATABASE_ITEMS_ALL.fxml"));
-                    AnchorPane nodePastDue = loaderPastDue.load();
-
-                    DATABASE_ITEMS_CONTROLLER controllerPastDue = loaderPastDue.getController();
-                    controllerPastDue.set_subscriber_data(sub);
-
-                    Subs_Layout1.getChildren().add(nodePastDue);
-                }
-
-                if (sub.getSubscriberStatus().equals("OVERDUE")) {
-                    FXMLLoader loaderOverdue = new FXMLLoader(getClass().getResource("DATABASE_ITEMS_ALL.fxml"));
-                    AnchorPane nodeOverdue = loaderOverdue.load();
-
-                    DATABASE_ITEMS_CONTROLLER controllerOverdue = loaderOverdue.getController();
-                    controllerOverdue.set_subscriber_data(sub);
-
-                    Subs_Layout2.getChildren().add(nodeOverdue);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void init_table() {
+        update_table();
     }
 
-
-    private void setupSearchBar() {
-        Search_Bar.textProperty().addListener((observable, oldValue, newValue) -> filterSubscribers());
-    }
-
-    private void setupToggleButtons() {
-        locationButtons = new ToggleButton[]{
-                Location_Filter_Button1, Location_Filter_Button2, Location_Filter_Button3, Location_Filter_Button4,
-                Location_Filter_Button5, Location_Filter_Button6, Location_Filter_Button7, Location_Filter_Button8,
-                Location_Filter_Button9, Location_Filter_Button10, Location_Filter_Button11
-        };
-
-        for (ToggleButton button : locationButtons) {
-            button.setOnAction(event -> {
-                if (!button.isSelected()) {
-                    button.setSelected(true);
-                } else {
-                    for (ToggleButton otherButton : locationButtons) {
-                        if (otherButton != button) {
-                            otherButton.setSelected(false);
-                        }
-                    }
-                    filterSubscribers();
-                }
-            });
-        }
-    }
-
-    private void filterSubscribers() {
+    public void update_table() {
         Subs_Layout.getChildren().clear();
-        Subs_Layout1.getChildren().clear();
-        Subs_Layout2.getChildren().clear();
 
-        String query = Search_Bar.getText().toLowerCase();
-        Predicate<DATABASE_SUBSCRIBERS> predicate = subscriber -> {
-            String lowerCaseQuery = query.toLowerCase();
-            return String.format("%06d", subscriber.getSubscriberID()).contains(lowerCaseQuery) ||
-                    subscriber.getSubscriberName().toLowerCase().contains(lowerCaseQuery) ||
-                    subscriber.getSubscriberAddress().toLowerCase().contains(lowerCaseQuery);
-        };
+        ObservableList<DATABASE_SUBSCRIBERS> subs_items = subscribers_database.getSubscribers();
+        String selectedPlace = getSelectedPlace();
+        String selectedStatus = Filter_Combobox.getValue().toLowerCase();
 
-        ToggleButton selectedButton = getSelectedToggleButton();
-        if (selectedButton != null && selectedButton != Location_Filter_Button1) {
-            String selectedLocation = selectedButton.getText().toLowerCase();
-            predicate = predicate.and(subscriber -> subscriber.getSubscriberAddress().toLowerCase().contains(selectedLocation));
-        }
+        for (DATABASE_SUBSCRIBERS sub : subs_items) {
+            boolean matchesPlace = selectedPlace.equals("All") || sub.getSubscriberAddress().contains(selectedPlace);
+            boolean matchesStatus = selectedStatus.equals("all") || sub.getSubscriberStatus().toLowerCase().equals(selectedStatus);
+            boolean matchesSearch = Search_Bar.getText().isEmpty() || String.format("%06d", sub.getSubscriberID()).equals(Search_Bar.getText())
+                    || sub.getSubscriberName().toLowerCase().contains(Search_Bar.getText().toLowerCase()) || sub.getSubscriberAddress().toLowerCase().contains(Search_Bar.getText().toLowerCase())
+                    || sub.getSubscriberStatus().toLowerCase().contains(Search_Bar.getText().toLowerCase()) || sub.getSubscriberStatus().equals(Search_Bar.getText()) || sub.getSubscriberPlan().toLowerCase().equals(Search_Bar.getText().toLowerCase())
+                    || String.valueOf(sub.getSubscriberMonthlyCharges()).equals(Search_Bar.getText());
 
-        ObservableList<DATABASE_SUBSCRIBERS> filteredSubs = subs.stream()
-                .filter(predicate)
-                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+            if (matchesPlace && matchesStatus && matchesSearch) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("DATABASE_ITEMS_ALL.fxml"));
+                    AnchorPane node = loader.load();
 
-        try {
-            for (DATABASE_SUBSCRIBERS sub : filteredSubs) {
-                FXMLLoader loaderAll = new FXMLLoader(getClass().getResource("DATABASE_ITEMS_ALL.fxml"));
-                AnchorPane nodeAll = loaderAll.load();
+                    DATABASE_ITEMS_CONTROLLER DIC = loader.getController();
+                    DIC.set_subscriber_data(sub);
 
-                DATABASE_ITEMS_CONTROLLER controllerAll = loaderAll.getController();
-                controllerAll.set_subscriber_data(sub);
-
-                Subs_Layout.getChildren().add(nodeAll); // Add to the main layout
-
-                // Load node for Subs_Layout1 if status is "PAST DUE"
-                if (sub.getSubscriberStatus().equals("PAST DUE")) {
-                    FXMLLoader loaderPastDue = new FXMLLoader(getClass().getResource("DATABASE_ITEMS_ALL.fxml"));
-                    AnchorPane nodePastDue = loaderPastDue.load();
-
-                    DATABASE_ITEMS_CONTROLLER controllerPastDue = loaderPastDue.getController();
-                    controllerPastDue.set_subscriber_data(sub);
-
-                    Subs_Layout1.getChildren().add(nodePastDue);
-                }
-
-                // Load node for Subs_Layout2 if status is "OVERDUE"
-                if (sub.getSubscriberStatus().equals("OVERDUE")) {
-                    FXMLLoader loaderOverdue = new FXMLLoader(getClass().getResource("DATABASE_ITEMS_ALL.fxml"));
-                    AnchorPane nodeOverdue = loaderOverdue.load();
-
-                    DATABASE_ITEMS_CONTROLLER controllerOverdue = loaderOverdue.getController();
-                    controllerOverdue.set_subscriber_data(sub);
-
-                    Subs_Layout2.getChildren().add(nodeOverdue);
+                    Subs_Layout.getChildren().add(node);
+                } catch (IOException e) {
+                    showErrorAlert("Loading Error", "Unable to load subscriber data.", e.getMessage());
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
-
-
-    private ToggleButton getSelectedToggleButton() {
-        if (Location_Filter_Button1.isSelected()) return Location_Filter_Button1;
-        if (Location_Filter_Button2.isSelected()) return Location_Filter_Button2;
-        if (Location_Filter_Button3.isSelected()) return Location_Filter_Button3;
-        if (Location_Filter_Button4.isSelected()) return Location_Filter_Button4;
-        if (Location_Filter_Button5.isSelected()) return Location_Filter_Button5;
-        if (Location_Filter_Button6.isSelected()) return Location_Filter_Button6;
-        if (Location_Filter_Button7.isSelected()) return Location_Filter_Button7;
-        if (Location_Filter_Button8.isSelected()) return Location_Filter_Button8;
-        if (Location_Filter_Button9.isSelected()) return Location_Filter_Button9;
-        if (Location_Filter_Button10.isSelected()) return Location_Filter_Button10;
-        if (Location_Filter_Button11.isSelected()) return Location_Filter_Button11;
-        return null;
-    }
-
-    private void refreshUI() {
-        Platform.runLater(() -> {
-            subs = subscribers_database.getSubscribers();
-            filterSubscribers();
-        });
+    private String getSelectedPlace() {
+        Toggle selectedToggle = location_Filter_ToggleGroup.getSelectedToggle();
+        if (selectedToggle != null) {
+            return ((ToggleButton) selectedToggle).getText();
+        }
+        return "All";
     }
 
     public void Add() {
@@ -222,11 +154,29 @@ public class DATABASE_CONTROLLER_MAIN{
             Stage posStage = new Stage();
             Scene posScene = new Scene(root);
 
-            posStage.setTitle("Point of Sale");
+            posStage.setTitle("Add Subscriber");
             posStage.setScene(posScene);
             posStage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            showErrorAlert("Add Subscriber Error", "Unable to open the add subscriber window.", e.getMessage());
         }
     }
+
+    private void showErrorAlert(String title, String headerText, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+
+    void UIUpdater(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                update_table();
+            }
+        });
+    }
+
 }
