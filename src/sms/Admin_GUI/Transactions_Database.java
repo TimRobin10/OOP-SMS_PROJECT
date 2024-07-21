@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javax.swing.*;
 import java.io.InputStream;
 import java.sql.*;
-import java.util.List;
 import java.util.Properties;
 
 public class Transactions_Database {
@@ -87,7 +86,6 @@ public class Transactions_Database {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Database Error: " + e, "Database Error", JOptionPane.ERROR_MESSAGE);
         }
-        notifyListeners();
         return transactions_made;
     }
 
@@ -124,14 +122,14 @@ public class Transactions_Database {
             } else {
                 status = 0;
             }
+            notifyListeners();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        notifyListeners();
         return status;
     }
 
-    public void addListener(Runnable listener) {
+    public void TDBaddListener(Runnable listener) {
         listeners.add(listener);
     }
 
@@ -140,6 +138,5 @@ public class Transactions_Database {
             listener.run();
         }
     }
-
 
 }

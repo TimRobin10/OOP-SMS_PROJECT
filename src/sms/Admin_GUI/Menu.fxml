@@ -78,7 +78,7 @@
                   <Image url="@../../resources/Icons/5.png" />
                </image>
             </ImageView>
-            <Button fx:id="User_icon" alignment="BASELINE_LEFT" graphicTextGap="25.0" layoutX="18.0" layoutY="729.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" text="Tim Robin Remeticado" wrapText="true">
+            <Button fx:id="User_Button" alignment="BASELINE_LEFT" graphicTextGap="25.0" layoutX="18.0" layoutY="729.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#Account_Information" prefHeight="50.0" prefWidth="215.0" text="Tim Robin Remeticado" wrapText="true">
                <graphic>
                   <FontAwesomeIcon fx:id="User_Icon" glyphName="USER" size="20" styleClass="User_icon" />
                </graphic>

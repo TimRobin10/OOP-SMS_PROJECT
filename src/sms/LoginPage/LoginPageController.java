@@ -3,6 +3,8 @@ package sms.LoginPage;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -12,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import sms.Admin_GUI.Admin_GUI;
 
 import javax.swing.*;
 
@@ -106,17 +109,37 @@ public class LoginPageController {
         } else {
             switch (verify) {
                 case 0 -> {
-                    String Account_Role = database.get_account_role(username);
+                    database.save_data(username);
+                    switch (database.getAccount_Role()){
+                        case "ADMIN" ->{
+                            database.save_data(username);
+                            Platform.runLater(() -> {
+                                try {
+                                    new Admin_GUI().start(new Stage());
+                                    close(); // Close the login stage after opening the admin stage
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            });
+                        }
+                        case "CEO" ->{
+                            database.save_data(username);
+                            Platform.runLater(() -> {
+                                try {
+                                    new Admin_GUI().start(new Stage());
+                                    close(); // Close the login stage after opening the admin stage
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            });
 
-                    switch (Account_Role) {
-                        case "ADMIN" -> {
-                            JOptionPane.showMessageDialog(null, "Welcome " + username, "Welcome Admin", JOptionPane.INFORMATION_MESSAGE);
                         }
-                        case "USER" -> {
-                            JOptionPane.showMessageDialog(null, "Welcome " + username, "Welcome User", JOptionPane.INFORMATION_MESSAGE);
-                        }
-                        case "DEFAULT" ->{
-                            JOptionPane.showMessageDialog(null, "Sorry. You are not allowed to enter the system yet. Please contact your system Administrator to update your account.", "Default Users", JOptionPane.INFORMATION_MESSAGE);
+                        default -> {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Sign In Error");
+                            alert.setHeaderText("Your account role have not yet been promoted to open this software.");
+                            alert.setContentText("Please contact your system Administrator regarding this matter.");
+                            alert.showAndWait();
                         }
                     }
                 }

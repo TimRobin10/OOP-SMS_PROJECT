@@ -1,6 +1,7 @@
 package sms.LoginPage;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,4 +31,13 @@ public class LoginPage extends Application {
         }
     }
 
+    public static void launchLogin() {
+        Platform.runLater(() -> {
+            try {
+                new LoginPage().start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 }

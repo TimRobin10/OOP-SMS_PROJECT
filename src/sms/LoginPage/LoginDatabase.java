@@ -2,6 +2,7 @@ package sms.LoginPage;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import sms.Admin_GUI.Accounts;
 
 import javax.swing.*;
@@ -12,7 +13,8 @@ import java.util.Properties;
 public class LoginDatabase {
     String db_username, db_password;
     static Connection connection;
-    String Account_Name = "John Doe";
+    public static AccountObjects current_account = new AccountObjects();
+    ObservableList<Runnable> listeners = FXCollections.observableArrayList();
 
     //FOR SINGLETON DESIGN
     private static volatile LoginDatabase instance;
@@ -92,7 +94,7 @@ public class LoginDatabase {
         return status;
     }
 
-    String get_account_role(String username_input){
+    String save_data(String username_input){
         String role = "";
         String sql = "select * from accounts where username=?";
         try{
@@ -101,8 +103,12 @@ public class LoginDatabase {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                role = resultSet.getString("account_role");
-                Account_Name = resultSet.getString("account_name");
+                int user_id = resultSet.getInt("user_id");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("account_password");
+                String account_name = resultSet.getString("account_name");
+                String account_role = resultSet.getString("account_role");
+                current_account = new AccountObjects(user_id,username,password,account_name,account_role);
             } else {
                 JOptionPane.showMessageDialog(null, "No user found with the given username", "User Not Found", JOptionPane.ERROR_MESSAGE);
             }
@@ -112,7 +118,7 @@ public class LoginDatabase {
         return role;
     }
 
-    boolean verify_username(String username_input) {
+    public boolean verify_username(String username_input) {
         String username_query = "select* from accounts where username=?";
         try {
             PreparedStatement statement = connection.prepareStatement(username_query);
@@ -168,8 +174,77 @@ public class LoginDatabase {
         return accounts;
     }
 
+    public void editAccountInfo(String account_name, String account_password, String username, int ID) {
+        String query = "UPDATE accounts SET account_name = ?, account_password = ?, username = ? WHERE user_id = ?";
+
+        try {
+            PreparedStatement psmt = connection.prepareStatement(query);
+            psmt.setString(1, account_name);
+            psmt.setString(2, account_password);
+            psmt.setString(3, username);
+            psmt.setInt(4, ID);
+            psmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Account Information Updated");
+        alert.setHeaderText(null);
+        alert.setContentText("Account Information Updated");
+        alert.showAndWait();
+        notifyListeners();
+    }
+
+    public void editAccountInfoMain(String account_name, String account_password, String acc_role, String username, int ID) {
+        String query = "UPDATE accounts SET account_name = ?, account_password = ?, username = ?, account_role = ? WHERE user_id = ?";
+
+        try {
+            PreparedStatement psmt = connection.prepareStatement(query);
+            psmt.setString(1, account_name);
+            psmt.setString(2, account_password);
+            psmt.setString(3, username);
+            psmt.setString(4, acc_role);
+            psmt.setInt(5, ID);
+            psmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Account Information Updated");
+        alert.setHeaderText(null);
+        alert.setContentText("Account Information Updated");
+        alert.showAndWait();
+        notifyListeners();
+    }
+
     public String getAccount_Name(){
-        return Account_Name;
+        return current_account.getAccount_Name();
+    }
+
+    public String getAccount_Role(){
+        return current_account.getAccount_Role();
+    }
+
+    public String getAccount_Username(){
+        return current_account.getUsername();
+    }
+
+    public String getAccount_Password(){
+        return current_account.getPassword();
+    }
+
+    public int getAccount_ID(){
+        return current_account.getUser_id();
+    }
+
+    public void addListener(Runnable listener) {
+        listeners.add(listener);
+    }
+
+    private void notifyListeners() {
+        for (Runnable listener : listeners) {
+            listener.run();
+        }
     }
 
 }

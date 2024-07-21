@@ -6,6 +6,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
@@ -13,6 +15,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import sms.LoginPage.LoginDatabase;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -36,7 +40,7 @@ public class MenuController {
     @FXML
     private FontAwesomeIcon User_Icon;
     @FXML
-    private Button User_icon;
+    private Button User_Button;
     @FXML
     private BorderPane borderPane;
 
@@ -48,10 +52,15 @@ public class MenuController {
     private AnchorPane billing;
     private AnchorPane database;
 
+    LoginDatabase lgb = LoginDatabase.getInstance();
+
     @FXML
     private void initialize() {
         init_togglegroup();
         Menu_Scenes();
+        setButtonText();
+
+        lgb.addListener(this::setButtonText);
 
         Menu.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
@@ -142,6 +151,36 @@ public class MenuController {
             }
             borderPane.setCenter(accounts);
         }
+    }
+
+    public void MenuClose(){
+        Stage stage = (Stage) borderPane.getScene().getWindow();
+        stage.close();
+    }
+
+    public void Account_Information(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("profile.fxml"));
+        try {
+            Parent root = loader.load();
+            profileController controller = loader.getController();
+            controller.setMenuController(this);
+
+            Stage profile_stage = new Stage();
+            profile_stage.setTitle("Account Information");
+            profile_stage.setScene(new Scene(root));
+            profile_stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    void setButtonText(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                User_Button.setText(lgb.getAccount_Name());
+            }
+        });
     }
 
 }

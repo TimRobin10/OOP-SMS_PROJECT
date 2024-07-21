@@ -1,11 +1,16 @@
 package sms.Admin_GUI;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.IOException;
 
 public class Accounts_Rows_Controller {
 
@@ -21,6 +26,7 @@ public class Accounts_Rows_Controller {
     String Role;
     int UserID;
     String UserName;
+    Accounts accounts;
 
     public void set_Account_Data(Accounts acc){
         AccountName_LB.setText(acc.getAccount_Name());
@@ -33,9 +39,23 @@ public class Accounts_Rows_Controller {
         this.UserID = acc.getAccount_ID();
         Username_LB.setText(acc.getUsername());
         this.UserName = acc.getUsername();
+        accounts = acc;
     }
 
     public void edit(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditAccount.fxml"));
+        try {
+            Parent root = loader.load();
+            EditAccountsController controller = loader.getController();
+            controller.set_account(accounts);
+
+            Stage editStage = new Stage();
+            editStage.setTitle("Edit Accounts");
+            editStage.setScene(new Scene(root));
+            editStage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

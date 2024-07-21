@@ -1,6 +1,7 @@
 package sms.Admin_GUI;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -33,22 +34,27 @@ public class Accounts_Controller_Main {
         cBoxCOntent();
         setupComboBoxListener();
         setupSearchListener();
+        LDB.addListener(this::UpdateAccounts);
     }
 
     void init_accounts(){
+        Accounts_Layout.getChildren().clear();
         ObservableList<Accounts> acc = LDB.fetchAccountData();
-        try {
-            for(Accounts a:acc){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Accounts_Rows.fxml"));
-                AnchorPane Row_Node = loader.load();
+        for (Accounts a : acc) {
+            if (a.getAccount_ID() != LDB.current_account.getUser_id()) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Accounts_Rows.fxml"));
+                    AnchorPane rowNode = loader.load();
 
-                Accounts_Rows_Controller ARC = loader.getController();
-                ARC.set_Account_Data(a);
+                    Accounts_Rows_Controller arc = loader.getController();
+                    arc.set_Account_Data(a);
 
-                Accounts_Layout.getChildren().add(Row_Node);
+                    Accounts_Layout.getChildren().add(rowNode);
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(null, "Something went wrong while loading account rows.", "Error", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace(); // Log the stack trace for debugging purposes
+                }
             }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Something went wrong", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -64,8 +70,6 @@ public class Accounts_Controller_Main {
             filterAccountsByRole(newValue);
         });
     }
-
-
 
     private void filterAccountsByRole(String role){
         ObservableList<Accounts> acc = LDB.fetchAccountData();
@@ -107,6 +111,16 @@ public class Accounts_Controller_Main {
             );
         }
         displayAccounts(acc);
+    }
+
+    void UpdateAccounts(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                init_accounts();
+            }
+        });
     }
 
 }

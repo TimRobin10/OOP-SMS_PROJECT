@@ -12,141 +12,133 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PROFILE.profileController">
+<AnchorPane id="MainForm" fx:id="MainForm" prefHeight="600.0" prefWidth="507.0" style="-fx-background-color: #F2F2F2;" styleClass="MainForm" stylesheets="@profile.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sms.Admin_GUI.profileController">
    <children>
-      <AnchorPane id="MainForm" fx:id="MainForm" layoutX="-3.2" prefHeight="600.0" prefWidth="507.0" style="-fx-background-color: #F2F2F2;" styleClass="MainForm" stylesheets="@profile.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label id="ProfileText" fx:id="ProfileText" layoutX="33.0" layoutY="31.0" styleClass="ProfileText" stylesheets="@profile.css" text="Profile">
-               <font>
-                  <Font name="Arial Bold" size="34.0" />
-               </font>
-            </Label>
-            <TabPane id="TabPane" fx:id="TabPane" layoutX="24.0" layoutY="82.0" prefHeight="498.0" prefWidth="462.0" styleClass="TabPane" stylesheets="@profile.css" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab style="-fx-background-color: Transparent;" text="Personal Info">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <Label id="ProfileText" fx:id="ProfileText" layoutX="33.0" layoutY="31.0" styleClass="ProfileText" stylesheets="@profile.css" text="Profile">
+         <font>
+            <Font name="Arial Bold" size="34.0" />
+         </font>
+      </Label>
+      <TabPane id="TabPane" fx:id="TabPane" layoutX="24.0" layoutY="82.0" prefHeight="498.0" prefWidth="462.0" styleClass="TabPane" stylesheets="@profile.css" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab style="-fx-background-color: Transparent;" text="Personal Info">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane layoutX="12.0" layoutY="15.0" prefHeight="90.0" prefWidth="436.0" />
+                        <AnchorPane id="PersonalInfoTopPanel" fx:id="PersonalInfoTopPanel" layoutX="10.0" layoutY="11.0" prefHeight="90.0" prefWidth="436.0" styleClass="PersonalInfoTopPanel" stylesheets="@profile.css">
                            <children>
-                              <BorderPane layoutX="12.0" layoutY="15.0" prefHeight="90.0" prefWidth="436.0" />
-                              <AnchorPane id="PersonalInfoTopPanel" fx:id="PersonalInfoTopPanel" layoutX="10.0" layoutY="11.0" prefHeight="90.0" prefWidth="436.0" styleClass="PersonalInfoTopPanel" stylesheets="@profile.css">
-                                 <children>
-                                    <ImageView fitHeight="72.0" fitWidth="90.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@P%20C%20(4).png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label id="SystemAdminLabel" fx:id="SystemAdminLabel1" layoutX="103.0" layoutY="45.0" styleClass="SystemAdminLabel" stylesheets="@profile.css" text="System admin" />
-                                    <TextField id="AdminPI" fx:id="AdminPI" layoutX="94.0" layoutY="25.0" styleClass="AdminPI" stylesheets="@profile.css" text="Louisse Jhane Cipriano">
-                                       <font>
-                                          <Font name="Arial Bold" size="13.0" />
-                                       </font>
-                                    </TextField>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane id="PersonalInfoBotPanel" fx:id="PersonalInfoBotPanel" layoutX="10.0" layoutY="118.0" prefHeight="335.0" prefWidth="436.0" styleClass="PersonalInfoBotPanel" stylesheets="@profile.css">
-                                 <children>
-                                    <Label layoutX="31.0" layoutY="31.0" text="Personal Information" textFill="#344864">
-                                       <font>
-                                          <Font name="Arial Bold" size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label id="FirstNameLabelPI" fx:id="FirstNameLabelPI" layoutX="30.0" layoutY="74.0" styleClass="FirstNameLabelPI" stylesheets="@profile.css" text="First Name" />
-                                    <Label id="LastNameLabelPI" fx:id="LastNameLabelPI" layoutX="257.0" layoutY="74.0" styleClass="LastNameLabelPI" stylesheets="@profile.css" text="Last Name" />
-                                    <TextField fx:id="FirstNameTextFieldPI" editable="false" layoutX="22.0" layoutY="89.0" styleClass="FirstNameTextFieldPI" stylesheets="@profile.css" text="Louisse Jhane">
-                                       <font>
-                                          <Font name="Arial" size="13.0" />
-                                       </font>
-                                    </TextField>
-                                    <TextField fx:id="LastNameTextFieldPI" editable="false" layoutX="251.0" layoutY="89.0" styleClass="LastNameTextFieldPI" stylesheets="@profile.css" text="Cipriano">
-                                       <font>
-                                          <Font size="13.0" />
-                                       </font>
-                                    </TextField>
-                                    <Label id="UsernameLabelPI" fx:id="UsernameLabelPI" layoutX="31.0" layoutY="151.0" styleClass="UsernameLabelPI" stylesheets="@profile.css" text="Username" />
-                                    <TextField fx:id="UsernameTextFieldPI" editable="false" layoutX="24.0" layoutY="166.0" styleClass="UsernameTextFieldPI" text="Admin123">
-                                       <font>
-                                          <Font name="Arial" size="13.0" />
-                                       </font>
-                                    </TextField>
-                                    <Label id="PasswordLabelPI" fx:id="PasswordLabelPI" layoutX="257.0" layoutY="151.0" styleClass="PasswordLabelPI" stylesheets="@profile.css" text="Password" />
-                                    <Label id="RoleLabelPI" fx:id="RoleLabelPI" layoutX="31.0" layoutY="232.0" styleClass="RoleLabelPI" stylesheets="@profile.css" text="Role" />
-                                    <Label id="UserIDLabelPI" fx:id="UserIDLabelPI" layoutX="257.0" layoutY="232.0" styleClass="UserIDLabelPI" stylesheets="@profile.css" text="User ID" />
-                                    <TextField id="RoleTextField" fx:id="RoleTextField" editable="false" layoutX="24.0" layoutY="246.0" styleClass="RoleTextField" stylesheets="@profile.css" text="System Admin">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </TextField>
-                                    <TextField id="UserIDTextField" fx:id="UserIDTextField" editable="false" layoutX="250.0" layoutY="246.0" prefHeight="31.0" prefWidth="147.0" styleClass="UserIDTextField" stylesheets="@profile.css" text="54682">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </TextField>
-                                    <PasswordField fx:id="PasswordTextFieldPI" editable="false" layoutX="254.0" layoutY="170.0" styleClass="PasswordTextFieldPI" stylesheets="@profile.css" text="*********" />
-                                 </children>
-                              </AnchorPane>
-                           </children></AnchorPane>
-                     </content>
-                  </Tab>
-                <Tab style="-fx-background-color: Transparent;" text="Edit Profile">
-                     <content>
-                        <AnchorPane prefHeight="600.0" prefWidth="501.0">
-                           <children>
-                              <AnchorPane id="EditProfilePanel" fx:id="EditProfilePanel" layoutX="10.0" layoutY="11.0" prefHeight="90.0" prefWidth="436.0" styleClass="EditProfilePanel" stylesheets="@profile.css">
-                                 <children>
-                                    <ImageView fitHeight="72.0" fitWidth="90.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@P%20C%20(4).png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label id="SystemAdminLabel" fx:id="SystemAdminLabel" layoutX="103.0" layoutY="46.0" styleClass="SystemAdminLabel" stylesheets="@profile.css" text="System admin" />
-                                    <TextField id="EditProfileAdmin" fx:id="EditProfileAdmin" layoutX="95.0" layoutY="25.0" styleClass="EditProfileAdmin" stylesheets="@profile.css">
-                                       <font>
-                                          <Font name="Arial Bold" size="13.0" />
-                                       </font>
-                                    </TextField>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane id="EditProfileInfo" fx:id="EditProfileInfo" layoutX="10.0" layoutY="118.0" prefHeight="335.0" prefWidth="435.0" styleClass="EditProfileInfo" stylesheets="@profile.css">
-                                 <children>
-                                    <Label layoutX="28.0" layoutY="43.0" text="Edit Profile" textFill="#344864">
-                                       <font>
-                                          <Font name="System Bold" size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label id="FirstNameLabel" fx:id="FirstNameLabel" layoutX="28.0" layoutY="98.0" styleClass="FirstNameLabel" stylesheets="@profile.css" text="First Name" />
-                                    <TextField fx:id="FirstNameTextField" layoutX="26.0" layoutY="119.0" prefHeight="26.0" prefWidth="148.0" style="-fx-background-color: #F1F0E9;" styleClass="FirstNameTextField" stylesheets="@profile.css" />
-                                    <Label id="LastNameLabel" fx:id="LastNameLabel" layoutX="273.0" layoutY="98.0" styleClass="LastNameLabel" stylesheets="@profile.css" text="Last Name" />
-                                    <TextField id="LastNameTextField" fx:id="LastNameTextField" layoutX="273.0" layoutY="119.0" prefHeight="26.0" prefWidth="148.0" style="-fx-background-color: #F1F0E9;" styleClass="LastNameTextField" stylesheets="@profile.css" />
-                                    <Label id="UsernameLabel" fx:id="UsernameLabel" layoutX="274.0" layoutY="167.0" styleClass="UsernameLabel" stylesheets="@profile.css" text="Username" />
-                                    <TextField id="UsernameTextField" fx:id="UsernameTextField" layoutX="273.0" layoutY="189.0" prefHeight="26.0" prefWidth="148.0" style="-fx-background-color: #F1F0E9;" styleClass="UsernameTextField" stylesheets="@profile.css" />
-                                    <Label id="PasswordLabel" fx:id="PasswordLabel" layoutX="31.0" layoutY="168.0" styleClass="PasswordLabel" stylesheets="@profile.css" text="Password">
-                                       <font>
-                                          <Font name="Arial" size="12.0" />
-                                       </font></Label>
-                                    <Button id="UpdateProfileBtn" fx:id="UpdateProfileBtn" layoutX="291.0" layoutY="288.0" mnemonicParsing="false" onAction="#updatePersonalInfo" prefHeight="39.0" prefWidth="121.0" styleClass="UpdateProfileBtn" stylesheets="@profile.css" text="Update Profile">
-                                       <font>
-                                          <Font name="Arial Bold" size="13.0" />
-                                       </font>
-                                    </Button>
-                                    <Label layoutX="28.0" layoutY="242.0" text="Confirm Password" textFill="#bfb093">
-                                       <font>
-                                          <Font name="Arial" size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <PasswordField fx:id="PasswordTextField" layoutX="25.0" layoutY="189.0" promptText="Password" style="-fx-background-color: #F1F0E9;" styleClass="PasswordTextField" stylesheets="@profile.css" />
-                                    <PasswordField fx:id="ConfirmPasswordTextField" layoutX="26.0" layoutY="259.0" promptText="Confirm Password" style="-fx-background-color: #F1F0E9;" styleClass="ConfirmPasswordTextField" stylesheets="@profile.css" />
-                                 </children></AnchorPane>
+                              <ImageView fitHeight="72.0" fitWidth="90.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/resources/Image_Resources/P C (4).png" />
+                                 </image>
+                              </ImageView>
+                              <Label id="SystemAdminLabel" fx:id="SystemAdminLabel1" layoutX="103.0" layoutY="45.0" styleClass="SystemAdminLabel" stylesheets="@profile.css" text="System admin" />
+                              <TextField id="AdminPI" fx:id="AdminPI" layoutX="94.0" layoutY="25.0" styleClass="AdminPI" stylesheets="@profile.css" text="Louisse Jhane Cipriano">
+                                 <font>
+                                    <Font name="Arial Bold" size="13.0" />
+                                 </font>
+                              </TextField>
                            </children>
                         </AnchorPane>
-                     </content></Tab>
-              </tabs>
-            </TabPane>
-            <Button id="LogoutButton" fx:id="LogoutButton" layoutX="391.0" layoutY="19.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="90.0" styleClass="LogoutButton" stylesheets="@profile.css" text="Logout" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="15.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
+                        <AnchorPane id="PersonalInfoBotPanel" fx:id="PersonalInfoBotPanel" layoutX="10.0" layoutY="118.0" prefHeight="335.0" prefWidth="436.0" styleClass="PersonalInfoBotPanel" stylesheets="@profile.css">
+                           <children>
+                              <Label layoutX="31.0" layoutY="31.0" text="Personal Information" textFill="#344864">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label id="FirstNameLabelPI" fx:id="FirstNameLabelPI" layoutX="30.0" layoutY="74.0" styleClass="FirstNameLabelPI" stylesheets="@profile.css" text="Account Name" />
+                              <TextField fx:id="FirstNameTextFieldPI" editable="false" layoutX="22.0" layoutY="89.0" prefHeight="24.0" prefWidth="397.0" styleClass="FirstNameTextFieldPI" stylesheets="@profile.css" text="Louisse Jhane">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <Label id="UsernameLabelPI" fx:id="UsernameLabelPI" layoutX="31.0" layoutY="151.0" styleClass="UsernameLabelPI" stylesheets="@profile.css" text="Username" />
+                              <TextField fx:id="UsernameTextFieldPI" editable="false" layoutX="24.0" layoutY="166.0" styleClass="UsernameTextFieldPI" text="Admin123">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <Label id="PasswordLabelPI" fx:id="PasswordLabelPI" layoutX="257.0" layoutY="151.0" styleClass="PasswordLabelPI" stylesheets="@profile.css" text="Password" />
+                              <Label id="RoleLabelPI" fx:id="RoleLabelPI" layoutX="31.0" layoutY="232.0" styleClass="RoleLabelPI" stylesheets="@profile.css" text="Role" />
+                              <Label id="UserIDLabelPI" fx:id="UserIDLabelPI" layoutX="257.0" layoutY="232.0" styleClass="UserIDLabelPI" stylesheets="@profile.css" text="User ID" />
+                              <TextField id="RoleTextField" fx:id="RoleTextField" editable="false" layoutX="24.0" layoutY="246.0" styleClass="RoleTextField" stylesheets="@profile.css" text="System Admin">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <TextField id="UserIDTextField" fx:id="UserIDTextField" editable="false" layoutX="250.0" layoutY="246.0" prefHeight="31.0" prefWidth="147.0" styleClass="UserIDTextField" stylesheets="@profile.css" text="54682">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <PasswordField fx:id="PasswordTextFieldPI" editable="false" layoutX="254.0" layoutY="170.0" styleClass="PasswordTextFieldPI" stylesheets="@profile.css" text="*********" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab style="-fx-background-color: Transparent;" text="Edit Profile">
+               <content>
+                  <AnchorPane prefHeight="600.0" prefWidth="501.0">
+                     <children>
+                        <AnchorPane id="EditProfilePanel" fx:id="EditProfilePanel" layoutX="10.0" layoutY="11.0" prefHeight="90.0" prefWidth="436.0" styleClass="EditProfilePanel" stylesheets="@profile.css">
+                           <children>
+                              <ImageView fitHeight="72.0" fitWidth="90.0" layoutX="9.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/resources/Image_Resources/P C (4).png" />
+                                 </image>
+                              </ImageView>
+                              <Label id="SystemAdminLabel" fx:id="SystemAdminLabel" layoutX="103.0" layoutY="46.0" styleClass="SystemAdminLabel" stylesheets="@profile.css" text="System admin" />
+                              <TextField id="EditProfileAdmin" fx:id="EditProfileAdmin" layoutX="95.0" layoutY="25.0" styleClass="EditProfileAdmin" stylesheets="@profile.css">
+                                 <font>
+                                    <Font name="Arial Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane id="EditProfileInfo" fx:id="EditProfileInfo" layoutX="10.0" layoutY="118.0" prefHeight="335.0" prefWidth="435.0" styleClass="EditProfileInfo" stylesheets="@profile.css">
+                           <children>
+                              <Label layoutX="28.0" layoutY="43.0" text="Edit Profile" textFill="#344864">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label id="FirstNameLabel" fx:id="FirstNameLabel" layoutX="28.0" layoutY="98.0" styleClass="FirstNameLabel" stylesheets="@profile.css" text="Account Name" />
+                              <TextField fx:id="AccountNameTF" layoutX="26.0" layoutY="119.0" prefHeight="27.0" prefWidth="395.0" style="-fx-background-color: #F1F0E9;" styleClass="FirstNameTextField" stylesheets="@profile.css" />
+                              <Label id="UsernameLabel" fx:id="UsernameLabel" layoutX="274.0" layoutY="167.0" styleClass="UsernameLabel" stylesheets="@profile.css" text="Username" />
+                              <TextField id="UsernameTextField" fx:id="UsernameTextField" layoutX="273.0" layoutY="189.0" prefHeight="26.0" prefWidth="148.0" style="-fx-background-color: #F1F0E9;" styleClass="UsernameTextField" stylesheets="@profile.css" />
+                              <Label id="PasswordLabel" fx:id="PasswordLabel" layoutX="31.0" layoutY="168.0" styleClass="PasswordLabel" stylesheets="@profile.css" text="Password">
+                                 <font>
+                                    <Font name="Arial" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Button id="UpdateProfileBtn" fx:id="UpdateProfileBtn" layoutX="291.0" layoutY="288.0" mnemonicParsing="false" onAction="#save_edit" prefHeight="39.0" prefWidth="121.0" styleClass="UpdateProfileBtn" stylesheets="@profile.css" text="Update Profile">
+                                 <font>
+                                    <Font name="Arial Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="28.0" layoutY="242.0" text="Confirm Password" textFill="#bfb093">
+                                 <font>
+                                    <Font name="Arial" size="12.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="PasswordTextField" layoutX="25.0" layoutY="189.0" promptText="Password" style="-fx-background-color: #F1F0E9;" styleClass="PasswordTextField" stylesheets="@profile.css" />
+                              <PasswordField fx:id="ConfirmPasswordTextField" layoutX="26.0" layoutY="259.0" promptText="Confirm Password" style="-fx-background-color: #F1F0E9;" styleClass="ConfirmPasswordTextField" stylesheets="@profile.css" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Button id="LogoutButton" fx:id="LogoutButton" layoutX="391.0" layoutY="19.0" mnemonicParsing="false" onAction="#Logout" prefHeight="39.0" prefWidth="90.0" styleClass="LogoutButton" stylesheets="@profile.css" text="Logout" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

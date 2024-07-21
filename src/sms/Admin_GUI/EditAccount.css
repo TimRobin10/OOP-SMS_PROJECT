@@ -1,0 +1,61 @@
+/* Button Hover Effects */
+.CancelButton:hover {
+    -fx-background-radius: 6px;
+    -fx-background-color: red;
+    -fx-border-color: red;
+}
+
+.SaveButton:hover {
+    -fx-background-color: #5EA7B2;
+    -fx-background-radius: 6px;
+    -fx-border-color: #5EA7B2;
+}
+
+/* Buttons */
+.CancelButton {
+    -fx-border-color: #CBC9BB;
+    -fx-border-radius: 5px;
+    -fx-background-color: #F2F2F2;
+    -fx-text-fill: #344864;
+}
+
+.SaveButton {
+    -fx-border-color: #CBC9BB;
+    -fx-border-radius: 5px;
+    -fx-background-color: #F2F2F2;
+    -fx-text-fill: #344864;
+}
+
+/* Fields and Labels */
+.RoleBox,
+.PasswordField1,
+.PasswordField2,
+.RoleField,
+.UsernameField,
+.AccountNameField {
+    -fx-border-color: #CBC9BB;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #344864;
+    -fx-background-color: #f1f0e9; /* Corrected color code */
+}
+
+.PasswordLabel,
+.RoleLabel,
+.UsernameLabel,
+.AccountNameLabel {
+    -fx-text-fill: #bfb093; /* Corrected color code */
+}
+
+/* Panels */
+.BotAnchorPane,
+.TopAnchorPane {
+    -fx-border-style: solid;
+    -fx-border-color: #344864;
+    -fx-border-radius: 20px;
+    -fx-background-color: #f1f0e9; /* Corrected color code */
+}
+
+/* Main Frame */
+.MainFrame {
+    -fx-background-color: #F2F2F2;
+}

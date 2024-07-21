@@ -1,221 +1,211 @@
-package PROFILE;
+package sms.Admin_GUI;
 
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import sms.LoginPage.LoginDatabase;
+import sms.LoginPage.LoginPage;
 
 
+import javax.swing.*;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class profileController implements Initializable {
+import static sun.net.httpserver.simpleserver.Main.main;
 
+public class profileController {
 
+    @FXML private TextField AdminPI;
+    @FXML private TextField EditProfileAdmin;
+    @FXML private AnchorPane EditProfileInfo;
+    @FXML private AnchorPane EditProfilePanel;
+    @FXML private Label FirstNameLabel;
+    @FXML private Label FirstNameLabelPI;
+    @FXML private TextField AccountNameTF;
+    @FXML private TextField FirstNameTextFieldPI;
+    @FXML private Label LastNameLabel;
+    @FXML private TextField LastNameTextField;
+    @FXML private TextField LastNameTextField1;
+    @FXML private TextField LastNameTextFieldPI;
+    @FXML private Button LogoutButton;
+    @FXML private AnchorPane MainForm;
+    @FXML private Label PasswordLabel;
+    @FXML private Label PasswordLabelPI;
+    @FXML private TextField PasswordTextFieldPI;
+    @FXML private AnchorPane PersonalInfoBotPanel;
+    @FXML private AnchorPane PersonalInfoTopPanel;
+    @FXML private Label ProfileText;
+    @FXML private Label RoleLabelPI;
+    @FXML private TextField RoleTextField;
+    @FXML private Label SystemAdminLabel;
+    @FXML private Label SystemAdminLabel1;
+    @FXML private TabPane TabPane;
+    @FXML private Label UserIDLabelPI;
+    @FXML private TextField UserIDTextField;
+    @FXML private Label UsernameLabel;
+    @FXML private Label UsernameLabelPI;
+    @FXML private TextField PasswordTextField;
+    @FXML private TextField UsernameTextField;
+    @FXML private TextField UsernameTextFieldPI;
+    @FXML private  Button UpdateProfileBtn;
+    @FXML private TextField ConfirmPasswordTextField;
 
-    @FXML
-    private TextField AdminPI;
-    @FXML
-    private TextField EditProfileAdmin;
-
-    @FXML
-    private AnchorPane EditProfileInfo;
-
-    @FXML
-    private AnchorPane EditProfilePanel;
-
-    @FXML
-    private Label FirstNameLabel;
-
-    @FXML
-    private Label FirstNameLabelPI;
-
-    @FXML
-    private TextField FirstNameTextField;
-
-    @FXML
-    private TextField FirstNameTextFieldPI;
-
-    @FXML
-    private Label LastNameLabel;
-
-    @FXML
-    private TextField LastNameTextField;
-
-    @FXML
-    private TextField LastNameTextField1;
-
-    @FXML
-    private TextField LastNameTextFieldPI;
-
-    @FXML
-    private Button LogoutButton;
-
-    @FXML
-    private AnchorPane MainForm;
+    LoginDatabase lgb = LoginDatabase.getInstance();
+    private MenuController menuController;
 
     @FXML
-    private Label PasswordLabel;
-
-
-    @FXML
-    private Label PasswordLabelPI;
-
-    @FXML
-    private TextField PasswordTextFieldPI;
-
-    @FXML
-    private AnchorPane PersonalInfoBotPanel;
-
-    @FXML
-    private AnchorPane PersonalInfoTopPanel;
-
-    @FXML
-    private Label ProfileText;
-
-    @FXML
-    private Label RoleLabelPI;
-
-    @FXML
-    private TextField RoleTextField;
-
-    @FXML
-    private Label SystemAdminLabel;
-
-    @FXML
-    private Label SystemAdminLabel1;
-
-    @FXML
-    private TabPane TabPane;
-
-    @FXML
-    private Label UserIDLabelPI;
-
-    @FXML
-    private TextField UserIDTextField;
-
-    @FXML
-    private Label UsernameLabel;
-
-    @FXML
-    private Label UsernameLabelPI;
-    @FXML
-    private TextField PasswordTextField;
-
-    @FXML
-    private TextField UsernameTextField;
-
-    @FXML
-    private TextField UsernameTextFieldPI;
-
-    @FXML
-    private  Button UpdateProfileBtn;
-
-    @FXML
-    private TextField ConfirmPasswordTextField;
-
-
-
-
-
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        UpdateProfileBtn.setOnAction(event -> updatePersonalInfo());
-        LogoutButton.setOnAction(event -> handleLogout());
-
+    public void initialize() {
+        init_personalinfo();
+        lgb.addListener(this::updateUI);
     }
 
-    @FXML
-    private void updatePersonalInfo() {
-        String firstName = FirstNameTextField.getText();
-        String lastName = LastNameTextField.getText();
-        String username = UsernameTextField.getText();
-        String password = PasswordTextField.getText();
-        String confirmPassword = ConfirmPasswordTextField.getText();
+    public void setMenuController(MenuController menuController) {
+        this.menuController = menuController;
+    }
 
+    void close(){
+        Stage stage = (Stage) MainForm.getScene().getWindow();
+        stage.close();
+    }
 
-        if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            showAlert("Input Error", "Fields Cannot Be Empty", "Please fill out all fields.");
+    void init_personalinfo(){
+        AdminPI.setText(lgb.getAccount_Name());
+        SystemAdminLabel1.setText("System " + lgb.getAccount_Role());
+        FirstNameTextFieldPI.setText(lgb.getAccount_Name());
+        UsernameTextFieldPI.setText(lgb.getAccount_Username());
+        PasswordTextFieldPI.setText(lgb.getAccount_Password());
 
-            FirstNameTextField.setText("");
-            LastNameTextField.setText("");
-            UsernameTextField.setText("");
-            PasswordTextField.setText("");
-            ConfirmPasswordTextField.setText("");
+        RoleTextField.setText(lgb.getAccount_Role());
+        UserIDTextField.setText(lgb.getAccount_Username());
+        EditProfileAdmin.setText(lgb.getAccount_Name());
+        AccountNameTF.setText(lgb.getAccount_Name());
+        PasswordTextField.setText(lgb.getAccount_Password());
+        UsernameTextField.setText(lgb.getAccount_Username());
+        SystemAdminLabel.setText("System " + lgb.getAccount_Role());
+    }
+
+    public void save_edit() {
+        String username_input = UsernameTextField.getText();
+        String password_input = PasswordTextField.getText();
+        String Account_Name = AccountNameTF.getText();
+        int User_ID = lgb.getAccount_ID();
+        String confirmPassword_input = ConfirmPasswordTextField.getText();
+
+        boolean username_status;
+        boolean password_status;
+
+        if (username_input.equals(lgb.getAccount_Username())) {
+            username_status = false;
+        } else {
+            username_status = lgb.verify_username(username_input);
+        }
+
+        if (password_input.equals(lgb.getAccount_Password())) {
+            confirmPassword_input = lgb.getAccount_Password();
+            password_status = true;
+        } else {
+            password_status = password_input.equals(confirmPassword_input);
+        }
+
+        if (username_input.contains(" ")) {
+            showAlert("Error: Username cannot contain spaces", "Information Error!");
             return;
         }
 
-
-        if (!password.equals(confirmPassword)) {
-            showAlert("Password Mismatch", "Passwords Do Not Match", "Please make sure the passwords match.");
-
-            FirstNameTextField.setText("");
-            LastNameTextField.setText("");
-            UsernameTextField.setText("");
-            PasswordTextField.setText("");
-            ConfirmPasswordTextField.setText("");
+        if (username_input.contains("%") || username_input.contains("*") || username_input.contains("?") ||
+                username_input.contains("-") || username_input.contains("\\") || username_input.contains("/") ||
+                username_input.contains("#") || username_input.contains("(") || username_input.contains(")")) {
+            showAlert("Error: Username cannot contain special characters (%*()?\\/#)", "Information Error!");
             return;
         }
 
-        if (!Character.isUpperCase(firstName.charAt(0)) || !Character.isUpperCase(lastName.charAt(0))) {
-            showAlert("Input Error", "Names Must Start with a Capital Letter", "Please ensure first and last names start with a capital letter.");
-
-            FirstNameTextField.setText("");
-            LastNameTextField.setText("");
-            UsernameTextField.setText("");
-            PasswordTextField.setText("");
-            ConfirmPasswordTextField.setText("");
-
-
+        if (username_input.isEmpty()) {
+            showAlert("Error: Username cannot be empty", "Information Error!");
             return;
         }
-        firstName = capitalizeName(firstName);
-        lastName = capitalizeName(lastName);
 
-        FirstNameTextFieldPI.setText(firstName);
-        LastNameTextFieldPI.setText(lastName);
-        UsernameTextFieldPI.setText(username);
-        PasswordTextFieldPI.setText(password);
-        EditProfileAdmin.setText(firstName + " " + lastName);
-        AdminPI.setText(firstName + " " + lastName);
-
-
-        FirstNameTextField.setText("");
-        LastNameTextField.setText("");
-        UsernameTextField.setText("");
-        PasswordTextField.setText("");
-        ConfirmPasswordTextField.setText("");
-    }
-
-    private String capitalizeName(String name) {
-        if (name == null || name.isEmpty()) {
-            return name;
+        if (password_input.isEmpty()) {
+            showAlert("Error: Password cannot be empty", "Information Error!");
+            return;
         }
-        return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+
+        if (confirmPassword_input.isEmpty()) {
+            showAlert("Error: Confirm Password cannot be empty", "Information Error!");
+            return;
+        }
+
+        if (password_input.length() < 8) {
+            showAlert("Error: Password must be at least 8 characters", "Information Error!");
+            return;
+        }
+
+        if (!username_input.equals(lgb.getAccount_Username()) && username_status) {
+            showAlert("Error: Username already exists", "Information Error!");
+            return;
+        }
+
+        if (!password_status) {
+            showAlert("Error: Password does not match", "Information Error!");
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure of the changes?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            lgb.editAccountInfo(Account_Name, password_input, username_input, User_ID);
+        }
+        Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+        alert2.setTitle("Account Force Restart");
+        alert2.setHeaderText(null);
+        alert2.setContentText("Restart Account to apply changes.");
+        alert2.showAndWait();
+        Logout2();
     }
 
-    private void showAlert(String title, String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
+
+
+    public void Logout(){
+        showAlert("Are you sure you want to Log out?", "Logging Out");
+        close();
+        if(menuController != null){
+            menuController.MenuClose();
+        }
+        LoginPage.launchLogin();
+    }
+
+    public void Logout2(){
+        close();
+        if(menuController != null){
+            menuController.MenuClose();
+        }
+        LoginPage.launchLogin();
+    }
+
+    public void updateUI(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                init_personalinfo();
+            }
+        });
+    }
+
+    private void showAlert(String message, String x) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(x);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
         alert.showAndWait();
-
     }
-    @FXML
-    private void handleLogout() {
-
-
-        System.out.println("Logged out successfully!");
-
-
-    }
-
-
-    
-
 
 }

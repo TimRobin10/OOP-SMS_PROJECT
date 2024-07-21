@@ -37,10 +37,10 @@ public class Transaction_Controller {
 
     @FXML
     public void initialize() {
-        trans.addListener(this::UIupdate);
         init_transactions();
         setupSearchBar();
         setupChoiceBoxes();
+        trans.TDBaddListener(this::UpdateUI);
     }
 
     void init_transactions() {
@@ -129,7 +129,7 @@ public class Transaction_Controller {
         loadTransactions(filteredTransactions);
     }
 
-    void UIupdate(){
+    public void UpdateUI(){
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -138,4 +138,5 @@ public class Transaction_Controller {
             }
         });
     }
+
 }

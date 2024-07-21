@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -8,7 +9,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
-
 
 <AnchorPane fx:id="Center_Pane" prefHeight="794.0" prefWidth="1286.0" stylesheets="@Template.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sms.Admin_GUI.Transaction_Controller">
    <children>
@@ -35,6 +35,7 @@
                   <Label alignment="CENTER" prefHeight="58.0" prefWidth="140.0" text="Time" />
                </children>
             </HBox>
+            <Button layoutX="597.0" layoutY="48.0" mnemonicParsing="false" onAction="#UpdateUI" prefHeight="40.0" prefWidth="100.0" text="Refresh" />
          </children>
       </AnchorPane>
    </children>
