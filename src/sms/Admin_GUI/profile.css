@@ -1,0 +1,250 @@
+
+.EditProfileAdmin{
+
+    -fx-background-color: Transparent;
+    -fx-text-fill:#344864 ;
+
+}
+
+.UpdateProfileBtn:hover{
+
+    -fx-background-color: #5EA7B2;
+    -fx-border-radius: 10px;
+    -fx-border-color: #5EA7B2;
+
+
+}
+
+.UpdateProfileBtn{
+
+
+    -fx-background-color: #F2F2F2;
+    -fx-text-fill: #344864;
+    -fx-border-radius: 10px;
+    -fx-border-color: #DBDBC7;
+
+
+}
+
+
+.AdminPI{
+
+    -fx-background-color: Transparent;
+    -fx-text-fill:#344864 ;
+
+}
+
+.PasswordTextFieldPI{
+
+
+    -fx-background-color: #F2F2F2;
+    -fx-text-fill:#344864 ;
+
+}
+
+.UsernameTextFieldPI{
+
+    -fx-background-color: #F2F2F2;
+    -fx-text-fill:#344864 ;
+}
+
+
+.LastNameTextFieldPI{
+
+    -fx-background-color: #F2F2F2;
+    -fx-text-fill:#344864 ;
+
+}
+
+
+.FirstNameTextFieldPI{
+
+    -fx-background-color: #F2F2F2;
+    -fx-text-fill:#344864 ;
+
+}
+
+
+
+
+.LogoutButton{
+    -fx-border-radius: 10px;
+    -fx-background-color: #C45144;
+
+}
+
+.UserIDTextField{
+
+    -fx-background-color: #F2F2F2;
+    -fx-text-fill: #344864;
+
+}
+
+
+.RoleTextField{
+    -fx-background-color: #F2F2F2;
+    -fx-text-fill: #344864;
+
+}
+
+
+
+.FirstNameLabelPI,.LastNameLabelPI,.UsernameLabelPI,.PasswordLabelPI,.RoleLabelPI,.UserIDLabelPI{
+
+    -fx-text-fill: #BFB093;
+
+}
+
+
+.PersonalInfoBotPanel{
+
+    -fx-border-style: solid;
+    -fx-border-radius: 20px;
+    -fx-border-color:#344864 ;
+
+}
+
+
+.PersonalInfoTopPanel{
+
+    -fx-border-style: solid;
+    -fx-border-radius: 20px;
+    -fx-border-color:#344864 ;
+
+}
+
+
+.ConfirmPasswordTextField{
+
+    -fx-border-radius: 8px;
+    -fx-border-style: solid;
+    -fx-background-color: Transparent;
+    -fx-border-color:#CBC9BB ;
+
+}
+
+
+.PasswordTextField{
+
+    -fx-border-radius: 8px;
+    -fx-border-style: solid;
+    -fx-background-color: Transparent;
+    -fx-border-color:#CBC9BB ;
+
+}
+
+
+.UsernameTextField{
+
+    -fx-border-radius: 8px;
+    -fx-border-style: solid;
+    -fx-background-color: Transparent;
+    -fx-border-color:#CBC9BB ;
+
+}
+
+
+.LastNameTextField{
+
+    -fx-border-radius: 8px;
+    -fx-border-style: solid;
+    -fx-background-color: Transparent;
+    -fx-border-color:#CBC9BB ;
+
+
+}
+
+
+
+.FirstNameTextField{
+
+    -fx-border-radius: 8px;
+    -fx-border-style: solid;
+    -fx-background-color: Transparent;
+    -fx-border-color:#CBC9BB ;
+
+}
+
+
+
+
+
+
+
+
+.FirstNameLabel,.LastNameLabel,.UsernameLabel,.PasswordLabel{
+
+    -fx-text-fill: #BFB093;
+
+}
+
+.SystemAdminLabel{
+
+    -fx-text-fill: #BFB093;
+
+}
+.EditProfileInfo{
+
+    -fx-border-style: solid;
+    -fx-border-radius: 20px;
+    -fx-border-color:#344864 ;
+
+}
+
+.EditProfilePanel{
+
+    -fx-border-style: solid;
+    -fx-border-radius: 20px;
+    -fx-border-color:#344864 ;
+
+}
+
+
+.tab-pane
+{
+    -fx-background-color:  #F2F2F2;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15px;
+    -fx-background-insets: 0;
+    -fx-focus-color: XXXXXX;
+}
+
+.tab-pane .tab-header-background
+{
+    -fx-background-color:  #F2F2F2;
+    -fx-background-radius: 15px;
+    -fx-border-color:  #F2F2F2;
+    -fx-border-radius: 15px;
+}
+
+.tab-pane .tab
+{
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab-header-area .tab:selected  {
+    -fx-border-color: #F88456;
+    -fx-border-width: 0 0 2px 0;
+}
+
+.tab-pane .tab-header-area .tab-label
+{
+    -fx-text-color: #A6A6A6;
+    -fx-text-fill: #A6A6A6;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+}
+.tab-pane .tab-header-area .tab:selected .tab-label {
+    -fx-text-fill: #344864;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+}
+
+.ProfileText {
+        -fx-text-fill: #344864;
+}
+
+.MainForm {
+    -fx-border-radius: 30px;
+    -fx-background-color: #F2F2F2;
+}
